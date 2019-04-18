@@ -191,42 +191,6 @@
                             </div>
                         </div>
 
-                        <div class="dropdown dropdown-lang">
-                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <span class="flag-icon flag-icon-us"></span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <div class="dropdown-menu-col">
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-ru"></span>Русский</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-de"></span>Deutsch</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-it"></span>Italiano</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-es"></span>Español</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-pl"></span>Polski</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-li"></span>Lietuviu</a>
-                                </div>
-                                <div class="dropdown-menu-col">
-                                    <a class="dropdown-item current" href="#"><span
-                                            class="flag-icon flag-icon-us"></span>English</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-fr"></span>Français</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-by"></span>Беларускi</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-ua"></span>Українська</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="flag-icon flag-icon-cz"></span>Česky</a>
-                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-ch"></span>中國</a>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="dropdown user-menu">
                             <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -237,11 +201,14 @@
                                         class="font-icon glyphicon glyphicon-user"></span>Profile</a>
                                 <a class="dropdown-item" href="#"><span
                                         class="font-icon glyphicon glyphicon-cog"></span>Settings</a>
-                                <a class="dropdown-item" href="#"><span
-                                        class="font-icon glyphicon glyphicon-question-sign"></span>Help</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><span
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><span
                                         class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
 
@@ -497,6 +464,18 @@
     <div class="mobile-menu-left-overlay"></div>
     <nav class="side-menu">
         <ul class="side-menu-list">
+            <li class="blue">
+                <a href="{{ route('home') }}">
+                    <i class="font-icon font-icon-dashboard"></i>
+                    <span class="lbl">Dashboard</span>
+                </a>
+            </li>
+            <li class="red">
+                <a href="{{ route('company.index') }}">
+                    <i class="font-icon glyphicon glyphicon-home"></i>
+                    <span class="lbl">Company</span>
+                </a>
+            </li>
             <li class="grey with-sub">
                 <span>
                     <i class="font-icon font-icon-dashboard"></i>
@@ -549,12 +528,6 @@
                     <li><a href="chat-write.html"><span class="lbl">Write Message</span></a></li>
                     <li><a href="chat-index.html"><span class="lbl">Select User</span></a></li>
                 </ul>
-            </li>
-            <li class="red">
-                <a href="mail.html">
-                    <i class="font-icon glyphicon glyphicon-send"></i>
-                    <span class="lbl">Mail</span>
-                </a>
             </li>
             <li class="gold with-sub">
                 <span>
