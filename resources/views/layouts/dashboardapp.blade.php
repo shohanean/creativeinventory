@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>
-        @yield('title', 'CreativeInventory')
+        @yield('title', 'Creative Inventory')
     </title>
 
     <link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
@@ -464,39 +464,17 @@
     <div class="mobile-menu-left-overlay"></div>
     <nav class="side-menu">
         <ul class="side-menu-list">
-            <li class="blue">
+            <li class="blue @yield('active-dashboard')">
                 <a href="{{ route('home') }}">
                     <i class="font-icon font-icon-dashboard"></i>
                     <span class="lbl">Dashboard</span>
                 </a>
             </li>
-            <li class="red">
+            <li class="red @yield('active-company')">
                 <a href="{{ route('company.index') }}">
                     <i class="font-icon glyphicon glyphicon-home"></i>
                     <span class="lbl">Company</span>
                 </a>
-            </li>
-            <li class="grey with-sub">
-                <span>
-                    <i class="font-icon font-icon-dashboard"></i>
-                    <span class="lbl">Dashboard</span>
-                </span>
-                <ul>
-                    <li><a href="index.html"><span class="lbl">Default</span><span
-                                class="label label-custom label-pill label-danger">new</span></a></li>
-                    <li><a href="dashboard-top-menu.html"><span class="lbl">Top menu</span></a></li>
-                    <li><a href="side-menu-compact-full.html"><span class="lbl">Compact menu</span></a></li>
-                    <li><a href="dashboard-addl-menu.html"><span class="lbl">Submenu</span></a></li>
-                    <li><a href="side-menu-avatar.html"><span class="lbl">Menu with avatar</span></a></li>
-                    <li><a href="side-menu-avatar.html"><span class="lbl">Compact menu with avatar</span></a></li>
-                    <li><a href="dark-menu.html"><span class="lbl">Dark menu</span></a></li>
-                    <li><a href="dark-menu-blue.html"><span class="lbl">Blue dark menu</span></a></li>
-                    <li><a href="dark-menu-green.html"><span class="lbl">Green dark menu</span></a></li>
-                    <li><a href="dark-menu-green-compact.html"><span class="lbl">Green compact dark menu</span></a></li>
-                    <li><a href="dark-menu-ultramarine.html"><span class="lbl">Ultramarine dark menu</span></a></li>
-                    <li><a href="asphalt-menu.html"><span class="lbl">Asphalt top menu</span></a></li>
-                    <li><a href="side-menu-big-icon.html"><span class="lbl">Big menu</span></a></li>
-                </ul>
             </li>
             <li class="brown with-sub">
                 <span>
@@ -597,12 +575,6 @@
                 <li><a href="player.html"><span class="lbl">Players</span></a></li>
             </ul>
         </li>
-        <!--   <li class="gold">
-	            <a href="#">
-	                <i class="font-icon font-icon-speed"></i>
-	                <span class="lbl">Performance</span>
-	            </a>
-	        </li>-->
         <li class="pink-red">
             <a href="activity.html">
                 <i class="font-icon font-icon-zigzag"></i>
@@ -637,7 +609,7 @@
                 <span class="label label-custom label-pill label-danger">35</span>
             </a>
         </li>
-        <li class="magenta opened">
+        <li class="magenta">
             <a href="scheduler.html">
                 <i class="font-icon font-icon-calend"></i>
                 <span class="lbl">Calendar</span>

@@ -1,34 +1,85 @@
 @extends('layouts.dashboardapp')
 
 @section('title', 'Company')
+@section('active-company', 'opened')
 
 @section('content')
 <div class="row">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-body">
+            <div class="card-header">
                 List Company
             </div>
             <div class="card-body">
-                <h4 class="card-title">Title</h4>
-                <p class="card-text">Text</p>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Company Name</th>
+                      <th>Company Location</th>
+                      <th>Created</th>
+                      <th>Created By</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  @forelse($companies as $company)
+                    <tr>
+                      <td>{{ $loop->index+1 }}</td>
+                      <td>{{ $company->company_name }}</td>
+                      <td>{{ $company->company_location }}</td>
+                      <td>{{ $company->created_at->diffForHumans() }}</td>
+                      <td>{{ $company->user->name }}</td>
+                      <td>
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn btn-info-outline"><span class="glyphicon glyphicon-pencil"></span></button>
+                            <button type="button" class="btn btn-danger-outline"><span class="glyphicon glyphicon-trash"></span></button>
+                        </div>
+                      </td>
+                    </tr>
+                  @empty
+                    <tr class="text-center text-danger">
+                      <td colspan="5">No Company Found</td>
+                    </tr>
+                  @endforelse
+                  </tbody>
+                </table>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-body">
+            <div class="card-header">
                 Add Company
             </div>
             <div class="card-body">
-                <form action="" method="post">
+                @if($errors->all())
+                    <div class="alert alert-danger alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </div>
+                @endif
+                @if(session('success'))
+                    <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <form action="{{ route('company.store') }}" method="post">
+                @csrf
                     <div class="form-group">
                       <label>Company Name</label>
-                      <input type="text" class="form-control" name="" placeholder="Enter Company Name">
+                      <input type="text" class="form-control" name="company_name" placeholder="Enter Company Name">
                     </div>
                     <div class="form-group">
                       <label>Company Location</label>
-                      <input type="text" class="form-control" name="" placeholder="Enter Company Location">
+                      <input type="text" class="form-control" name="company_location" placeholder="Enter Company Location">
                     </div>
                     <button type="submit" class="btn btn-primary">Add Company</button>
                 </form>

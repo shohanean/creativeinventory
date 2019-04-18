@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Company;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('company.index');
+        $companies = Company::all();
+        return view('company.index', compact('companies'));
     }
 
     /**
@@ -35,7 +37,12 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'company_name' => 'required|unique:companies,company_name',
+            'company_location' => 'required'
+        ]);
+        Company::create($request->except('_token') + ['user_id' => Auth::id()]);
+        return back()->withSuccess('Company Added Successfully!');
     }
 
     /**
