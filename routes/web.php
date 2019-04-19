@@ -15,5 +15,14 @@ Route::redirect('/', 'login');
 Auth::routes();
 
 Route::get('home', 'HomeController@index')->name('home');
+
+
+////////////// COMPANY /////////////////
 Route::resource('company', 'CompanyController');
+
+
+
+///////////// WAREHOUSE ///////////////
 Route::resource('warehouse', 'WarehouseController');
+Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore');
+Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete');

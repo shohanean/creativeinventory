@@ -16,6 +16,7 @@
     <link href="img/favicon.57x57.png" rel="apple-touch-icon" type="image/png">
     <link href="img/favicon.png" rel="icon" type="image/png">
     <link href="img/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -474,6 +475,12 @@
                 <a href="{{ route('company.index') }}">
                     <i class="font-icon glyphicon glyphicon-home"></i>
                     <span class="lbl">Company</span>
+                </a>
+            </li>
+            <li class="green @yield('active-warehouse')">
+                <a href="{{ route('warehouse.index') }}">
+                    <i class="font-icon fas fa-warehouse"></i>
+                    <span class="lbl">Warehouse</span>
                 </a>
             </li>
             <li class="brown with-sub">
