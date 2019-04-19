@@ -5,6 +5,14 @@
 
 @section('content')
 <div class="row">
+    <div class="col-md-12">
+        <nav class="breadcrumb bg-white">
+            <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
+            <span class="breadcrumb-item active">Company</span>
+        </nav>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
@@ -32,14 +40,20 @@
                       <td>{{ $company->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn btn-info-outline"><span class="glyphicon glyphicon-pencil"></span></button>
-                            <button type="button" class="btn btn-danger-outline"><span class="glyphicon glyphicon-trash"></span></button>
+                            <form>
+                                <a href="{{ route('company.edit', $company->id) }}" class="btn btn-info-outline"><span class="glyphicon glyphicon-pencil"></span></a>
+                            </form>
+                            <form action="{{ route('company.destroy', $company->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger-outline"><span class="glyphicon glyphicon-trash"></span></button>
+                            </form>
                         </div>
                       </td>
                     </tr>
                   @empty
                     <tr class="text-center text-danger">
-                      <td colspan="5">No Company Found</td>
+                      <td colspan="6">No Company Found</td>
                     </tr>
                   @endforelse
                   </tbody>
@@ -75,6 +89,7 @@
                 @csrf
                     <div class="form-group">
                       <label>Company Name</label>
+                      <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                       <input type="text" class="form-control" name="company_name" placeholder="Enter Company Name">
                     </div>
                     <div class="form-group">

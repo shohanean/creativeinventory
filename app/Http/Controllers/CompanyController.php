@@ -13,6 +13,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $companies = Company::all();
@@ -41,7 +45,7 @@ class CompanyController extends Controller
             'company_name' => 'required|unique:companies,company_name',
             'company_location' => 'required'
         ]);
-        Company::create($request->except('_token') + ['user_id' => Auth::id()]);
+        Company::create($request->except('_token'));
         return back()->withSuccess('Company Added Successfully!');
     }
 
@@ -64,7 +68,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('company.edit', compact('company'));
     }
 
     /**
@@ -87,6 +91,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return back();
     }
 }
