@@ -25,6 +25,8 @@
 	<![endif]-->
     <link rel="stylesheet" href="{{ asset('dashboard_assets/css/lib/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard_assets/css/lib/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard_assets/css/lib/bootstrap-sweetalert/sweetalert.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard_assets/css/separate/vendor/sweet-alert-animations.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard_assets/css/main.css') }}">
 </head>
 
@@ -768,8 +770,10 @@
     <script src="{{ asset('dashboard_assets/js/lib/popper/popper.min.js') }}"></script>
     <script src="{{ asset('dashboard_assets/js/lib/tether/tether.min.js') }}"></script>
     <script src="{{ asset('dashboard_assets/js/lib/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('dashboard_assets/js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('dashboard_assets/js/plugins.js') }}"></script>
     <script src="{{ asset('dashboard_assets/js/app.js') }}"></script>
+    @yield('footer_scripts')
 </body>
 
 </html>

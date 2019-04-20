@@ -5,10 +5,19 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-4 offset-4">
+    <div class="col-md-12">
+        <nav class="breadcrumb bg-white">
+            <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
+            <a class="breadcrumb-item" href="{{ route('warehouse.index') }}">Warehouse</a>
+            <span class="breadcrumb-item active">{{ $warehouse->name }}</span>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                Edit {{$warehouse->name}} Info
+            <div class="card-header bg-primary text-white">
+                Edit {{ $warehouse->name }} Info
             </div>
             <div class="card-body">
                 @if($errors->all())
@@ -21,18 +30,23 @@
                         @endforeach
                     </div>
                 @endif
-                <form action="{{url('warehouse')}}/{{$warehouse->id}}" method="post">
-                @csrf
+                <form action="{{ route('warehouse.update', $warehouse->id) }}" method="POST">
                 @method('patch')
-                    <div class="form-group">
-                        <label>Warehouse Name</label>
-                        <input type="text" class="form-control" name="name" value="{{$warehouse->name}}">
+                @csrf
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                            <label>Warehouse Name</label>
+                            <input type="text" class="form-control" name="name" value="{{ $warehouse->name }}">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label>Warehouse Location</label>
+                            <input type="text" class="form-control" name="location" value="{{ $warehouse->location }}">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="btn btn-primary">Edit Warehouse</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Warehouse Location</label>
-                        <textarea class="form-control" name="location">{{$warehouse->location}}</textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Edit Warehouse</button>
                 </form>
             </div>
         </div>

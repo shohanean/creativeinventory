@@ -24,5 +24,5 @@ Route::resource('company', 'CompanyController');
 
 ///////////// WAREHOUSE ///////////////
 Route::resource('warehouse', 'WarehouseController');
-Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore');
-Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete');
+Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore')->name('warehouse.restore');
+Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete')->name('warehouse.forceDelete');
