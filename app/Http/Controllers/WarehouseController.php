@@ -109,14 +109,14 @@ class WarehouseController extends Controller
         $data = Warehouse::first('name');
 
         Warehouse::withTrashed()->find($warehouse)->restore();
-        
+
         return back()->withRestore($data->name. ' has been restored');
     }
 
     public function forceDelete($warehouse){
         // $data = Warehouse::first('name');
        Warehouse::withTrashed()->find($warehouse)->forceDelete();
-    
+
        return back()->withForced('Item has been deleted permanently');
     }
 }

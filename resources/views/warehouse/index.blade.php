@@ -48,7 +48,7 @@
                       <td>{{ $warehouse->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                            <form action="{{ route('warehouse.edit', $warehouse->id) }}" method="GET">
+                            <form action="{{ route('warehouse.edit', $warehouse->id) }}">
                                 <button type="submit" class="btn btn-primary-outline"><span class="glyphicon glyphicon-pencil"></span></button>
                             </form>
                             <form action="{{ route('warehouse.destroy', $warehouse->id) }}" method="POST">
