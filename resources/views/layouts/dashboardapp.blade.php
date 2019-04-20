@@ -483,6 +483,12 @@
                     <span class="lbl">Warehouse</span>
                 </a>
             </li>
+            <li class="gold @yield('active-supplier')">
+                <a href="{{route('supplier.index')}}">
+                    <i class="font-icon fas fa-truck"></i>
+                    <span class="lbl">Supplier</span>
+                </a>
+            </li>
             <li class="brown with-sub">
                 <span>
                     <i class="font-icon glyphicon glyphicon-tint"></i>

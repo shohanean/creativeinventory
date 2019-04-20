@@ -40,7 +40,7 @@ class WarehouseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:companies,company_name',
+            'name' => 'required|unique:warehouses,name',
             'location' => 'required',
             'created_at' => Carbon::now()
         ]);
@@ -84,7 +84,7 @@ class WarehouseController extends Controller
     {
 
         $data=request()->validate([
-            'name' => 'required|unique:companies,company_name',
+            'name' => 'required|unique:warehouses,name',
             'location' => 'required',
             'created_at' => Carbon::now()
         ]);

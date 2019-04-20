@@ -26,3 +26,9 @@ Route::resource('company', 'CompanyController');
 Route::resource('warehouse', 'WarehouseController');
 Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore');
 Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete');
+
+
+///////////// SUPPLIER ///////////////
+Route::resource('supplier', 'SupplierController');
+Route::get('supplier/restore/{supplier}', 'SupplierController@restore');
+Route::get('supplier/force/delete/{supplier}', 'SupplierController@forceDelete');
