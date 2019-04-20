@@ -40,7 +40,7 @@ class WarehouseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:warehouses,name',
+            'name' => 'required|unique:warehouses,name|alpha_num',
             'location' => 'required',
             'created_at' => Carbon::now()
         ]);
@@ -83,13 +83,12 @@ class WarehouseController extends Controller
     public function update(Request $request, Warehouse $warehouse)
     {
 
-        $data=request()->validate([
-            'name' => 'required|unique:warehouses,name',
+        $data = request()->validate([
+            'name' => 'required|alpha_num|unique:warehouses,name,' . $warehouse->id,
             'location' => 'required',
-            'created_at' => Carbon::now()
         ]);
         $warehouse->update($data);
-        return redirect('/warehouse')->withStatus($warehouse->name. ' has been edited Succesfully');
+        return redirect('/warehouse')->withStatus($warehouse->name . ' has been edited succesfully');
     }
 
     /**
@@ -101,22 +100,17 @@ class WarehouseController extends Controller
     public function destroy(Warehouse $warehouse)
     {
         $warehouse->delete();
-
         return back()->withDelete($warehouse->name. ' has been sent to trash');
     }
 
     public function restore($warehouse){
         $data = Warehouse::first('name');
-
         Warehouse::withTrashed()->find($warehouse)->restore();
-        
         return back()->withRestore($data->name. ' has been restored');
     }
 
     public function forceDelete($warehouse){
-        // $data = Warehouse::first('name');
        Warehouse::withTrashed()->find($warehouse)->forceDelete();
-    
        return back()->withForced('Item has been deleted permanently');
     }
 }

@@ -24,6 +24,7 @@ Route::resource('company', 'CompanyController');
 
 ///////////// WAREHOUSE ///////////////
 Route::resource('warehouse', 'WarehouseController');
+<<<<<<< HEAD
 Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore');
 Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete');
 
@@ -32,3 +33,7 @@ Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelet
 Route::resource('supplier', 'SupplierController');
 Route::get('supplier/restore/{supplier}', 'SupplierController@restore');
 Route::get('supplier/force/delete/{supplier}', 'SupplierController@forceDelete');
+=======
+Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore')->name('warehouse.restore');
+Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete')->name('warehouse.forceDelete');
+>>>>>>> 4949fc2cf0846351be990e15bde58fd48fe8909d
