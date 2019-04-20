@@ -48,13 +48,12 @@
                       <td>{{ $warehouse->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                            <form action="{{url('warehouse')}}/{{$warehouse->id}}/{{('edit')}}" method="GET">
-                              @csrf
+                            <form action="{{ route('warehouse.edit', $warehouse->id) }}" method="GET">
                                 <button type="submit" class="btn btn-primary-outline"><span class="glyphicon glyphicon-pencil"></span></button>
                             </form>
-                            <form action="{{url('warehouse')}}/{{$warehouse->id}}" method="POST">
-                              @csrf
+                            <form action="{{ route('warehouse.destroy', $warehouse->id) }}" method="POST">
                               @method('DELETE')
+                              @csrf
                                 <button type="submit" class="btn btn-danger-outline"><span class="glyphicon glyphicon-trash"></span></button>
                             </form>
                         </div>

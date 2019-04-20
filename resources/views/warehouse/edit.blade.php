@@ -1,13 +1,14 @@
 @extends('layouts.dashboardapp')
 
-@section('title', $warehouse->name. ' edit' )
- 
+@section('title', $warehouse->name. ' Edit' )
+@section('active-warehouse', 'opened')
+
 @section('content')
 <div class="row">
     <div class="col-md-4 offset-4">
         <div class="card">
             <div class="card-header">
-                Edit {{$warehouse->name}} info
+                Edit {{$warehouse->name}} Info
             </div>
             <div class="card-body">
                 @if($errors->all())
