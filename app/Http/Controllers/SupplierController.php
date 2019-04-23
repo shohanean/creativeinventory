@@ -80,7 +80,7 @@ class SupplierController extends Controller
     public function update(Request $request, Supplier $supplier)
     {
         $data=request()->validate([
-            'name' => 'required|unique:suppliers,name',
+            'name' => 'required|unique:suppliers,name,' .$supplier->id,
             'created_at' => Carbon::now()
         ]);
         $supplier->update($data + ['location' => $request->location, 'note' => $request->note] );
@@ -96,22 +96,18 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
-
         return back()->withDelete($supplier->name. ' has been sent to trash');
     }
 
     public function restore($supplier){
         // $data = Supplier::first('name');
-
         Supplier::withTrashed()->find($supplier)->restore();
-        
         return back()->withRestore('Item has been restored');
     }
 
     public function forceDelete($supplier){
         // $data = Warehouse::first('name');
        Supplier::withTrashed()->find($supplier)->forceDelete();
-    
        return back()->withForced('Item has been deleted permanently');
     }
 

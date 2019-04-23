@@ -9,6 +9,8 @@ class Company extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
+    protected $dates = ['deleted_at'];
+
     function user()
     {
         return $this->hasOne('App\User', 'id', 'user_id');

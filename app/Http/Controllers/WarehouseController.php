@@ -40,7 +40,7 @@ class WarehouseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:warehouses,name|alpha_num',
+            'name' => 'required|unique:warehouses,name',
             'location' => 'required',
             'created_at' => Carbon::now()
         ]);
@@ -84,7 +84,7 @@ class WarehouseController extends Controller
     {
 
         $data = request()->validate([
-            'name' => 'required|alpha_num|unique:warehouses,name,' . $warehouse->id,
+            'name' => 'required|unique:warehouses,name,' . $warehouse->id,
             'location' => 'required',
         ]);
         $warehouse->update($data);
@@ -104,9 +104,9 @@ class WarehouseController extends Controller
     }
 
     public function restore($warehouse){
-        $data = Warehouse::first('name');
+        // $data = Warehouse::first('name');
         Warehouse::withTrashed()->find($warehouse)->restore();
-        return back()->withRestore($data->name. ' has been restored');
+        return back()->withRestore('Item has been restored');
     }
 
     public function forceDelete($warehouse){

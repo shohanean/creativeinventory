@@ -1,7 +1,6 @@
 @extends('layouts.dashboardapp')
 
 @section('title', $warehouse->name. ' Edit' )
-@section('active-warehouse', 'opened')
 
 @section('content')
 <div class="row">
@@ -17,7 +16,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header bg-primary text-white">
-                Edit {{ $warehouse->name }} Info
+                Edit <em>{{ $warehouse->name }}</em> Info
             </div>
             <div class="card-body">
                 @if($errors->all())
@@ -40,7 +39,7 @@
                         </div>
                         <div class="form-group col-md-5">
                             <label>Warehouse Location</label>
-                            <input type="text" class="form-control" name="location" value="{{ $warehouse->location }}">
+                            <textarea type="text" class="form-control" name="location" value="{{ $warehouse->location }}">{{ $warehouse->location }}</textarea>
                         </div>
                         <div class="form-group col-md-2">
                             <label>&nbsp;</label>

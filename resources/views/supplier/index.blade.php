@@ -5,6 +5,14 @@
 
 @section('content')
 <div class="row">
+    <div class="col-md-12">
+        <nav class="breadcrumb bg-white">
+            <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
+            <span class="breadcrumb-item active">Suppliers</span>
+        </nav>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-8">
         <div class="card">
             <div class="card-header bg-success text-white">
@@ -38,32 +46,33 @@
                       <th>Created By</th>
                       <th>Action</th>
                     </tr>
-                    {{-- ->diffForHumans() --}}
                   </thead>
                   <tbody>
                   @forelse($suppliers as $supplier)
                     <tr>
                       <td>{{ $loop->index+1 }}</td>
-                      <td>{{ $supplier->created_at->format('d-M-Y') }}</td>
+                      <td>{{ $supplier->created_at->format('d-M-y') }}</td>
                       <td>{{ $supplier->name }}</td>
                       <td>{{ $supplier->location }}</td>
                       <td>{{ $supplier->note }}</td>
                       <td>{{ $supplier->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                            <form action="{{route('supplier.edit', $supplier->id)}}" method="GET">
-                                <button type="submit" class="btn btn-primary-outline"><span class="glyphicon glyphicon-pencil"></span></button>
-                            </form>
-                            <form action="{{route('supplier.destroy', $supplier->id)}}" method="POST">
-                              @csrf
+                            <a href="{{ route('supplier.edit', $supplier->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a>
+                            <form class="d-none" id="supplier-destroy-form" action="{{ route('supplier.destroy', $supplier->id) }}" method="POST">
                               @method('DELETE')
-                                <button type="submit" class="btn btn-danger-outline"><span class="glyphicon glyphicon-trash"></span></button>
+                              @csrf
                             </form>
+                            <a href="{{ route('supplier.destroy', $supplier->id) }}" class="btn btn-danger-outline"
+                              onclick="event.preventDefault();
+                              document.getElementById('supplier-destroy-form').submit();">
+                              <span><i class="fas fa-trash-alt"></i></span>
+                            </a>
                         </div>
                       </td>
                     </tr>
                   @empty
-                    <tr class="text-center">
+                    <tr class="text-center text-danger">
                       <td colspan="7">No Supplier Found</td>
                     </tr>
                   @endforelse
@@ -109,20 +118,20 @@
                   @forelse($trashed as $trash)
                     <tr>
                       <td>{{ $loop->index+1 }}</td>
-                      <td>{{ $trash->deleted_at->format('d-M-Y') }}</td>
+                      <td>{{ $trash->deleted_at->format('d-M-y') }}</td>
                       <td>{{ $trash->name }}</td>
                       <td>{{ $trash->location }}</td>
                       <td>{{ $trash->note }}</td>
                       <td>{{ $trash->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                          <a href="{{url('supplier/restore')}}/{{$trash->id}}" class="btn btn-success-outline"><span><i class="fas fa-trash-restore"></i></span></a>
-                          <a href="{{url('supplier/force/delete')}}/{{$trash->id}}" class="btn btn-danger-outline"><span><i class="fas fa-eraser"></i></span></a>
+                          <a href="{{route('supplier.restore', $trash->id)}}" class="btn btn-success-outline"><span><i class="fas fa-trash-restore"></i></span></a>
+                          <a id="{{route('supplier.forceDelete', $trash->id)}}" href="#" class="btn btn-danger-outline force-delete-btn"><span><i class="fas fa-eraser"></i></span></a>
                         </div>
                       </td>
                     </tr>
                   @empty
-                    <tr class="text-center">
+                    <tr class="text-center text-danger">
                       <td colspan="7">No Warehouse Found</td>
                     </tr>
                   @endforelse
@@ -175,4 +184,37 @@
         </div>
     </div>
 </div>
+@endsection
+@section('footer_scripts')
+<script>
+    $(document).ready(function () {
+        $('.force-delete-btn').click(function () {
+            var linktogo = $(this).attr('id');
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this data!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location.href = linktogo;
+            } else {
+                swal({
+                    title: "Cancelled",
+                    text: "Your data is safe :)",
+                    type: "error",
+                    confirmButtonClass: "btn-danger"
+                });
+            }
+        });
+        });
+
+    });
+</script>
 @endsection

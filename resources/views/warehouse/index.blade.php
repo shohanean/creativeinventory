@@ -62,8 +62,10 @@
                               @csrf
                             </form>
                             <a href="{{ route('warehouse.destroy', $warehouse->id) }}" class="btn btn-danger-outline"
-                                                    onclick="event.preventDefault();
-                                                    document.getElementById('warehouse-destroy-form').submit();"><span><i class="fas fa-trash-alt"></i></span></a>
+                              onclick="event.preventDefault();
+                              document.getElementById('warehouse-destroy-form').submit();">
+                              <span><i class="fas fa-trash-alt"></i></span>
+                            </a>
                         </div>
                       </td>
                     </tr>
@@ -162,11 +164,11 @@
                 @csrf
                     <div class="form-group">
                       <label>Warehouse Name</label>
-                      <input type="text" class="form-control" name="name" placeholder="Enter Warehouse Name" value={{ old('name') }}>
+                      <input type="text" class="form-control" name="name" placeholder="Enter Warehouse Name" value="{{ old('name') }}">
                     </div>
                     <div class="form-group">
                       <label>Warehouse Location</label>
-                      <input type="text" class="form-control" name="location" placeholder="Enter Warehouse Location" value={{ old('location') }}>
+                      <textarea class="form-control" name="location" placeholder="Enter Warehouse Location" value="{{ old('location') }}"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success">Add Warehouse</button>
                 </form>

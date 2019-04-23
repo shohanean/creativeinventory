@@ -485,6 +485,36 @@
                     <span class="lbl">Warehouse</span>
                 </a>
             </li>
+            
+            {{-- List of links --}}
+            {{-- <li class="green with-sub">
+                <span class="">
+                    <i class=" font-icon fas fa-warehouse @yield('active-warehouse')"></i>
+                    <span class="lbl">Warehouse</span>
+                </span>
+                <ul>
+                    <li> 
+                        <a href="{{ route('warehouse.create') }}">
+                            <i class="lbl fas fa-plus-circle"></i>
+                            <span class="lbl">Add Warehouse</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('warehouse.index') }}">
+                            <i class="lbl fas fa-list"></i>
+                            <span class="lbl">Warehouse List</span>
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="{{ route('warehouse.index') }}">
+                            <i class="lbl fas fa-trash"></i>
+                            <span class="lbl">Trash List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li> --}}
+            {{-- end list of links --}}
+
             <li class="gold @yield('active-supplier')">
                 <a href="{{route('supplier.index')}}">
                     <i class="font-icon fas fa-truck"></i>

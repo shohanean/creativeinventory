@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Company;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CompanyController extends Controller
 {
@@ -17,6 +18,7 @@ class CompanyController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         $companies = Company::all();
@@ -44,7 +46,8 @@ class CompanyController extends Controller
     {
         $request->validate([
             'company_name' => 'required|unique:companies,company_name',
-            'company_location' => 'required'
+            'company_location' => 'required',
+            'created_at' => Carbon::now()
         ]);
         Company::create($request->except('_token'));
         return back()->withSuccess('Company Added Successfully!');
@@ -81,7 +84,12 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required|unique:companies,company_name,' .$company->id,
+            'location' => 'required',
+        ]);
+        $company->update($data);
+        return redirect('/company')->withStatus($company->company_name . ' has been edited succesfully');
     }
 
     /**
@@ -93,6 +101,17 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return back();
+        return back()->withDelete($company->company_name. ' has been sent to trash');
+    }
+
+    public function restore($company){
+        Company::withTrashed()->find($company)->restore();
+        return back()->withRestore('Item has been restored');
+
+    }
+
+    public function forceDelete($company){
+       Company::withTrashed()->find($company)->forceDelete();
+       return back()->withForced('Item has been deleted permanently');
     }
 }

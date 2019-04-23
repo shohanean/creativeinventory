@@ -19,21 +19,19 @@ Route::get('home', 'HomeController@index')->name('home');
 
 ////////////// COMPANY /////////////////
 Route::resource('company', 'CompanyController');
+Route::get('company/restore/{company}', 'CompanyController@restore')->name('company.restore');
+Route::get('company/force/delete/{company}', 'CompanyController@forceDelete')->name('company.forceDelete');
 
 
 
 ///////////// WAREHOUSE ///////////////
 Route::resource('warehouse', 'WarehouseController');
-<<<<<<< HEAD
-Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore');
-Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete');
+Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore')->name('warehouse.restore');
+Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete')->name('warehouse.forceDelete');
+
 
 
 ///////////// SUPPLIER ///////////////
 Route::resource('supplier', 'SupplierController');
-Route::get('supplier/restore/{supplier}', 'SupplierController@restore');
-Route::get('supplier/force/delete/{supplier}', 'SupplierController@forceDelete');
-=======
-Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore')->name('warehouse.restore');
-Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete')->name('warehouse.forceDelete');
->>>>>>> 4949fc2cf0846351be990e15bde58fd48fe8909d
+Route::get('supplier/restore/{supplier}', 'SupplierController@restore')->name('supplier.restore');
+Route::get('supplier/force/delete/{supplier}', 'SupplierController@forceDelete')->name('supplier.forceDelete');

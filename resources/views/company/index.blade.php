@@ -19,6 +19,22 @@
                 <strong>List Company</strong>
             </div>
             <div class="card-body">
+                @if(session('status'))
+                  <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                      </button>
+                      {{ session('status') }}
+                  </div>
+                @endif
+                @if(session('delete'))
+                  <div class="alert alert-warning alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                      </button>
+                      {{ session('delete') }}
+                  </div>
+                @endif
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -40,14 +56,16 @@
                       <td>{{ $company->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                            <form>
-                                <a href="{{ route('company.edit', $company->id) }}" class="btn btn-info-outline"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="{{ route('company.edit', $company->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a>
+                            <form class="d-none" id="company-destroy-form" action="{{ route('company.destroy', $company->id) }}" method="POST">
+                              @method('DELETE')
+                              @csrf
                             </form>
-                            <form action="{{ route('company.destroy', $company->id) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button class="btn btn-danger-outline"><span class="glyphicon glyphicon-trash"></span></button>
-                            </form>
+                            <a href="{{ route('company.destroy', $company->id) }}" class="btn btn-danger-outline"
+                              onclick="event.preventDefault();
+                              document.getElementById('company-destroy-form').submit();">
+                              <span><i class="fas fa-trash-alt"></i></span>
+                            </a>
                         </div>
                       </td>
                     </tr>
@@ -103,14 +121,14 @@
                       <td>{{ $trash->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                          <a href="{{url('warehouse/restore')}}/{{$trash->id}}" class="btn btn-success-outline"><span><i class="fas fa-trash-restore"></i></span></a>
-                          <a href="{{url('warehouse/force/delete')}}/{{$trash->id}}" class="btn btn-danger-outline"><span><i class="fas fa-eraser"></i></span></a>
+                          <a href="{{route('company.restore', $trash->id)}}" class="btn btn-success-outline"><span><i class="fas fa-trash-restore"></i></span></a>
+                          <a id="{{route('company.forceDelete', $trash->id)}}" href="#" class="btn btn-danger-outline force-delete-btn"><span><i class="fas fa-eraser"></i></span></a>
                         </div>
                       </td>
                     </tr>
                   @empty
-                    <tr class="text-center">
-                      <td colspan="6">No Warehouse Found</td>
+                    <tr class="text-center text-danger">
+                      <td colspan="6">No Deleted Company Found</td>
                     </tr>
                   @endforelse
                   </tbody>
@@ -147,11 +165,11 @@
                     <div class="form-group">
                       <label>Company Name</label>
                       <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                      <input type="text" class="form-control" name="company_name" placeholder="Enter Company Name">
+                      <input type="text" class="form-control" name="company_name" placeholder="Enter Company Name" value="{{old('company_name')}}">
                     </div>
                     <div class="form-group">
                       <label>Company Location</label>
-                      <input type="text" class="form-control" name="company_location" placeholder="Enter Company Location">
+                      <textarea name="company_location" class="form-control" placeholder="Enter company Location" value="{{old('company_location')}}"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Company</button>
                 </form>
@@ -159,4 +177,36 @@
         </div>
     </div>
 </div>
+@endsection
+@section('footer_scripts')
+<script>
+    $(document).ready(function () {
+        $('.force-delete-btn').click(function () {
+            var linktogo = $(this).attr('id');
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this data!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location.href = linktogo;
+            } else {
+                swal({
+                    title: "Cancelled",
+                    text: "Your data is safe :)",
+                    type: "error",
+                    confirmButtonClass: "btn-danger"
+                });
+            }
+        });
+        });
+    });
+</script>
 @endsection

@@ -1,13 +1,22 @@
 @extends('layouts.dashboardapp')
 
-@section('title', $supplier->name. ' edit' )
+@section('title',  $supplier->name. ' edit' )
  
 @section('content')
 <div class="row">
-    <div class="col-md-4 offset-4">
-        <div class="card">
+        <div class="col-md-12">
+            <nav class="breadcrumb bg-white">
+                <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
+                <a class="breadcrumb-item" href="{{ route('supplier.index') }}">Supplier</a>
+                <span class="breadcrumb-item active">{{ $supplier->name }}</span>
+            </nav>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card"> 
             <div class="card-header bg-info text-white">
-                Edit {{$supplier->name}} info
+                Edit <em>{{$supplier->name}}</em>  info
             </div>
             <div class="card-body">
                 @if($errors->all())
