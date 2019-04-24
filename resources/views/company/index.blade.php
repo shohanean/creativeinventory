@@ -19,6 +19,9 @@
                 <strong>List Company</strong>
             </div>
             <div class="card-body">
+
+{{---------- SUCCESS MESSAGES FOR LIST COMPANY --------------}}
+
                 @if(session('status'))
                   <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -35,6 +38,7 @@
                       {{ session('delete') }}
                   </div>
                 @endif
+{{------------- START COMPANY LIST TABLE ----------------}}
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -56,7 +60,9 @@
                       <td>{{ $company->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
+                            {{-- BUTTON TO EDIT  --}}
                             <a href="{{ route('company.edit', $company->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a>
+                            {{-- BUTTON TO DELETE  --}}
                             <form class="d-none" id="company-destroy-form" action="{{ route('company.destroy', $company->id) }}" method="POST">
                               @method('DELETE')
                               @csrf
@@ -78,10 +84,12 @@
                 </table>
             </div>
         </div>
+{{---------- END COMPANY LIST TABLE -------------}}
         <div class="card">
             <div class="card-header bg-danger text-white">
                 <strong>Deleted Company List</strong>
             </div>
+{{----------DELETED COMPANY SUCCESS MESSAGES -------------}}
             <div class="card-body">
                     @if(session('restore'))
                       <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
@@ -99,7 +107,7 @@
                           {{ session('forced') }}
                       </div>
                     @endif
-
+{{----------START DELETED COMPANY LIST TABLE -------------}}
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -133,6 +141,7 @@
                   @endforelse
                   </tbody>
                 </table>
+ {{----------END DELETED COMPANY LIST TABLE -------------}}
             </div>
         </div>
     </div>
@@ -142,6 +151,7 @@
                 <strong>Add Company</strong>
             </div>
             <div class="card-body">
+{{----------- VALIDATION MESSAGES -------------}}
                 @if($errors->all())
                     <div class="alert alert-danger alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -152,6 +162,7 @@
                         @endforeach
                     </div>
                 @endif
+{{-------------- SUCCESS MESSAGES -------------}}
                 @if(session('success'))
                     <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -160,6 +171,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
+{{---------- FORM TO ADD INPUT ------------}}
                 <form action="{{ route('company.store') }}" method="post">
                 @csrf
                     <div class="form-group">
@@ -179,6 +191,7 @@
 </div>
 @endsection
 @section('footer_scripts')
+{{-- SWEET ALERT CODE --}}
 <script>
     $(document).ready(function () {
         $('.force-delete-btn').click(function () {

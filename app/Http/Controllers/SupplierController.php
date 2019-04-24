@@ -44,7 +44,7 @@ class SupplierController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        Supplier::create($request->except('_token') + ['user_id' => Auth::id(), 'location' => $request->location, 'note' => $request->note]);
+        Supplier::create($request->except('_token') + ['user_id' => Auth::id(), 'location' => $request->location, 'note' => $request->note]); //STORE WITH THE LOCATION AND NOTE EXCEPT TOKEN
         return back()->withSuccess('Supplier added succesfully');
     }
 
@@ -80,10 +80,10 @@ class SupplierController extends Controller
     public function update(Request $request, Supplier $supplier)
     {
         $data=request()->validate([
-            'name' => 'required|unique:suppliers,name,' .$supplier->id,
+            'name' => 'required|unique:suppliers,name,' .$supplier->id, //VALIDATE EXCEPT DESIRED ID
             'created_at' => Carbon::now()
         ]);
-        $supplier->update($data + ['location' => $request->location, 'note' => $request->note] );
+        $supplier->update($data + ['location' => $request->location, 'note' => $request->note] ); 
         return redirect('/supplier')->withStatus($supplier->name. ' has been edited Succesfully');
     }
 

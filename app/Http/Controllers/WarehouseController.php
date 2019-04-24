@@ -45,8 +45,8 @@ class WarehouseController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        Warehouse::create($request->except('_token') + ['user_id' => Auth::id()]);
-        return back()->withSuccess('Warehouse added succesfully');
+        Warehouse::create($request->except('_token') + ['user_id' => Auth::id()]); //STORE EXCEPT TOKEN AND PASS ON USER ID AS AUTH ID
+        return back()->withSuccess('Warehouse added succesfully'); //'withVariable' is laravel sweetener to store variable
 
     }
 
@@ -84,8 +84,8 @@ class WarehouseController extends Controller
     {
 
         $data = request()->validate([
-            'name' => 'required|unique:warehouses,name,' . $warehouse->id,
-            'location' => 'required',
+            'name' => 'required|unique:warehouses,name,' . $warehouse->id, //VALIDATE EXCEPT DESIRED ID
+            'location' => 'required', 
         ]);
         $warehouse->update($data);
         return redirect('/warehouse')->withStatus($warehouse->name . ' has been edited succesfully');

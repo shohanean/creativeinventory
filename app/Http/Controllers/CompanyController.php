@@ -49,8 +49,8 @@ class CompanyController extends Controller
             'company_location' => 'required',
             'created_at' => Carbon::now()
         ]);
-        Company::create($request->except('_token'));
-        return back()->withSuccess('Company Added Successfully!');
+        Company::create($request->except('_token')); //STORE EXCEPT TOKEN
+        return back()->withSuccess('Company Added Successfully!'); //'withVariable' is laravel sweetener to store variable
     }
 
     /**
@@ -84,8 +84,9 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
+
         $data = request()->validate([
-            'name' => 'required|unique:companies,company_name,' .$company->id,
+            'name' => 'required|unique:companies,company_name,' .$company->id, //VALIDATE EXCEPT DESIRED ID
             'location' => 'required',
         ]);
         $company->update($data);
