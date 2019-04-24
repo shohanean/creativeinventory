@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('dashboard_assets/css/lib/bootstrap-sweetalert/sweetalert.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard_assets/css/separate/vendor/sweet-alert-animations.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard_assets/css/main.css') }}">
+    @stack('stylesheets')
 </head>
 
 <body class="with-side-menu">
@@ -239,59 +240,6 @@
                                 </div>
                             </div>
                             <div class="dropdown dropdown-typical">
-                                <a class="dropdown-toggle" id="dd-header-marketing" data-target="#"
-                                    href="http://example.com" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <span class="font-icon font-icon-cogwheel"></span>
-                                    <span class="lbl">Marketing automation</span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="dd-header-marketing">
-                                    <a class="dropdown-item" href="#">Current Search</a>
-                                    <a class="dropdown-item" href="#">Search for Issues</a>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="dropdown-header">Recent issues</div>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-home"></span>Quant and Verbal</a>
-                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real
-                                        Gmat Test</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-speed"></span>Prep Official App</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-users"></span>CATprer Test</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-comments"></span>Third Party Test</a>
-                                    <div class="dropdown-more">
-                                        <div class="dropdown-more-caption padding">more...</div>
-                                        <div class="dropdown-more-sub">
-                                            <div class="dropdown-more-sub-in">
-                                                <a class="dropdown-item" href="#"><span
-                                                        class="font-icon font-icon-home"></span>Quant and Verbal</a>
-                                                <a class="dropdown-item" href="#"><span
-                                                        class="font-icon font-icon-cart"></span>Real Gmat Test</a>
-                                                <a class="dropdown-item" href="#"><span
-                                                        class="font-icon font-icon-speed"></span>Prep Official App</a>
-                                                <a class="dropdown-item" href="#"><span
-                                                        class="font-icon font-icon-users"></span>CATprer Test</a>
-                                                <a class="dropdown-item" href="#"><span
-                                                        class="font-icon font-icon-comments"></span>Third Party Test</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Import Issues from CSV</a>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="dropdown-header">Filters</div>
-                                    <a class="dropdown-item" href="#">My Open Issues</a>
-                                    <a class="dropdown-item" href="#">Reported by Me</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Manage filters</a>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="dropdown-header">Timesheet</div>
-                                    <a class="dropdown-item" href="#">Subscribtions</a>
-                                </div>
-                            </div>
-                            <div class="dropdown dropdown-typical">
                                 <a class="dropdown-toggle" id="dd-header-social" data-target="#"
                                     href="http://example.com" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
@@ -438,10 +386,6 @@
                                 </div>
                             </div>
                             <!--.help-dropdown-->
-                            <a class="btn btn-nav btn-rounded btn-inline btn-danger-outline"
-                                href="http://themeforest.net/item/startui-premium-bootstrap-4-admin-dashboard-template/15228250?ref=themesanytime">
-                                Buy Theme
-                            </a>
                             <div class="site-header-search-container">
                                 <form class="site-header-search closed">
                                     <input type="text" placeholder="Search" />
@@ -485,7 +429,7 @@
                     <span class="lbl">Warehouse</span>
                 </a>
             </li>
-            
+
             {{-- List of links --}}
             {{-- <li class="green with-sub">
                 <span class="">
@@ -493,7 +437,7 @@
                     <span class="lbl">Warehouse</span>
                 </span>
                 <ul>
-                    <li> 
+                    <li>
                         <a href="{{ route('warehouse.create') }}">
                             <i class="lbl fas fa-plus-circle"></i>
                             <span class="lbl">Add Warehouse</span>
@@ -505,7 +449,7 @@
                             <span class="lbl">Warehouse List</span>
                         </a>
                     </li>
-                    <li> 
+                    <li>
                         <a href="{{ route('warehouse.index') }}">
                             <i class="lbl fas fa-trash"></i>
                             <span class="lbl">Trash List</span>
