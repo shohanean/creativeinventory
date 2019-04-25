@@ -465,6 +465,13 @@
                     <span class="lbl">Supplier</span>
                 </a>
             </li>
+
+            <li class="blue @yield('active-role')">
+                <a href="{{route('role.index')}}">
+                    <i class="font-icon fas fa-user-plus fa-lg"></i>
+                    <span class="lbl">Roles & permission</span>
+                </a>
+            </li>
             <li class="brown with-sub">
                 <span>
                     <i class="font-icon glyphicon glyphicon-tint"></i>

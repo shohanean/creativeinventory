@@ -41,3 +41,11 @@ Route::resource('supplier', 'SupplierController', [
     ]);
 Route::get('supplier/restore/{supplier}', 'SupplierController@restore')->name('supplier.restore');
 Route::get('supplier/force/delete/{supplier}', 'SupplierController@forceDelete')->name('supplier.forceDelete');
+
+//////////////// ROLES & PERMISSION //////////////////
+// Route::get('role', 'RoleController@test');
+Route::get('role', 'RoleController@index')->name('role.index');
+Route::post('role', 'RoleController@addRole')->name('add.role');
+Route::post('/assign/permission', 'RoleController@assignPermission')->name('assign.permission');
+Route::post('/assign/role', 'RoleController@assignRole')->name('assign.role');;
+Route::get('/remove/permission/{role_id}/{permission_id}', 'RoleController@removePermission');//->name('remove.permission');
