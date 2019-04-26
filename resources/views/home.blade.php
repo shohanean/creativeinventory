@@ -46,5 +46,15 @@
             </div>
         </section><!--.widget-simple-sm-->
     </div>
+    <div class="col-sm-3">
+        <section class="widget widget-simple-sm">
+            <div class="widget-simple-sm-icon">
+                <i class="font-icon fas fa-user-tie color-blue"></i>
+            </div>
+            <div class="widget-simple-sm-bottom">
+                <a href="{{ route('supplier.index') }}">{{ $user_count }} {{ ($user_count <= 1) ? 'User' : str_plural('User') }}</a>
+            </div>
+        </section><!--.widget-simple-sm-->
+    </div>
 </div>
 @endsection

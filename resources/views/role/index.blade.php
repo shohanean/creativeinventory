@@ -14,6 +14,7 @@
     </div>
 </div>
 <div class="row">
+{{------------------- ADD ROLE FORM -----------------------------}}
     <div class="col-md-3">
         <form action="" method="post">
             <div class="card">
@@ -28,13 +29,14 @@
                         </div>
                             <div>{{$errors->first('name')}}</div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Add</button>
                         </div>
                     </form>
                 </div>
             </div>
         </form>
         <div class="card">
+{{------------------ ASSIGN PERMISSION AND ROLE ---------------------}}
             <div class="card-head text-center bg-dark text-white p-2">
                 <span>ASSIGN PERMISSION</span>
             </div>
@@ -51,24 +53,25 @@
                                 @endforeach
                             </select>                                     
                         </div>
-
+{{----------------- CHOOSE ROLE --------------------}}
                     <div class="form-group">
                         <label for="" class="">Choose Permission</label>
                     </div>
                     <div class="form-group">                            
-                        <select name="permission_id[]" class="form-control multiple_permission" multiple="multiple">
+                        <select name="permission_id[]" class="form-control" id="permission_select" multiple="multiple">
                             @foreach ($permissions as $permission)
                             <option value="{{$permission->id}}">{{$permission->name}}</option>
                             @endforeach
                         </select>                                     
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info">Assign</button>
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Assign</button>
                     </div>
                 </form>
             </div>
         </div>
         <div class="card">
+{{--------------- ASSIGN ROLE -------------------}}
             <div class="card-title text-center bg-dark text-white p-2">
                 <span>ASSIGN ROLE</span>
             </div>
@@ -96,41 +99,81 @@
                         </select>                                     
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Assign</button>
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Assign</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="col-md-9">
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Role</th>
-                    <th>Assigned Permission</th>
-                </tr>
-            </thead>
-            <tbody >
-                @foreach ($roles as $role)
+    <div class="col-md-9 pink">
+        <div>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
                     <tr>
-                        <td>
-                            <strong>{{$role->name}}</strong>
-                        </td>
-                        <td>
-                            @foreach ($role->getAllPermissions() as $permission)
-                                <li class="float-left">
-                                    {{$permission->name}} 
-                                </li>
-                                <a href="{{url('/remove/permission')}}/{{$role->id}}/{{$permission->id}}"><i class="float-right far fa-times-circle"></i></a>
-                                <div class="clearfix"></div>
-                            @endforeach
-                        </td>
+                        <th>Role</th>
+                        <th>Assigned Permission</th>
                     </tr>
-                @endforeach
-            </tbody>               
-        </table>
+                </thead>
+                <tbody >
+                    @foreach ($roles as $role)
+                        <tr>
+                            <td>
+                                <strong>{{$role->name}}</strong>
+                            </td>
+                            <td>
+                                @foreach ($role->getAllPermissions() as $permission)
+                                    <li class="float-left">
+                                        {{$permission->name}} 
+                                    </li>
+                                    <a href="{{url('/remove/permission')}}/{{$role->id}}/{{$permission->id}}"><i class="float-right far fa-times-circle"></i></a>
+                                    <div class="clearfix"></div>
+                                @endforeach
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>               
+            </table>
+        </div>
+        <div class="mt-4">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>User Name</th>
+                        <th>Assigned Role</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>
+                                <strong>{{$user->name}}</strong>
+                                
+                            </td>
+                            {{-- <td>{{$user->getRoleNames()}}</td> --}}
+                            <td>
+                                @foreach ($user->getRoleNames() as $names)
+                                    <li class="float-left">
+                                        {{$names}} 
+                                    </li>
+                                    <a href="{{url('/remove/role')}}/{{$user->id}}/{{$names}}"><i class="float-right far fa-times-circle"></i></a>
+                                    <div class="clearfix"></div>
+                                @endforeach
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>               
+            </table>
+        </div>
     </div>
 </div>
+@endsection
 
+@section('footer_scripts')
+    <script>
+        $(document).ready(function() {
+            $('#permission_select').select2();
+            // console.log('success');
+        });
+    </script>
 @endsection

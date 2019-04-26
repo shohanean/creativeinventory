@@ -17,6 +17,10 @@
     <link href="img/favicon.png" rel="icon" type="image/png">
     <link href="img/favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+      
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -760,7 +764,10 @@
     <script src="{{ asset('dashboard_assets/js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('dashboard_assets/js/plugins.js') }}"></script>
     <script src="{{ asset('dashboard_assets/js/app.js') }}"></script>
-    @yield('footer_scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
 </body>
 
+@yield('footer_scripts')
 </html>

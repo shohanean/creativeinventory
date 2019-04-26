@@ -17,6 +17,8 @@ class RoleController extends Controller
     // $user = Auth::user();
     // print_r($user->name);
     // $user->assignRole(1);
+
+    // Permission::create(['name' => 'post articles']);
     }
 
     public function index(){
@@ -64,6 +66,15 @@ class RoleController extends Controller
         $permission = Permission::findOrFail($permission_id)->name;
 
         $role->revokePermissionTo($permission);
+
+    return back();
+    }
+    public function removeRole($user_id, $names ){
+
+        $user = User::findOrFail($user_id);
+        $role = Role::findByName($names);
+        
+        $user->removeRole($role);
 
     return back();
     }
