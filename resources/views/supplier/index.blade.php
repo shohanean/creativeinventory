@@ -4,6 +4,7 @@
 @section('active-supplier', 'opened')
 
 @section('content')
+{{------------ Breadcrumb --------------}}
 <div class="row">
     <div class="col-md-12">
         <nav class="breadcrumb bg-white">
@@ -19,7 +20,7 @@
                 <strong>List of Suppliers</strong>
             </div>
             <div class="card-body">
-{{---------- SUCCESS MESSAGES FOR SUPPLIERS LIST--------------}}
+{{---------- SUCCESS MESSAGES FOR SUPPLIERS LIST------------}}
                     @if(session('status'))
                     <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -175,7 +176,6 @@
                 @endif
 {{---------- FORM TO ADD INPUT ------------}}
                 <form action="{{ route('supplier.store') }}" method="post">
-                @csrf
                     <div class="form-group">
                       <label>Supplier Name</label>
                       <input type="text" class="form-control" name="name" placeholder="Enter Supplier Name" value="{{old('name')}}">
@@ -188,6 +188,7 @@
                       <label></label>
                       <textarea name="note" class="form-control" placeholder="Add note (optional)" value=></textarea>
                     </div>
+                    @csrf
                     <button type="submit" class="btn btn-success">Add Supplier</button>
                 </form>
             </div>

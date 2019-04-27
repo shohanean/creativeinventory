@@ -226,188 +226,7 @@
                     </div>
                     <!--.site-header-shown-->
 
-                    <div class="mobile-menu-right-overlay"></div>
-                    <div class="site-header-collapsed">
-                        <div class="site-header-collapsed-in">
-                            <div class="dropdown dropdown-typical">
-                                <div class="dropdown-menu" aria-labelledby="dd-header-sales">
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-home"></span>Quant and Verbal</a>
-                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real
-                                        Gmat Test</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-speed"></span>Prep Official App</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-users"></span>CATprer Test</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-comments"></span>Third Party Test</a>
-                                </div>
-                            </div>
-                            <div class="dropdown dropdown-typical">
-                                <a class="dropdown-toggle" id="dd-header-social" data-target="#"
-                                    href="http://example.com" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <span class="font-icon font-icon-share"></span>
-                                    <span class="lbl">Social media</span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="dd-header-social">
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-home"></span>Quant and Verbal</a>
-                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real
-                                        Gmat Test</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-speed"></span>Prep Official App</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-users"></span>CATprer Test</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-comments"></span>Third Party Test</a>
-                                </div>
-                            </div>
-                            <div class="dropdown dropdown-typical">
-                                <a href="#" class="dropdown-toggle no-arr">
-                                    <span class="font-icon font-icon-page"></span>
-                                    <span class="lbl">Projects</span>
-                                    <span class="label label-pill label-danger">35</span>
-                                </a>
-                            </div>
-
-                            <div class="dropdown dropdown-typical">
-                                <a class="dropdown-toggle" id="dd-header-form-builder" data-target="#"
-                                    href="http://example.com" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <span class="font-icon font-icon-pencil"></span>
-                                    <span class="lbl">Form builder</span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="dd-header-form-builder">
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-home"></span>Quant and Verbal</a>
-                                    <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real
-                                        Gmat Test</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-speed"></span>Prep Official App</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-users"></span>CATprer Test</a>
-                                    <a class="dropdown-item" href="#"><span
-                                            class="font-icon font-icon-comments"></span>Third Party Test</a>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-rounded dropdown-toggle" id="dd-header-add" type="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Add
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dd-header-add">
-                                    <a class="dropdown-item" href="#">Quant and Verbal</a>
-                                    <a class="dropdown-item" href="#">Real Gmat Test</a>
-                                    <a class="dropdown-item" href="#">Prep Official App</a>
-                                    <a class="dropdown-item" href="#">CATprer Test</a>
-                                    <a class="dropdown-item" href="#">Third Party Test</a>
-                                </div>
-                            </div>
-                            <div class="help-dropdown">
-                                <button type="button">
-                                    <i class="font-icon font-icon-help"></i>
-                                </button>
-                                <div class="help-dropdown-popup">
-                                    <div class="help-dropdown-popup-side">
-                                        <ul>
-                                            <li><a href="#">Getting Started</a></li>
-                                            <li><a href="#" class="active">Creating a new project</a></li>
-                                            <li><a href="#">Adding customers</a></li>
-                                            <li><a href="#">Settings</a></li>
-                                            <li><a href="#">Importing data</a></li>
-                                            <li><a href="#">Exporting data</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="help-dropdown-popup-cont">
-                                        <div class="help-dropdown-popup-cont-in">
-                                            <div class="jscroll">
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    Lorem Ipsum is simply
-                                                    <span class="describe">Lorem Ipsum has been the industry's standard
-                                                        dummy text </span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    Contrary to popular belief
-                                                    <span class="describe">Lorem Ipsum is not simply random text. It has
-                                                        roots in a piece of classical Latin literature from 45 BC</span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    The point of using Lorem Ipsum
-                                                    <span class="describe">Many desktop publishing packages and web page
-                                                        editors now use Lorem Ipsum as their default model text</span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    Lorem Ipsum
-                                                    <span class="describe">There are many variations of passages of
-                                                        Lorem Ipsum available</span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    Lorem Ipsum is simply
-                                                    <span class="describe">Lorem Ipsum has been the industry's standard
-                                                        dummy text </span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    Contrary to popular belief
-                                                    <span class="describe">Lorem Ipsum is not simply random text. It has
-                                                        roots in a piece of classical Latin literature from 45 BC</span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    The point of using Lorem Ipsum
-                                                    <span class="describe">Many desktop publishing packages and web page
-                                                        editors now use Lorem Ipsum as their default model text</span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    Lorem Ipsum
-                                                    <span class="describe">There are many variations of passages of
-                                                        Lorem Ipsum available</span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    Lorem Ipsum is simply
-                                                    <span class="describe">Lorem Ipsum has been the industry's standard
-                                                        dummy text </span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    Contrary to popular belief
-                                                    <span class="describe">Lorem Ipsum is not simply random text. It has
-                                                        roots in a piece of classical Latin literature from 45 BC</span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    The point of using Lorem Ipsum
-                                                    <span class="describe">Many desktop publishing packages and web page
-                                                        editors now use Lorem Ipsum as their default model text</span>
-                                                </a>
-                                                <a href="#" class="help-dropdown-popup-item">
-                                                    Lorem Ipsum
-                                                    <span class="describe">There are many variations of passages of
-                                                        Lorem Ipsum available</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.help-dropdown-->
-                            <div class="site-header-search-container">
-                                <form class="site-header-search closed">
-                                    <input type="text" placeholder="Search" />
-                                    <button type="submit">
-                                        <span class="font-icon-search"></span>
-                                    </button>
-                                    <div class="overlay"></div>
-                                </form>
-                            </div>
-                        </div>
-                        <!--.site-header-collapsed-in-->
-                    </div>
-                    <!--.site-header-collapsed-->
-                </div>
-                <!--site-header-content-in-->
-            </div>
-            <!--.site-header-content-->
-        </div>
+                   
         <!--.container-fluid-->
     </header>
     <!--.site-header-->
@@ -430,7 +249,7 @@
             <li class="green @yield('active-warehouse')">
                 <a href="{{ route('warehouse.index') }}">
                     <i class="font-icon fas fa-warehouse"></i>
-                    <span class="lbl">Warehouse</span>
+                    &nbsp;<span class="lbl">Warehouse</span>
                 </a>
             </li>
 
@@ -462,6 +281,32 @@
                 </ul>
             </li> --}}
             {{-- end list of links --}}
+            <li class="purple with-sub">
+                <span class="">
+                    <i class=" font-icon fas fa-shopping-cart @yield('active-product')"></i>
+                    &nbsp;<span class="lbl">Product</span>
+                </span>
+                <ul>
+                    <li>
+                        <a href="{{ route('product.create') }}">
+                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-cart-plus"></i>
+                            <span class="lbl">&nbsp;<small>Add Product</small> </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('product.index') }}">
+                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
+                            <span class="lbl">&nbsp;<small>Product List</small> </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('product.trashView') }}">
+                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
+                            <span class="lbl">&nbsp;<small>Trash List</small> </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="gold @yield('active-supplier')">
                 <a href="{{route('supplier.index')}}">
@@ -476,7 +321,7 @@
                     <span class="lbl">Roles & permission</span>
                 </a>
             </li>
-            <li class="brown with-sub">
+            {{-- <li class="brown with-sub">
                 <span>
                     <i class="font-icon glyphicon glyphicon-tint"></i>
                     <span class="lbl">Skins</span>
@@ -539,7 +384,7 @@
                 <ul>
                     <a href="datatables-net.html"><span class="lbl">Datatables.net</span></a>
             </li>
-            <a href="bootstrap-datatables.html"><span class="lbl">Bootstrap Table</span></a></li>
+            <a href="bootstrap-datatables.html"><span class="lbl">Bootstrap Table</span></a></li> --}}
 
             <!--<li><a href="datatables.html"><span class="lbl">Default</span></a></li>
 	                <li><a href="datatables-fixed-columns.html"><span class="lbl">Fixed Columns</span></a></li>
@@ -548,7 +393,7 @@
 	                <li><a href="datatables-resize-columns.html"><span class="lbl">Resize Columns</span></a></li>
 	                <li><a href="datatables-mobile.html"><span class="lbl">Mobile</span></a></li>
 	                <li><a href="datatables-filter-control.html"><span class="lbl">Filters</span></a></li>-->
-        </ul>
+        {{-- </ul>
         </li>
         <li class="green with-sub">
             <span>
@@ -709,10 +554,10 @@
                 </li>
             </ul>
         </li>
-        </ul>
+        </ul> --}}
 
         <section>
-            <header class="side-menu-title">Tags</header>
+
             <ul class="side-menu-list">
                 <li>
                     <a href="#">

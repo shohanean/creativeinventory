@@ -50,3 +50,10 @@ Route::post('/assign/permission', 'RoleController@assignPermission')->name('assi
 Route::post('/assign/role', 'RoleController@assignRole')->name('assign.role');;
 Route::get('/remove/permission/{role_id}/{permission_id}', 'RoleController@removePermission');//->name('remove.permission');
 Route::get('/remove/role/{user_id}/{names}', 'RoleController@removeRole');//->name('remove.permission');
+
+
+//////////////// PRODUCT /////////////////
+Route::resource('product', 'ProductController');
+Route::get('product/trash/view','ProductController@trashView')->name('product.trashView');
+Route::get('product/restore/{product}', 'ProductController@restore')->name('product.restore');
+Route::get('product/force/delete/{product}', 'ProductController@forceDelete')->name('product.forceDelete');

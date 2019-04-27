@@ -35,8 +35,8 @@
                 </div>
             </div>
         </form>
-        <div class="card">
 {{------------------ ASSIGN PERMISSION AND ROLE ---------------------}}
+        <div class="card">
             <div class="card-head text-center bg-dark text-white p-2">
                 <span>ASSIGN PERMISSION</span>
             </div>
@@ -46,12 +46,12 @@
                     <div class="form-group">
                             <label for="" class="">Choose Role</label>
                         </div>
-                        <div class="form-group">                            
+                        <div class="form-group">     
                             <select name="role_id[]" class="form-control">
                                 @foreach ($roles as $role)
                                 <option value="{{$role->id}}" name="role_id">{{$role->name}}</option>
                                 @endforeach
-                            </select>                                     
+                            </select>              
                         </div>
 {{----------------- CHOOSE ROLE --------------------}}
                     <div class="form-group">

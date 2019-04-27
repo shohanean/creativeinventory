@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\Warehouse;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -24,7 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $warehouses = Warehouse::all();
+        return view('product.create', compact('warehouses'));
     }
 
     /**
@@ -35,7 +38,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $data = request()->validate([
+            'name'=> 'required|unique:products,name'
+        ]);
+        Product::create($data + ['warehouse_id' => $request->warehouse_id]);
+        return back()->withSuccess('Product added succesfully');
     }
 
     /**
@@ -57,7 +65,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        // dd($product);
+        // $warehouses = $product->warehouse;
+        $warehouses = Warehouse::all();
+
+        return view('product.edit', compact('product', 'warehouses'));
     }
 
     /**
@@ -69,7 +81,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $data = request()->validate([
+            'name'=> 'required|unique:products,name,' .$product->id
+        ]);
+        $product->update($data + ['warehouse_id'=>$request->warehouse_id]);
+
+        return redirect('/product');
     }
 
     /**
@@ -80,6 +97,23 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+    }
+
+    public function trashView(){
+        
+        $trashed = Product::onlyTrashed()->get();
+       return view('product.trashView', compact('trashed'));
+    }
+
+    public function restore($product){
+        Product::withTrashed()->find($product)->restore();
+        return back()->withRestore('Item has been restored');
+    }
+
+    public function forceDelete($product){
+        // $data = Warehouse::first('name');
+       Product::withTrashed()->find($product)->forceDelete();
+       return back()->withForced('Item has been deleted permanently');
     }
 }

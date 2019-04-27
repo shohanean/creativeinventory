@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Company, App\Supplier, App\Warehouse, App\user;
+use App\Company, App\Supplier, App\Warehouse, App\User, App\Product;
 
 class HomeController extends Controller
 {
@@ -28,6 +28,7 @@ class HomeController extends Controller
         $supplier_count = Supplier::count();
         $warehouse_count = Warehouse::count();
         $user_count = User::count();
-        return view('home', compact('company_count', 'supplier_count', 'warehouse_count', 'user_count'));
+        $product_count = Product::count();
+        return view('home', compact('company_count', 'supplier_count', 'warehouse_count', 'user_count', 'product_count'));
     }
 }
