@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card"> 
-            <div class="card-header bg-info text-white">
+            <div class="card-header bg-dark text-white">
                 Edit <em>{{$supplier->name}}</em>  info
             </div>
             <div class="card-body">

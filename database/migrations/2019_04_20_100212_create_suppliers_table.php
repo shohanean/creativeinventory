@@ -18,7 +18,8 @@ class CreateSuppliersTable extends Migration
             $table->string('name');
             $table->string('location')->nullable();
             $table->longText('note')->nullable();
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
+            // $table->unsignedInteger('product_id');
             $table->timestamps();
             $table->softDeletes();
         });

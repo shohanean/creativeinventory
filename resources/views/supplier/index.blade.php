@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header bg-success text-white">
+            <div class="card-header bg-dark text-white">
                 <strong>List of Suppliers</strong>
             </div>
             <div class="card-body">
@@ -87,7 +87,7 @@
         </div>
 {{---------- END SUPPLIER LIST TABLE -------------}}
         <div class="card">
-          <div class="card-header bg-danger text-white">
+          <div class="card-header bg-dark text-white">
             <strong>Deleted Suppliers List</strong>
           </div>
 {{----------DELETED SUPPLIER SUCCESS MESSAGES -------------}}
@@ -150,7 +150,7 @@
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-header bg-info text-white">
+            <div class="card-header bg-dark text-white">
                 <strong>Add Supplier</strong>
             </div>
             <div class="card-body">
@@ -184,6 +184,14 @@
                       <label>Supplier Location</label>
                       <textarea name="location" class="form-control" placeholder="Enter supplier Location" value="{{old('location')}}"></textarea>
                     </div>
+                    {{-- <div class="form-group">
+                      <label for="">Select Products</label>
+                      <select name="product_id[]" id="" class="form-control" multiple="multiple">
+                        @foreach ($products as $product)
+                            <option value="{{$product->id}}" name="product_id">{{$product->name}}</option>
+                        @endforeach
+                      </select>
+                    </div> --}}
                     <div class="form-group">
                       <label></label>
                       <textarea name="note" class="form-control" placeholder="Add note (optional)" value=></textarea>

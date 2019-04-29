@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-10 offset-1">
         <div class="card">
-            <div class="card-head text-center bg-primary text-white">
+            <div class="card-head text-center bg-dark text-white">
                 <span><h4>Edit {{$product->name}} details</h4></span>
             </div>
             <div class="card-body">

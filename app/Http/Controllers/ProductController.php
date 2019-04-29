@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Warehouse;
+use App\Supplier;
 
 class ProductController extends Controller
 {
@@ -26,8 +27,9 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $suppliers = Supplier::all();
         $warehouses = Warehouse::all();
-        return view('product.create', compact('warehouses'));
+        return view('product.create', compact('warehouses', 'suppliers'));
     }
 
     /**
@@ -42,7 +44,7 @@ class ProductController extends Controller
         $data = request()->validate([
             'name'=> 'required|unique:products,name'
         ]);
-        Product::create($data + ['warehouse_id' => $request->warehouse_id]);
+        Product::create($data + ['warehouse_id' => $request->warehouse_id, 'supplier_id' => $request->supplier_id]);
         return back()->withSuccess('Product added succesfully');
     }
 

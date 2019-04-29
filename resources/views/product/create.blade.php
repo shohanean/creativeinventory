@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-10 offset-1">
         <div class="card">
-            <div class="card-head text-center bg-primary text-white">
+            <div class="card-head text-center bg-dark text-white">
                 <span><h4>Enter product details</h4></span>
             </div>
             <div class="card-body">
@@ -41,6 +41,14 @@
                             @endforeach
                         </select>              
                     </div>
+                    <div class="form-group">
+                            <label for="">Select Supplier</label>
+                            <select name="supplier_id" id="" class="form-control">
+                              @foreach ($suppliers as $supplier)
+                                  <option value="{{$supplier->id}}" name="supplier_id">{{$supplier->name}}</option>
+                              @endforeach
+                            </select>
+                          </div>
                     @csrf
                     <button type="submit" class="btn btn-success">Add product</button>
                 </form>

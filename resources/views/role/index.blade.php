@@ -57,12 +57,12 @@
                     <div class="form-group">
                         <label for="" class="">Choose Permission</label>
                     </div>
-                    <div class="form-group">                            
+                    <div class="form-group">                   
                         <select name="permission_id[]" class="form-control" id="permission_select" multiple="multiple">
                             @foreach ($permissions as $permission)
                             <option value="{{$permission->id}}">{{$permission->name}}</option>
                             @endforeach
-                        </select>                                     
+                        </select>                       
                     </div>
                     <div class="form-group">
                         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Assign</button>

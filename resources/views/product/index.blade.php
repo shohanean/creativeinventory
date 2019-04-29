@@ -21,6 +21,7 @@
                 <th>#</th>
                 <th>Product Name</th>
                 <th>Warehouse Name</th>
+                <th>Supplier Name</th>
                 <th>Created at</th>
                 <th>Action</th>
             </tr>
@@ -30,6 +31,7 @@
             <tr>
                 <td>{{ $loop->index+1 }}</td>
                 <td>{{ $product->name }}</td>
+                <td>{{ $product->supplier->name }}</td>
                 <td>{{ $product->warehouse->name }}</td>
                 <td>{{ $product->created_at->format('d-M-y') }}</td>
                 <td>

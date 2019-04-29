@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header bg-success text-white">
+            <div class="card-header bg-dark text-white">
                 <strong>List of Warehouses</strong>
             </div>
             <div class="card-body">
@@ -84,7 +84,7 @@
         </div>
 {{---------- END SUPPLIER LIST TABLE -------------}}
         <div class="card">
-            <div class="card-header bg-danger text-white">
+            <div class="card-header bg-dark text-white">
                 <strong>Deleted Warehouse List</strong>
             </div>
 {{----------DELETED SUPPLIER SUCCESS MESSAGES -------------}}
@@ -145,7 +145,7 @@
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-header bg-info text-white">
+            <div class="card-header bg-dark text-white">
                 <strong>Add Warehouse</strong>
             </div>
             <div class="card-body">

@@ -6,6 +6,7 @@ use App\Supplier;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
+use App\Product;
 
 class SupplierController extends Controller
 {
@@ -18,7 +19,8 @@ class SupplierController extends Controller
     {
         $trashed = Supplier::onlyTrashed()->get();
         $suppliers= Supplier::all();
-        return view('supplier.index', compact('suppliers', 'trashed'));
+        $products= Product::all();
+        return view('supplier.index', compact('suppliers', 'trashed', 'products'));
     }
 
     /**
@@ -39,12 +41,13 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name' => 'required|unique:suppliers,name',
             'created_at' => Carbon::now()
         ]);
 
-        Supplier::create($request->except('_token') + ['user_id' => Auth::id(), 'location' => $request->location, 'note' => $request->note]); //STORE WITH THE LOCATION AND NOTE EXCEPT TOKEN
+        Supplier::create($request->except('_token') + ['user_id' => Auth::id(), 'location' => $request->location, 'note' => $request->note]); //STORE EXCEPT TOKEN
         return back()->withSuccess('Supplier added succesfully');
     }
 
