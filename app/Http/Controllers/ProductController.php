@@ -14,6 +14,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $products = Product::all();
@@ -27,9 +33,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $suppliers = Supplier::all();
+        // $suppliers = Supplier::all();
         $warehouses = Warehouse::all();
-        return view('product.create', compact('warehouses', 'suppliers'));
+        return view('product.create', compact('warehouses'));
     }
 
     /**

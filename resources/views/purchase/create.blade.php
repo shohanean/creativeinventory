@@ -1,13 +1,14 @@
 @extends('layouts.dashboardapp')
 
-@section('title', 'Add Product')
+@section('title', 'Add Purchase record')
 
 @section('content')
+{{---------------- BREADCRUMB  ---------------}}
 <div class="row">
     <div class="col-md-12">
         <nav class="breadcrumb bg-white">
             <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
-            <span class="breadcrumb-item active">Add product</span>
+            <span class="breadcrumb-item active">Add Purchase</span>
         </nav>
     </div>
 </div>
@@ -26,29 +27,21 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <form action="{{ route('product.store') }}" method="post">
-                    <div class="form-group">
+                <form action="{{ route('purchase.store') }}" method="post">
+                    {{-- <div class="form-group">
                         <label>Product Name</label>
                         <input type="text" class="form-control" name="name" placeholder="Enter Product Name" value="{{old('name')}}">
                         <div class="error">
                             {{$errors->first('name')}}
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">     
-                        <select name="warehouse_id" class="form-control">
-                            @foreach ($warehouses as $warehouse)
-                            <option value="{{$warehouse->id}}" name="warehouse_id">{{$warehouse->name}}</option>
+                        <select name="purchase_id" class="form-control">
+                            @foreach ($products as $product)
+                            <option value="{{$product->id}}" name="product_id">{{$product->name}}</option>
                             @endforeach
                         </select>              
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="">Select Supplier</label>
-                        <select name="supplier_id" id="" class="form-control">
-                            @foreach ($suppliers as $supplier)
-                                  <option value="{{$supplier->id}}" name="supplier_id">{{$supplier->name}}</option>
-                            @endforeach
-                        </select>
-                    </div> --}}
                     @csrf
                     <button type="submit" class="btn btn-success">Add product</button>
                 </form>

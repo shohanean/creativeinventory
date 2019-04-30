@@ -307,6 +307,32 @@
                     </li>
                 </ul>
             </li>
+            <li class="red with-sub">
+                <span class="">
+                    <i class="font-icon fas fa-store-alt @yield('active-purchase')"></i>
+                    <span class="lbl">Purchase</span>
+                </span>
+                <ul>
+                    <li>
+                        <a href="{{ route('purchase.create') }}">
+                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-plus-circle"></i>
+                            <span class="lbl">&nbsp;<small>Add Purchase</small> </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('purchase.index') }}">
+                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
+                            <span class="lbl">&nbsp;<small>Purchase List</small> </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('purchase.index') }}">
+                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
+                            <span class="lbl">&nbsp;<small>Trash List</small> </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="gold @yield('active-supplier')">
                 <a href="{{route('supplier.index')}}">
@@ -319,6 +345,12 @@
                 <a href="{{route('role.index')}}">
                     <i class="font-icon fas fa-user-plus fa-lg"></i>
                     <span class="lbl">Roles & permission</span>
+                </a>
+            </li>
+            <li class="blue @yield('active-role')">
+                <a href="{{route('category.index')}}">
+                    <i class="font-icon fas fa-tags fa-lg"></i>
+                    <span class="lbl">Category</span>
                 </a>
             </li>
             {{-- <li class="brown with-sub">

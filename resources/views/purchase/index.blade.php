@@ -1,6 +1,6 @@
 @extends('layouts.dashboardapp')
 
-@section('title', 'Product List')
+@section('title', 'Purchase List')
 
 @section('content')
 {{------- BREADCRUMB -------}}
@@ -8,7 +8,7 @@
     <div class="col-md-12">
         <nav class="breadcrumb bg-white">
             <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
-            <span class="breadcrumb-item active">Product List</span>
+            <span class="breadcrumb-item active">Purchase List</span>
         </nav>
     </div>
 </div>
@@ -19,7 +19,7 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Product Name</th>
+                <th>Purchase Name</th>
                 <th>Warehouse Name</th>
                 {{-- <th>Supplier Name</th> --}}
                 <th>Created at</th>

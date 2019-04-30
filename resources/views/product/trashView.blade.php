@@ -57,7 +57,7 @@
             </tr>
             @empty
             <tr class="text-center text-danger">
-                <td colspan="7">No Deleted Product Found</td>
+                <td colspan="5">No Deleted Product Found</td>
             </tr>
             @endforelse
             </tbody>

@@ -10,6 +10,11 @@ use App\User;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function test(){
     //    $role = Role::create(['name'=> 'writer']);
     //    $permission = Permission::create(['name'=> 'edit articles']);

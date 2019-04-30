@@ -34,13 +34,13 @@ Route::get('warehouse/restore/{warehouse}', 'WarehouseController@restore')->name
 Route::get('warehouse/force/delete/{warehouse}', 'WarehouseController@forceDelete')->name('warehouse.forceDelete');
 
 
-
 ///////////// SUPPLIER ///////////////
 Route::resource('supplier', 'SupplierController', [
     'except'=>['create', 'show'] //EXCLUDING CREATE AND SHOW AS WE DON'T NEED IT
     ]);
 Route::get('supplier/restore/{supplier}', 'SupplierController@restore')->name('supplier.restore');
 Route::get('supplier/force/delete/{supplier}', 'SupplierController@forceDelete')->name('supplier.forceDelete');
+
 
 //////////////// ROLES & PERMISSION //////////////////
 // Route::get('test', 'RoleController@test'); //route for testing
@@ -57,3 +57,14 @@ Route::resource('product', 'ProductController');
 Route::get('product/trash/view','ProductController@trashView')->name('product.trashView');
 Route::get('product/restore/{product}', 'ProductController@restore')->name('product.restore');
 Route::get('product/force/delete/{product}', 'ProductController@forceDelete')->name('product.forceDelete');
+
+
+////////////// PURCHASE ////////////////
+Route::resource('purchase', 'PurchaseController');
+Route::get('purchase/trash/view','PurchaseController@trashView')->name('purchase.trashView');
+Route::get('purchase/restore/{purchase}', 'PurchaseController@restore')->name('purchase.restore');
+Route::get('purchase/force/delete/{purchase}', 'PurchaseController@forceDelete')->name('purchase.forceDelete');
+
+
+////////////// CATEGORY ////////////////
+Route::resource('category', 'CategoryController');
