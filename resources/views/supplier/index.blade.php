@@ -139,7 +139,7 @@
                     </tr>
                   @empty
                     <tr class="text-center text-danger">
-                      <td colspan="7">No Warehouse Found</td>
+                      <td colspan="7">No Supplier Found</td>
                     </tr>
                   @endforelse
                   </tbody>

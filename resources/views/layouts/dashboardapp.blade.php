@@ -347,7 +347,7 @@
                     <span class="lbl">Roles & permission</span>
                 </a>
             </li>
-            <li class="blue @yield('active-role')">
+            <li class="brown @yield('active-category')">
                 <a href="{{route('category.index')}}">
                     <i class="font-icon fas fa-tags fa-lg"></i>
                     <span class="lbl">Category</span>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CategoryController extends Controller
 {
@@ -19,7 +20,9 @@ class CategoryController extends Controller
 
     public function index()
     {
-        //
+        $trashed = Category::onlyTrashed()->get();
+        $categories= Category::all();
+        return view('category.index', compact('categories', 'trashed'));
     }
 
     /**
@@ -40,7 +43,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:categories,name',
+            'created_at' => Carbon::now()
+        ]);
+
+        Category::create($request->except('_token')); //STORE EXCEPT TOKEN AND PASS ON USER ID AS AUTH ID
+        return back()->withSuccess('Category added succesfully'); //'withVariable' is laravel sweetener to store variable
     }
 
     /**
@@ -62,7 +71,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -74,7 +83,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required|unique:categories,name,' . $category->id, //VALIDATE EXCEPT DESIRED ID
+        ]);
+        $category->update($data);
+        return redirect('/category')->withStatus($category->name . ' has been edited succesfully');
     }
 
     /**
@@ -85,6 +98,17 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back()->withDelete($category->name. ' has been sent to trash');
+    }
+    public function restore($category){
+        // $data = Warehouse::first('name');
+        Category::withTrashed()->find($category)->restore();
+        return back()->withRestore('Item has been restored');
+    }
+
+    public function forceDelete($category){
+       Category::withTrashed()->find($category)->forceDelete();
+       return back()->withForced('Item has been deleted permanently');
     }
 }
