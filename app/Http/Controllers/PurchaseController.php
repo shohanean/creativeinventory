@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Supplier;
 use App\Company;
+use App\Stock;
 
 class PurchaseController extends Controller
 {
@@ -23,11 +24,9 @@ class PurchaseController extends Controller
 
     public function index()
     {
-        $companies = Company::all();
-        $suppliers = Supplier::all();
-        $products = Product::all();
+        $purchases = Purchase::all();
 
-        return view('purchase.index', compact('companies', 'suppliers', 'products'));
+        return view('purchase.index', compact('purchases'));
     }
 
     /**
@@ -52,7 +51,21 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'company_id' => 'required',
+            'supplier_id' => 'required',
+            'product_id' => 'required',
+        ]);
+
+        $data1 = request()->validate([
+            'quantity' => 'required|numeric',
+            'unit_price' => 'required|numeric',
+            'total_price' => 'required|numeric',
+            'exp_date' => 'required'
+        ]);
+
+        Purchase::create($data);
+        Stock::create($data1 + ['product_id' => $request->product_id]);
     }
 
     /**

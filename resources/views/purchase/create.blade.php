@@ -28,13 +28,6 @@
                     </div>
                 @endif
                 <form action="{{ route('purchase.store') }}" method="post">
-                    {{-- <div class="form-group">
-                        <label>Product Name</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter Product Name" value="{{old('name')}}">
-                        <div class="error">
-                            {{$errors->first('name')}}
-                        </div>
-                    </div> --}}
                     <div class="form-group">
                         <label for="company_id">Company Name</label>     
                         <select name="company_id" class="form-control">
@@ -58,6 +51,36 @@
                             <option value="{{$product->id}}" name="product_id">{{$product->name}}</option>
                             @endforeach
                         </select>              
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label class="text-center" for="">Quantity</label>
+                            <input class="form-control" type="number" name="quantity" placeholder="Quantity" value="{{old('quantity')}}">
+                            <div class="error">
+                                {{$errors->first('quantity')}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="text-center" for="">Unit Price</label>
+                            <input class="form-control" type="number" name="unit_price" placeholder="unit_price">
+                            <div class="error">
+                                {{$errors->first('unit_price')}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="text-center" for="">Total Price</label>
+                            <input class="form-control" type="number" placeholder="Enter the total Price" name="total_price" value="{{old('total_price')}}">
+                            <div class="error">
+                                {{$errors->first('total_price')}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="text-center" for="">Exp. date</label>
+                            <input class="form-control" type="text" placeholder="Exp. Date of the product" value="{{old('exp_date')}}" name="exp_date">
+                            <div class="error">
+                                {{$errors->first('exp_date')}}
+                            </div>
+                        </div>
                     </div>
                     @csrf
                     <button type="submit" class="btn btn-success">Add purchase details</button>

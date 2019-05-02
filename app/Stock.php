@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Stock extends Model
 {
@@ -12,6 +13,6 @@ class Stock extends Model
 
     // to call out the parent class
     public function product(){
-       return $this->hasOne('product');
+       return $this->hasOne(Product::class, 'id', 'product_id');
     }
 }

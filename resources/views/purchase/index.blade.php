@@ -19,11 +19,10 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Purchase Name</th>
+                <th>Created at</th>
                 <th>Company Name</th>
                 <th>Supplier Name</th>
                 <th>Product Name</th>
-                <th>Created at</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -31,12 +30,13 @@
             @forelse($purchases as $purchase)
             <tr>
                 <td>{{ $loop->index+1 }}</td>
-                <td>{{ $product->name }}</td>
-                {{-- <td>{{ $product->supplier->name }}</td> --}}
-                <td>{{ $product->warehouse->name }}</td>
-                <td>{{ $product->created_at->format('d-M-y') }}</td>
+                <td>{{ $purchase->created_at->format('d-M-y') }}</td>
+                <td>{{ $purchase->supplier->name }}</td>
+                <td>{{ $purchase->product->name }}</td>
+                <td>{{ $purchase->company->company_name }}</td>
+                <td>{{ $purchase->product->stock->quantity }}</td>
                 <td>
-                <div class="btn-group btn-group-sm">
+                {{-- <div class="btn-group btn-group-sm">
                     <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a>
 
                     <form class="d-none" id="product-destroy-form" action="{{ route('product.destroy', $product->id) }}" method="POST">
@@ -48,7 +48,7 @@
                         document.getElementById('product-destroy-form').submit();">
                         <span><i class="fas fa-trash-alt"></i></span>
                     </a>
-                </div>
+                </div> --}}
                 </td>
             </tr>
             @empty
