@@ -23,7 +23,11 @@ class PurchaseController extends Controller
 
     public function index()
     {
-        //
+        $companies = Company::all();
+        $suppliers = Supplier::all();
+        $products = Product::all();
+
+        return view('purchase.index', compact('companies', 'suppliers', 'products'));
     }
 
     /**
@@ -33,9 +37,9 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
-        $suppliers = Supplier::all();
         $companies = Company::all();
+        $suppliers = Supplier::all();
+        $products = Product::all();
 
         return view('purchase.create', compact('products', 'suppliers', 'companies'));
     }

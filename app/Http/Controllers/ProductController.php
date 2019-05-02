@@ -6,6 +6,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Warehouse;
 use App\Supplier;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -35,7 +36,13 @@ class ProductController extends Controller
     {
         // $suppliers = Supplier::all();
         $warehouses = Warehouse::all();
-        return view('product.create', compact('warehouses'));
+        $categories = Category::all();
+
+
+        // dd($categories);
+        // dd($warehouses);
+
+        return view('product.create', compact('warehouses', 'categories'));
     }
 
     /**
@@ -50,7 +57,7 @@ class ProductController extends Controller
         $data = request()->validate([
             'name'=> 'required|unique:products,name'
         ]);
-        Product::create($data + ['warehouse_id' => $request->warehouse_id, 'supplier_id' => $request->supplier_id]);
+        Product::create($data + ['warehouse_id' => $request->warehouse_id, 'category_id' => $request->category_id]);
         return back()->withSuccess('Product added succesfully');
     }
 
@@ -76,8 +83,9 @@ class ProductController extends Controller
         // dd($product);
         // $warehouses = $product->warehouse;
         $warehouses = Warehouse::all();
+        $categories = Category::all();
 
-        return view('product.edit', compact('product', 'warehouses'));
+        return view('product.edit', compact('product', 'warehouses', 'categories'));
     }
 
     /**

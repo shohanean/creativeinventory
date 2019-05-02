@@ -34,21 +34,22 @@
                             {{$errors->first('name')}}
                         </div>
                     </div>
-                    <div class="form-group">     
+                    <div class="form-group">
+                            <label>Warehouse Name</label>     
                         <select name="warehouse_id" class="form-control">
                             @foreach ($warehouses as $warehouse)
                             <option value="{{$warehouse->id}}" name="warehouse_id">{{$warehouse->name}}</option>
                             @endforeach
                         </select>              
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="">Select Supplier</label>
-                        <select name="supplier_id" id="" class="form-control">
-                            @foreach ($suppliers as $supplier)
-                                  <option value="{{$supplier->id}}" name="supplier_id">{{$supplier->name}}</option>
+                    <div class="form-group">
+                        <label>Category Name</label>     
+                        <select name="category_id" class="form-control">
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}" name="category_id">{{$category->name}}</option>
                             @endforeach
-                        </select>
-                    </div> --}}
+                        </select>              
+                    </div>
                     @csrf
                     <button type="submit" class="btn btn-success">Add product</button>
                 </form>

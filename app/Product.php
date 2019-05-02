@@ -13,10 +13,10 @@ class Product extends Model
     
     // to call out the parent class
     public function warehouse(){
-        return $this->hasOne(Warehouse::class);
+        return $this->hasOne(Warehouse::class, 'id', 'warehouse_id');
     }
     public function category(){
-        return $this->hasOne(Category::class);
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
     // to inverse 

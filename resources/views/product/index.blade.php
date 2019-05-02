@@ -21,7 +21,7 @@
                 <th>#</th>
                 <th>Product Name</th>
                 <th>Warehouse Name</th>
-                {{-- <th>Supplier Name</th> --}}
+                <th>Category Name</th>
                 <th>Created at</th>
                 <th>Action</th>
             </tr>
@@ -31,8 +31,8 @@
             <tr>
                 <td>{{ $loop->index+1 }}</td>
                 <td>{{ $product->name }}</td>
-                {{-- <td>{{ $product->supplier->name }}</td> --}}
                 <td>{{ $product->warehouse->name }}</td>
+                <td>{{ $product->category->name }}</td>
                 <td>{{ $product->created_at->format('d-M-y') }}</td>
                 <td>
                 <div class="btn-group btn-group-sm">
@@ -42,13 +42,15 @@
                         @method('DELETE')
                         @csrf
                     </form>
-                    <a href="{{ route('product.destroy', $product->id) }}"      class="btn btn-danger-outline"
+                    <a href="{{ route('product.destroy', $product->id) }}" class="btn btn-danger-outline"
                         onclick="event.preventDefault();
                         document.getElementById('product-destroy-form').submit();">
                         <span><i class="fas fa-trash-alt"></i></span>
                     </a>
                 </div>
                 </td>
+
+                {{-- {{print_r($product->category('name'))}} --}}
             </tr>
             @empty
             <tr class="text-center text-danger">

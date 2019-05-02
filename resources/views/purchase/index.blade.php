@@ -13,21 +13,22 @@
     </div>
 </div>
 <div class="row">
-    {{------------- START SUPPLIER LIST TABLE ----------------}}
+    {{------------- START PURCHASE LIST TABLE ----------------}}
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
             <tr>
                 <th>#</th>
                 <th>Purchase Name</th>
-                <th>Warehouse Name</th>
-                {{-- <th>Supplier Name</th> --}}
+                <th>Company Name</th>
+                <th>Supplier Name</th>
+                <th>Product Name</th>
                 <th>Created at</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            @forelse($products as $product)
+            @forelse($purchases as $purchase)
             <tr>
                 <td>{{ $loop->index+1 }}</td>
                 <td>{{ $product->name }}</td>

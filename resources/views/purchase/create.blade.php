@@ -35,15 +35,32 @@
                             {{$errors->first('name')}}
                         </div>
                     </div> --}}
-                    <div class="form-group">     
-                        <select name="purchase_id" class="form-control">
+                    <div class="form-group">
+                        <label for="company_id">Company Name</label>     
+                        <select name="company_id" class="form-control">
+                            @foreach ($companies as $company)
+                            <option value="{{$company->id}}" name="company_id">{{$company->company_name}}</option>
+                            @endforeach
+                        </select>              
+                    </div>
+                    <div class="form-group">
+                        <label for="supplier_id">Supplier Name</label>     
+                        <select name="supplier_id" class="form-control">
+                            @foreach ($suppliers as $supplier)
+                            <option value="{{$supplier->id}}" name="supplier_id">{{$supplier->name}}</option>
+                            @endforeach
+                        </select>              
+                    </div>
+                    <div class="form-group">
+                        <label for="product_id">Product Name</label>     
+                        <select name="product_id" class="form-control">
                             @foreach ($products as $product)
                             <option value="{{$product->id}}" name="product_id">{{$product->name}}</option>
                             @endforeach
                         </select>              
                     </div>
                     @csrf
-                    <button type="submit" class="btn btn-success">Add product</button>
+                    <button type="submit" class="btn btn-success">Add purchase details</button>
                 </form>
             </div>
         </div>

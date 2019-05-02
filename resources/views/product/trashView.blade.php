@@ -37,6 +37,7 @@
                 <th>#</th>
                 <th>Product Name</th>
                 <th>Warehouse Name</th>
+                <th>Category Name</th>
                 <th>Deleted at</th>
                 <th>Action</th>
             </tr>
@@ -47,6 +48,7 @@
                 <td>{{ $loop->index+1 }}</td>
                 <td>{{ $trash->name }}</td>
                 <td>{{ $trash->warehouse->name }}</td>
+                <td>{{ $trash->category->name }}</td>
                 <td>{{ $trash->deleted_at->format('d-M-y') }}</td>
                 <td>
                     <div class="btn-group btn-group-sm">
@@ -57,7 +59,7 @@
             </tr>
             @empty
             <tr class="text-center text-danger">
-                <td colspan="5">No Deleted Product Found</td>
+                <td colspan="6">No Deleted Product Found</td>
             </tr>
             @endforelse
             </tbody>
