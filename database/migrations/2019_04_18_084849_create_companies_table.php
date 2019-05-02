@@ -17,7 +17,7 @@ class CreateCompaniesTable extends Migration
             $table->bigIncrements('id');
             $table->string('company_name');
             $table->string('company_location');
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
             $table->softDeletes();    
         });

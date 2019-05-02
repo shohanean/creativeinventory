@@ -17,9 +17,7 @@ class CreatePurchasesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('company_id');
             $table->unsignedInteger('supplier_id');
-            $table->unsignedInteger('category_id');
             $table->unsignedInteger('product_id');
-            $table->unsignedInteger('stock_id');
             $table->timestamps();
             $table->softDeletes();
         });

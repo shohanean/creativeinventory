@@ -10,12 +10,14 @@ class Supplier extends Model
     use SoftDeletes;
     protected $guarded = [];
     protected $dates = ['deleted_at'];
-    
+
+    // to call out the parent class
     public function user(){
         return $this->hasOne('App\User', 'id', 'user_id');
     }
 
-    public function products(){
-        return $this->hasMany(Product::class);
+    // to inverse
+    public function purchase(){
+        return $this->belongsTo(Purchase::class);
     }
 }

@@ -11,5 +11,8 @@ class Category extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
-    
+    // to call out the child class
+    public function product(){
+       return $this->belongsTo(Product::class);
+    }
 }

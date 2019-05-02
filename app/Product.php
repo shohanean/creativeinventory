@@ -11,10 +11,20 @@ class Product extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
     
+    // to call out the parent class
     public function warehouse(){
-        return $this->belongsTo(Warehouse::class);
+        return $this->hasOne(Warehouse::class);
     }
-    // public function supplier(){
-    //     return $this->belongsTo(Supplier::class);
-    // }
+    public function category(){
+        return $this->hasOne(Category::class);
+    }
+
+    // to inverse 
+    public function purchase(){
+       return $this->belongsTo(Purchase::class);
+    }
+
+    public function stock(){
+        return $this->belongsTo(Stock::class);
+    }
 }

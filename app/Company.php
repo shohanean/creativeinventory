@@ -11,8 +11,14 @@ class Company extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
-    function user()
+    // to call out the child class
+   public function user()
     {
         return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
+    // to inverse
+    public function purchase(){
+       return $this->belongsTo(Purchase::class);
     }
 }

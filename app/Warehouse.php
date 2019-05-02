@@ -11,11 +11,13 @@ class Warehouse extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    // to call out the parent class
     public function user(){
        return $this->hasOne('App\User', 'id', 'user_id');
     }
 
-//     public function products(){
-//        return $this->hasMany(Product::class);
-//     }
+    // to inverse
+    public function product(){
+       return $this->belongsTo(Product::class);
+    }
 }

@@ -12,11 +12,12 @@ class Purchase extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    // to call out the parent class
     public function company(){
-       return $this->belongsTo(Company::class);
+       return $this->hasOne(Company::class);
     }
     public function supplier(){
-       return $this->belongsTo(Supplier::class);
+       return $this->hasOne(Supplier::class);
     }
     public function product(){
        return $this->hasOne(Product::class);
