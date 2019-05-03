@@ -34,7 +34,7 @@
                 <td>{{ $purchase->supplier->name }}</td>
                 <td>{{ $purchase->product->name }}</td>
                 <td>{{ $purchase->company->company_name }}</td>
-                <td>{{ $purchase->product->stock->quantity }}</td>
+                {{-- <td>{{ $purchase->product->stock->quantity }}</td> --}}
                 <td>
                 {{-- <div class="btn-group btn-group-sm">
                     <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a>

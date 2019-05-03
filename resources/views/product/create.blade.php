@@ -35,8 +35,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                            <label>Warehouse Name</label>     
-                        <select name="warehouse_id" class="form-control">
+                        <label>Warehouse Name</label>     
+                        <select name="warehouse_id" class="form-control" id="warehouse_name">
+                            <option value="">Select warehouse name</option>
                             @foreach ($warehouses as $warehouse)
                             <option value="{{$warehouse->id}}" name="warehouse_id">{{$warehouse->name}}</option>
                             @endforeach
@@ -44,7 +45,8 @@
                     </div>
                     <div class="form-group">
                         <label>Category Name</label>     
-                        <select name="category_id" class="form-control">
+                        <select name="category_id" class="form-control" id="category_name">
+                            <option value="">Select category name</option>
                             @foreach ($categories as $category)
                             <option value="{{$category->id}}" name="category_id">{{$category->name}}</option>
                             @endforeach
@@ -57,4 +59,11 @@
         </div>
     </div>
 </div>
+@endsection
+@section('footer_scripts')
+    <script>
+    $(function(){
+        $("#warehouse_name, #category_name").select2();
+    });
+    </script>
 @endsection

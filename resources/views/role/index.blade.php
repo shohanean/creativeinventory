@@ -47,7 +47,8 @@
                             <label for="" class="">Choose Role</label>
                         </div>
                         <div class="form-group">     
-                            <select name="role_id[]" class="form-control">
+                            <select name="role_id[]" class="form-control" id="choose_role">
+                                <option value="">Select role</option>
                                 @foreach ($roles as $role)
                                 <option value="{{$role->id}}" name="role_id">{{$role->name}}</option>
                                 @endforeach
@@ -58,7 +59,8 @@
                         <label for="" class="">Choose Permission</label>
                     </div>
                     <div class="form-group">                   
-                        <select name="permission_id[]" class="form-control" id="permission_select" multiple="multiple">
+                        <select name="permission_id[]" class="form-control" id="select_permission" multiple="multiple">
+                            {{-- <option value="">Select permission</option> --}}
                             @foreach ($permissions as $permission)
                             <option value="{{$permission->id}}">{{$permission->name}}</option>
                             @endforeach
@@ -82,7 +84,9 @@
                             <label for="" class="">Choose User</label>
                         </div>
                         <div class="form-group">                            
-                            <select name="user_id" class="form-control">
+                            <select name="user_id" class="form-control" id="choose_user">
+                                {{-- <option value="">Choose roles</option> --}}
+                                <option value="">Select user</option>
                                 @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach
@@ -92,7 +96,8 @@
                         <label for="" class="">Choose Role</label>
                     </div>
                     <div class="form-group">                            
-                        <select name="assigned_role_id" class="form-control multiple_permission">
+                        <select name="assigned_role_id" class="form-control multiple_permission" id="choose_role2">
+                            <option value="">Select role</option>
                             @foreach ($roles as $role)
                             <option value="{{$role->id}}">{{$role->name}}</option>
                             @endforeach
@@ -172,7 +177,7 @@
 @section('footer_scripts')
     <script>
         $(document).ready(function() {
-            $('#permission_select').select2();
+            $('#select_permission, #choose_role, #choose_user, #choose_role2').select2();
             // console.log('success');
         });
     </script>
