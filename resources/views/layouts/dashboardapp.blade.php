@@ -20,7 +20,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-      
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -226,7 +226,7 @@
                     </div>
                     <!--.site-header-shown-->
 
-                   
+
         <!--.container-fluid-->
     </header>
     <!--.site-header-->
@@ -352,6 +352,32 @@
                     <i class="font-icon fas fa-tags fa-lg"></i>
                     <span class="lbl">Category</span>
                 </a>
+            </li>
+            <li class="purple with-sub">
+                <span class="">
+                    <i class="font-icon font-icon-users @yield('active-product')"></i>
+                    &nbsp;<span class="lbl">Employee</span>
+                </span>
+                <ul>
+                    <li>
+                        <a href="{{ route('employee.create') }}">
+                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-plus-circle"></i>
+                            <span class="lbl">&nbsp;<small>Add Employee</small> </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('employee.index') }}">
+                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
+                            <span class="lbl">&nbsp;<small>Employee List</small> </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('employee.index') }}">
+                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
+                            <span class="lbl">&nbsp;<small>Trash List</small> </span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             {{-- <li class="brown with-sub">
                 <span>

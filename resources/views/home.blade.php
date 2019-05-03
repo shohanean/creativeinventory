@@ -57,4 +57,19 @@
         </section><!--.widget-simple-sm-->
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                Charts
+            </div>
+            <div class="card-body">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+
+                {!! $TestChart->container() !!}
+                {!! $TestChart->script() !!}
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
