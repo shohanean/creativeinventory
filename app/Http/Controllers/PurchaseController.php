@@ -51,6 +51,9 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request);
+
         $data = request()->validate([
             'company_id' => 'required',
             'supplier_id' => 'required',
