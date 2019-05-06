@@ -74,3 +74,7 @@ Route::get('category/force/delete/{category}', 'CategoryController@forceDelete')
 
 ////////////// EMPLOYEE ////////////////
 Route::resource('employee', 'EmployeeController');
+
+
+/////////////// STOCK ////////////////
+Route::resource('stock', 'StockController');

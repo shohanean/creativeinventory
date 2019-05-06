@@ -43,7 +43,7 @@
                         <select name="company_id" class="form-control" id="company_name">
                             <option value="">Select company name</option>
                             @foreach ($companies as $company)
-                            <option value="{{$company->id}}" name="company_id">{{$company->company_name}}</option>
+                            <option value="{{$company->id}}">{{$company->company_name}}</option>
                             @endforeach
                         </select>              
                     </div>
@@ -52,7 +52,7 @@
                         <select name="supplier_id" class="form-control" id="supplier_name">
                             <option value="">Select supplier name</option>
                             @foreach ($suppliers as $supplier)
-                            <option value="{{$supplier->id}}" name="supplier_id">{{$supplier->name}}</option>
+                            <option value="{{$supplier->id}}">{{$supplier->name}}</option>
                             @endforeach
                         </select>              
                     </div>
@@ -74,7 +74,7 @@
                                 <input class="form-control" type="number" name="unit_price[]" placeholder="Unit Price" value="{{old('unit_price')}}" autocomplete="off">
                             </div>
                             <div class="col-md-2">
-                                <input class="form-control" type="number" placeholder="Total Price" name="total_price[]" value="{{old('total_price')}}" autocomplete="off">
+                                <input class="form-control" type="number" name="total_price[]" placeholder="Total Price" value="{{old('total_price')}}" autocomplete="off">
                             </div>
                             <div class="col-md-2">
                                 <input type="text" class="form-control exp_date" name="exp_date[]" id="" placeholder="Exp. date" autocomplete="off" value="{{old('exp_date')}}">
@@ -83,6 +83,7 @@
                                 <button class="btn form-control" id="add_more"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
+                        {{-- wrapper to put the 'add more' div --}}
                         <div class="wrapper_div col-md-12">
 
                         </div>
