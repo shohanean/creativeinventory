@@ -328,7 +328,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('purchase.index') }}">
+                        <a href="{{ route('purchase.trashView') }}">
                             &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
                             <span class="lbl">&nbsp;<small>Trash List</small> </span>
                         </a>

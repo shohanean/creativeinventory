@@ -19,10 +19,10 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Created at</th>
-                <th>Company Name</th>
+                <th>Purchased at</th>
                 <th>Supplier Name</th>
                 <th>Product Name</th>
+                <th>Company Name</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -36,19 +36,19 @@
                 <td>{{ $purchase->company->company_name }}</td>
                 {{-- <td>{{ $purchase->product->stock->quantity }}</td> --}}
                 <td>
-                {{-- <div class="btn-group btn-group-sm">
-                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a>
+                <div class="btn-group btn-group-sm">
+                    {{-- <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a> --}}
 
-                    <form class="d-none" id="product-destroy-form" action="{{ route('product.destroy', $product->id) }}" method="POST">
+                    <form class="d-none" id="purchase-destroy-form" action="{{ route('purchase.destroy', $purchase->id) }}" method="POST">
                         @method('DELETE')
                         @csrf
                     </form>
-                    <a href="{{ route('product.destroy', $product->id) }}"      class="btn btn-danger-outline"
+                    <a href="{{ route('purchase.destroy', $purchase->id) }}"      class="btn btn-danger-outline"
                         onclick="event.preventDefault();
-                        document.getElementById('product-destroy-form').submit();">
+                        document.getElementById('purchase-destroy-form').submit();">
                         <span><i class="fas fa-trash-alt"></i></span>
                     </a>
-                </div> --}}
+                </div>
                 </td>
             </tr>
             @empty

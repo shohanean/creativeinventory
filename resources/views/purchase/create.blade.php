@@ -60,10 +60,10 @@
                     <div class="category_select_container">
                         <div class="row mb-3">
                             <div class="col-md-3">
-                                <select name="product_id" class="form-control" id="product_name">
+                                <select name="product_id[]" class="form-control" id="product_name">
                                     <option value="">Select product name</option>
                                     @foreach ($products as $product)
-                                    <option value="{{$product->id}}" name="product_id">{{$product->name}}</option>
+                                    <option value="{{$product->id}}">{{$product->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -103,10 +103,10 @@
                     '<div class="category_select">'+
                         '<div class="row mb-4">'+
                                 '<div class="col-md-3">'+
-                                    '<select name="product_id"'+ 'class="form-control" id="product_name">'+
+                                    '<select name="product_id[]"'+ 'class="form-control" id="product_name">'+
                                         '<option value="">Select product name</option>'+
                                         '@foreach ($products as $product)'+
-                                        '<option value="{{$product->id}}" name="product_id">{{$product->name}}</option>'+
+                                        '<option value="{{$product->id}}">{{$product->name}}</option>'+
                                         '@endforeach'+
                                     '</select>'+
                                 '</div>'+
@@ -117,7 +117,7 @@
                                 '<input class="form-control" type="number" name="unit_price[]" placeholder="Unit Price" value="{{old('unit_price')}}" autocomplete="off">'+
                             '</div>'+
                             '<div class="col-md-2">'+
-                                '<input class="form-control" type="number" placeholder="Total Price" name="total_price[]" value="{{old('total_price')}}" autocomplete="off">'+
+                                '<input class="form-control" type="number" name="total_price[]" placeholder="Total Price" value="{{old('total_price')}}" autocomplete="off">'+
                             '</div>'+
                             '<div class="col-md-2">'+
                                 '<input class="form-control exp_date" type="text" name="exp_date[]" placeholder="Exp. date" id=""  value="{{old('exp_date')}}" autocomplete="off">'+

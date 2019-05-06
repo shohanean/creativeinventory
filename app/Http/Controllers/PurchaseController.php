@@ -8,6 +8,7 @@ use App\Product;
 use App\Supplier;
 use App\Company;
 use App\Stock;
+use Carbon\Carbon;
 
 class PurchaseController extends Controller
 {
@@ -52,23 +53,35 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
+        foreach ($request->product_id as $product_id_key => $product_id_value) {
+            // echo "<p>".$product_id_key."<p>";
+            // echo "<p>Product ID".$product_id_value."<p>";
+            // echo "<p>Quantity ".$request->quantity[$product_id_key]."<p>";
+            // echo "<p>Unit Price ".$request->unit_price[$product_id_key]."<p>";
+            // echo "<p>total price ".$request->total_price[$product_id_key]."<p>";
+            // echo "<p>exp.date ".$request->exp_date[$product_id_key]."<p>";
 
-        $data = request()->validate([
-            'company_id' => 'required',
-            'supplier_id' => 'required',
-            'product_id' => 'required',
-        ]);
+            $data = [
+                'product_id' => $product_id_value,
+                'quantity' => $request->quantity[$product_id_key],
+                'unit_price' => $request->unit_price[$product_id_key],
+                'total_price' => $request->total_price[$product_id_key],
+                'exp_date' => $request->exp_date[$product_id_key],
+                'created_at' => Carbon::now()
+            ];
 
-        $data1 = request()->validate([
-            'quantity' => 'required|numeric',
-            'unit_price' => 'required|numeric',
-            'total_price' => 'required|numeric',
-            'exp_date' => 'required'
-        ]);
+            $data1 = [
+                'company_id' => $request->company_id,
+                'supplier_id' => $request->supplier_id,
+                'product_id' => $product_id_value,
+                'created_at' => Carbon::now()
+            ];
+            
+            Purchase::insert($data1);
 
-        Purchase::create($data);
-        Stock::create($data1 + ['product_id' => $request->product_id]);
+            Stock::insert($data);
+        }
+        return back();
     }
 
     /**
@@ -102,7 +115,7 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, Purchase $purchase)
     {
-        //
+
     }
 
     /**
@@ -113,6 +126,23 @@ class PurchaseController extends Controller
      */
     public function destroy(Purchase $purchase)
     {
-        //
+        $purchase->delete();
+        return back();
+    }
+
+    public function trashView(){
+        $trashed = Purchase::onlyTrashed()->get();
+       return view('purchase.trashView', compact('trashed'));
+    }
+
+    
+    public function restore($purchase){
+        Purchase::withTrashed()->find($purchase)->restore();
+        return back()->withRestore('Item has been restored');
+    }
+
+    public function forceDelete($purchase){
+       Purchase::withTrashed()->find($purchase)->forceDelete();
+       return back()->withForced('Item has been deleted permanently');
     }
 }
