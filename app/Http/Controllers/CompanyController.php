@@ -86,8 +86,8 @@ class CompanyController extends Controller
     {
 
         $data = request()->validate([
-            'name' => 'required|unique:companies,company_name,' .$company->id, //VALIDATE EXCEPT DESIRED ID
-            'location' => 'required',
+            'company_name' => 'required|unique:companies,company_name,' .$company->id, //VALIDATE EXCEPT DESIRED ID
+            'company_location' => 'required',
         ]);
         $company->update($data);
         return redirect('/company')->withStatus($company->company_name . ' has been edited succesfully');

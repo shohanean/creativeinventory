@@ -9,6 +9,7 @@ use App\Supplier;
 use App\Company;
 use App\Stock;
 use Carbon\Carbon;
+use Validator;
 
 class PurchaseController extends Controller
 {
@@ -61,6 +62,7 @@ class PurchaseController extends Controller
             // echo "<p>total price ".$request->total_price[$product_id_key]."<p>";
             // echo "<p>exp.date ".$request->exp_date[$product_id_key]."<p>";
 
+
             $data = [
                 'product_id' => $product_id_value,
                 'quantity' => $request->quantity[$product_id_key],
@@ -81,7 +83,7 @@ class PurchaseController extends Controller
 
             Stock::insert($data);
         }
-        return back();
+        return back()->withSuccess('Purchase Record Added Successfully!');;
     }
 
     /**

@@ -25,6 +25,10 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return view('product.index', compact('products'));
+
+        // foreach ($products as $product) {
+        //     dd($product->category(['id'])->name);
+        // }
     }
 
     /**
@@ -57,7 +61,11 @@ class ProductController extends Controller
         $data = request()->validate([
             'name'=> 'required|unique:products,name'
         ]);
-        Product::create($data + ['warehouse_id' => $request->warehouse_id, 'category_id' => $request->category_id]);
+        Product::create($data + 
+        [
+            'warehouse_id' => $request->warehouse_id, 
+            'category_id' => $request->category_id
+        ]);
         return back()->withSuccess('Product added succesfully');
     }
 

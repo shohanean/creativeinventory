@@ -78,3 +78,6 @@ Route::resource('employee', 'EmployeeController');
 
 /////////////// STOCK ////////////////
 Route::resource('stock', 'StockController');
+
+///////////////// REQUISITION FORM ////////////////
+Route::resource('requisition', 'RequisitionController');

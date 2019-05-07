@@ -242,47 +242,6 @@
                     <span class="lbl">Dashboard</span>
                 </a>
             </li>
-            <li class="red @yield('active-company')">
-                <a href="{{ route('company.index') }}">
-                    <i class="font-icon glyphicon glyphicon-home"></i>
-                    <span class="lbl">Company</span>
-                </a>
-            </li>
-            <li class="green @yield('active-warehouse')">
-                <a href="{{ route('warehouse.index') }}">
-                    <i class="font-icon fas fa-warehouse"></i>
-                    &nbsp;<span class="lbl">Warehouse</span>
-                </a>
-            </li>
-
-            {{-- List of links --}}
-            {{-- <li class="green with-sub">
-                <span class="">
-                    <i class=" font-icon fas fa-warehouse @yield('active-warehouse')"></i>
-                    <span class="lbl">Warehouse</span>
-                </span>
-                <ul>
-                    <li>
-                        <a href="{{ route('warehouse.create') }}">
-                            <i class="lbl fas fa-plus-circle"></i>
-                            <span class="lbl">Add Warehouse</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('warehouse.index') }}">
-                            <i class="lbl fas fa-list"></i>
-                            <span class="lbl">Warehouse List</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('warehouse.index') }}">
-                            <i class="lbl fas fa-trash"></i>
-                            <span class="lbl">Trash List</span>
-                        </a>
-                    </li>
-                </ul>
-            </li> --}}
-            {{-- end list of links --}}
             <li class="purple with-sub">
                 <span class="">
                     <i class="font-icon font-icon-users @yield('active-product')"></i>
@@ -309,6 +268,31 @@
                     </li>
                 </ul>
             </li>
+            <li class="red @yield('active-company')">
+                <a href="{{ route('company.index') }}">
+                    <i class="font-icon glyphicon glyphicon-home"></i>
+                    <span class="lbl">Company</span>
+                </a>
+            </li>
+            <li class="green @yield('active-warehouse')">
+                <a href="{{ route('warehouse.index') }}">
+                    <i class="font-icon fas fa-warehouse"></i>
+                    &nbsp;<span class="lbl">Warehouse</span>
+                </a>
+            </li>
+            <li class="gold @yield('active-supplier')">
+                <a href="{{route('supplier.index')}}">
+                    <i class="font-icon fas fa-truck"></i>
+                    <span class="lbl">Supplier</span>
+                </a>
+            </li>
+            <li class="brown @yield('active-category')">
+                <a href="{{route('category.index')}}">
+                    <i class="font-icon fas fa-tags fa-lg"></i>
+                    <span class="lbl">Category</span>
+                </a>
+            </li>
+        
             <li class="purple with-sub">
                 <span class="">
                     <i class=" font-icon fas fa-shopping-cart @yield('active-product')"></i>
@@ -362,12 +346,7 @@
                 </ul>
             </li>
 
-            <li class="gold @yield('active-supplier')">
-                <a href="{{route('supplier.index')}}">
-                    <i class="font-icon fas fa-truck"></i>
-                    <span class="lbl">Supplier</span>
-                </a>
-            </li>
+
             <li class="green @yield('active-stock')">
                 <a href="{{route('stock.index')}}">
                     <i class="font-icon fas fa-boxes fa-lg"></i>
@@ -380,12 +359,7 @@
                     <span class="lbl">Roles & permission</span>
                 </a>
             </li>
-            <li class="brown @yield('active-category')">
-                <a href="{{route('category.index')}}">
-                    <i class="font-icon fas fa-tags fa-lg"></i>
-                    <span class="lbl">Category</span>
-                </a>
-            </li>
+
         <section>
 
             <ul class="side-menu-list">

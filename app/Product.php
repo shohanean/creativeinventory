@@ -16,6 +16,7 @@ class Product extends Model
         return $this->hasOne(Warehouse::class, 'id', 'warehouse_id');
     }
     public function category(){
+        // return $this->hasOne(Category::class, 'id', 'category_id');
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
 

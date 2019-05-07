@@ -19,7 +19,7 @@ class CreateStocksTable extends Migration
             $table->integer('quantity');
             $table->integer('total_price');
             $table->integer('unit_price');
-            $table->string('exp_date');
+            $table->string('exp_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -111,4 +111,8 @@ class EmployeeController extends Controller
     {
         //
     }
+
+    public function requisition(){
+       return view('requisition.index');
+    }
 }

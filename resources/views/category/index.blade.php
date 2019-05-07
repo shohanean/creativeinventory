@@ -41,7 +41,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Warehouse Name</th>
+                      <th>Category Name</th>
                       <th>Created At</th>
                       <th>Action</th>
                     </tr>
@@ -106,7 +106,8 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Warehouse Name</th>
+                      <th>Category Name</th>
+                      <th>Deleted at</th>
                       <th>Action</th>
                     </tr>
                   </thead>
