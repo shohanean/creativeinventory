@@ -136,7 +136,7 @@
                     <div class="btn-group btn-group-sm">
                         <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>
                         <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
-                        <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
+                        {{-- <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a> --}}
                     </div>
                 </td>
                 @endif
