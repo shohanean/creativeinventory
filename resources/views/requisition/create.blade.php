@@ -1,6 +1,7 @@
 @extends('layouts.dashboardapp')
 
 @section('title', 'Requisition Form')
+@section('active-requisition', 'opened')
 
 @section('content')
 {{---------------- BREADCRUMB  ---------------}}

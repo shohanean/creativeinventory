@@ -57,6 +57,102 @@
         </section><!--.widget-simple-sm-->
     </div>
 </div>
+
+{{------------------------- FOR ADMIN ------------------------}}
+@if (Auth::user()->role == 2)
+<div class="col-md-12 text-center bg-secondary p-2 text-white"> <strong>LIST OF ALL REQUISITION</strong></div>
+<div class="row pb-5">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead class="">
+            <tr>
+                <th>#</th>
+                <th>Created at</th>
+                <th>Requested Product</th>
+                <th>Requested Quantity</th>
+                <th>User Name</th>
+                {{-- <th>User Designation</th> --}}
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @forelse($requisitions as $requisition)
+            <tr>
+                @if ($requisition->status == 0||3)            
+                    {{-- {{print_r($requisition)}} --}}
+                    <td>{{ $loop->index+1 }}</td>
+                    <td>{{ $requisition->created_at->format('d-M-y') }}</td>
+                    <td>{{ $requisition->product->name }}</td>
+                    <td>{{ $requisition->quantity }}</td>
+                    <td>{{ $requisition->user->name }}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>
+                            <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
+                            <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
+                        </div>
+                    </td>
+                @endif
+            </tr>
+            @empty
+            <tr class="text-center text-danger">
+                <td colspan="7">No Requisition Found</td>
+            </tr>
+            @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+@endif
+
+{{------------------------- FOR SUPER-ADMIN ------------------------}}
+@if (Auth::user()->role == 3)  
+<div class="col-md-12 text-center bg-secondary p-2 text-white"> <strong>LIST OF ALL REQUISITION</strong></div>
+<div class="row pb-5">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead class="">
+            <tr>
+                <th>#</th>
+                <th>Create at</th>
+                <th>Requested Product</th>
+                <th>Requested Quantity</th>
+                <th>User Name</th>
+                {{-- <th>User Designation</th> --}}
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @forelse($requisitions as $requisition)
+            <tr>
+                @if ($requisition->status == 3)
+                {{-- {{print_r($requisition)}} --}}
+                <td>{{ $loop->index+1 }}</td>
+                <td>{{ $requisition->created_at->format('d-M-y') }}</td>
+                <td>{{ $requisition->product->name }}</td>
+                <td>{{ $requisition->quantity }}</td>
+                <td>{{ $requisition->user->name }}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>
+                        <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
+                        <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
+                    </div>
+                </td>
+                @endif
+            </tr>
+            @empty
+            <tr class="text-center text-danger">
+                <td colspan="7">No Requisition Found</td>
+            </tr>
+            @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+@endif
+
+
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -72,4 +168,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

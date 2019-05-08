@@ -233,6 +233,7 @@
     </header>
     <!--.site-header-->
 
+    {{------------------ NAVBAR LIST -----------}}
     <div class="mobile-menu-left-overlay"></div>
     <nav class="side-menu">
         <ul class="side-menu-list">
@@ -242,160 +243,196 @@
                     <span class="lbl">Dashboard</span>
                 </a>
             </li>
-            <li class="purple with-sub">
-                <span class="">
-                    <i class="font-icon font-icon-users @yield('active-product')"></i>
-                    &nbsp;<span class="lbl">Employee</span>
-                </span>
-                <ul>
-                    <li>
-                        <a href="{{ route('employee.create') }}">
-                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-plus-circle"></i>
-                            <span class="lbl">&nbsp;<small>Add Employee</small> </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('employee.index') }}">
-                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
-                            <span class="lbl">&nbsp;<small>Employee List</small> </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('employee.index') }}">
-                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
-                            <span class="lbl">&nbsp;<small>Trash List</small> </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="red @yield('active-company')">
-                <a href="{{ route('company.index') }}">
-                    <i class="font-icon glyphicon glyphicon-home"></i>
-                    <span class="lbl">Company</span>
+@if (Auth::user()->role == 1)
+            {{--------------- REQUISTION FOR EMPLOYEE ------------}}
+    <li class="red @yield('active-requisition')">
+        <a href="{{ route('requisition.create') }}">
+            <i class="font-icon fab fa-wpforms"></i>
+            <span class="lbl">Requisition</span>
+        </a>
+    </li>
+    @else
+    {{------------------------ NAVBAR FOR ADMIN -------------------}}
+    <li class="brown with-sub">
+        <span class="">
+            <i class="font-icon fab fa-wpforms @yield('active-requisition')"></i>
+            &nbsp;<span class="lbl">Requisition</span>
+        </span>
+        <ul>
+            {{-- <li>
+                <a href="{{ route('requisition.create') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-plus-circle"></i>
+                    <span class="lbl">&nbsp;<small>Add requisition</small> </span>
+                </a>
+            </li> --}}
+            <li>
+                <a href="{{ route('employee.index') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
+                    <span class="lbl">&nbsp;<small>Requisition List</small> </span>
                 </a>
             </li>
-            <li class="green @yield('active-warehouse')">
-                <a href="{{ route('warehouse.index') }}">
-                    <i class="font-icon fas fa-warehouse"></i>
-                    &nbsp;<span class="lbl">Warehouse</span>
+            <li>
+                <a href="{{ route('employee.index') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
+                    <span class="lbl">&nbsp;<small>Trash List</small> </span>
                 </a>
             </li>
-            <li class="gold @yield('active-supplier')">
-                <a href="{{route('supplier.index')}}">
-                    <i class="font-icon fas fa-truck"></i>
-                    <span class="lbl">Supplier</span>
+        </ul>
+    </li>
+    <li class="purple with-sub">
+        <span class="">
+            <i class="font-icon font-icon-users @yield('active-product')"></i>
+            &nbsp;<span class="lbl">Employee</span>
+        </span>
+        <ul>
+            <li>
+                <a href="{{ route('employee.create') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-plus-circle"></i>
+                    <span class="lbl">&nbsp;<small>Add Employee</small> </span>
                 </a>
             </li>
-            <li class="brown @yield('active-category')">
-                <a href="{{route('category.index')}}">
-                    <i class="font-icon fas fa-tags fa-lg"></i>
-                    <span class="lbl">Category</span>
+            <li>
+                <a href="{{ route('employee.index') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
+                    <span class="lbl">&nbsp;<small>Employee List</small> </span>
                 </a>
             </li>
-        
-            <li class="purple with-sub">
-                <span class="">
-                    <i class=" font-icon fas fa-shopping-cart @yield('active-product')"></i>
-                    &nbsp;<span class="lbl">Product</span>
-                </span>
-                <ul>
-                    <li>
-                        <a href="{{ route('product.create') }}">
-                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-cart-plus"></i>
-                            <span class="lbl">&nbsp;<small>Add Product</small> </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('product.index') }}">
-                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
-                            <span class="lbl">&nbsp;<small>Product List</small> </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('product.trashView') }}">
-                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
-                            <span class="lbl">&nbsp;<small>Trash List</small> </span>
-                        </a>
-                    </li>
-                </ul>
+            <li>
+                <a href="{{ route('employee.index') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
+                    <span class="lbl">&nbsp;<small>Trash List</small> </span>
+                </a>
             </li>
-            <li class="red with-sub">
-                <span class="">
-                    <i class="font-icon fas fa-store-alt @yield('active-purchase')"></i>
-                    <span class="lbl">Purchase</span>
-                </span>
-                <ul>
-                    <li>
-                        <a href="{{ route('purchase.create') }}">
-                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-plus-circle"></i>
-                            <span class="lbl">&nbsp;<small>Add Purchase</small> </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('purchase.index') }}">
-                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
-                            <span class="lbl">&nbsp;<small>Purchase List</small> </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('purchase.trashView') }}">
-                            &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
-                            <span class="lbl">&nbsp;<small>Trash List</small> </span>
-                        </a>
-                    </li>
-                </ul>
+        </ul>
+    </li>
+    <li class="red @yield('active-company')">
+        <a href="{{ route('company.index') }}">
+            <i class="font-icon glyphicon glyphicon-home"></i>
+            <span class="lbl">Company</span>
+        </a>
+    </li>
+    <li class="green @yield('active-warehouse')">
+        <a href="{{ route('warehouse.index') }}">
+            <i class="font-icon fas fa-warehouse"></i>
+            &nbsp;<span class="lbl">Warehouse</span>
+        </a>
+    </li>
+    <li class="gold @yield('active-supplier')">
+        <a href="{{route('supplier.index')}}">
+            <i class="font-icon fas fa-truck"></i>
+            <span class="lbl">Supplier</span>
+        </a>
+    </li>
+    <li class="brown @yield('active-category')">
+        <a href="{{route('category.index')}}">
+            <i class="font-icon fas fa-tags fa-lg"></i>
+            <span class="lbl">Category</span>
+        </a>
+    </li>
+
+    <li class="purple with-sub">
+        <span class="">
+            <i class=" font-icon fas fa-shopping-cart @yield('active-product')"></i>
+            &nbsp;<span class="lbl">Product</span>
+        </span>
+        <ul>
+            <li>
+                <a href="{{ route('product.create') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-cart-plus"></i>
+                    <span class="lbl">&nbsp;<small>Add Product</small> </span>
+                </a>
             </li>
+            <li>
+                <a href="{{ route('product.index') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
+                    <span class="lbl">&nbsp;<small>Product List</small> </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('product.trashView') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
+                    <span class="lbl">&nbsp;<small>Trash List</small> </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="red with-sub">
+        <span class="">
+            <i class="font-icon fas fa-store-alt @yield('active-purchase')"></i>
+            <span class="lbl">Purchase</span>
+        </span>
+        <ul>
+            <li>
+                <a href="{{ route('purchase.create') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-plus-circle"></i>
+                    <span class="lbl">&nbsp;<small>Add Purchase</small> </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('purchase.index') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
+                    <span class="lbl">&nbsp;<small>Purchase List</small> </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('purchase.trashView') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
+                    <span class="lbl">&nbsp;<small>Trash List</small> </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="green @yield('active-stock')">
+        <a href="{{route('stock.index')}}">
+            <i class="font-icon fas fa-boxes fa-lg"></i>
+            <span class="lbl">Inventory</span>
+        </a>
+    </li>
+    <li class="blue @yield('active-role')">
+        <a href="{{route('role.index')}}">
+            <i class="font-icon fas fa-user-plus fa-lg"></i>
+            <span class="lbl">Roles & permission</span>
+        </a>
+    </li>
+@endif
 
 
-            <li class="green @yield('active-stock')">
-                <a href="{{route('stock.index')}}">
-                    <i class="font-icon fas fa-boxes fa-lg"></i>
-                    <span class="lbl">Inventory</span>
+
+    <section>
+        <ul class="side-menu-list">
+            <li>
+                <a href="#">
+                    <i class="tag-color green"></i>
+                    <span class="lbl">Website</span>
                 </a>
             </li>
-            <li class="blue @yield('active-role')">
-                <a href="{{route('role.index')}}">
-                    <i class="font-icon fas fa-user-plus fa-lg"></i>
-                    <span class="lbl">Roles & permission</span>
+            <li>
+                <a href="#">
+                    <i class="tag-color grey-blue"></i>
+                    <span class="lbl">Bugs/Errors</span>
                 </a>
             </li>
-
-        <section>
-
-            <ul class="side-menu-list">
-                <li>
-                    <a href="#">
-                        <i class="tag-color green"></i>
-                        <span class="lbl">Website</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="tag-color grey-blue"></i>
-                        <span class="lbl">Bugs/Errors</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="tag-color red"></i>
-                        <span class="lbl">General Problem</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="tag-color pink"></i>
-                        <span class="lbl">Questions</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="tag-color orange"></i>
-                        <span class="lbl">Ideas</span>
-                    </a>
-                </li>
-            </ul>
-        </section>
-    </nav>
+            <li>
+                <a href="#">
+                    <i class="tag-color red"></i>
+                    <span class="lbl">General Problem</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="tag-color pink"></i>
+                    <span class="lbl">Questions</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="tag-color orange"></i>
+                    <span class="lbl">Ideas</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</nav>
     <!--.side-menu-->
 
     <div class="page-content">

@@ -6,6 +6,7 @@ use App\Requisition;
 use Illuminate\Http\Request;
 use App\Product;
 use Carbon\Carbon;
+use Auth;
 
 class RequisitionController extends Controller
 {
@@ -51,7 +52,7 @@ class RequisitionController extends Controller
                 'created_at' => Carbon::now()
             ];
 
-            Requisition::insert($data);
+            Requisition::insert($data + ['user_id'=> Auth::id()]);
         }
     }
 

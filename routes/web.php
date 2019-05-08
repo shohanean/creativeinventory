@@ -81,3 +81,6 @@ Route::resource('stock', 'StockController');
 
 ///////////////// REQUISITION FORM ////////////////
 Route::resource('requisition', 'RequisitionController');
+Route::get('requisition/approve/{requisition}', 'HomeController@approve')->name('approve.requisition');
+Route::get('requisition/reject/{requisition}', 'HomeController@reject')->name('reject.requisition');
+Route::get('requisition/forward/{requisition}', 'HomeController@forward')->name('forward.requisition');
