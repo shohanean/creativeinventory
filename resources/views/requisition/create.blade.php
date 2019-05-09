@@ -57,8 +57,8 @@
                             <div class="col-md-6">
                                 <select name="product_id[]" class="form-control" id="product_name" required>
                                     <option value="">Select product name</option>
-                                    @foreach ($stocks as $stock)
-                                        <option value="{{$stock->id}}">{{$stock->product->name}}</option>
+                                    @foreach ($products as $product)
+                                        <option value="{{$product->id}}">{{$product->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

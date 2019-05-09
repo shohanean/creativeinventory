@@ -52,6 +52,9 @@ class HomeController extends Controller
 
         $stock = Requisition::find($requisition);
 
+        // $price = Stock::where('product_id', $stock->product_id)->sum('quantity');
+
+        // echo $price;
 
         Stock::where('product_id', $stock->product_id)->decrement('quantity', $stock->quantity);
 

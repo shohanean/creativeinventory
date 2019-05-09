@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Stock;
+use App\Product;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
@@ -21,7 +22,10 @@ class StockController extends Controller
 
     public function index()
     {
-        return view('stock.index');
+        // echo $total= Stock::where('product_id', Product::find('id'))->sum('quantity');
+
+        $stocks = Stock::all();
+        return view('stock.index', compact('stocks'));
     }
 
     /**

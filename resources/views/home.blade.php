@@ -153,9 +153,17 @@
                             <td>{{ $requisition->user->name }}</td>
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>
+                                    @if (App\Stock::where('product_id', $requisition->product_id)->exists())
+                                        @if (App\Stock::where('product_id', $requisition->product_id)->first()->quantity >= $requisition->quantity)
+                                            <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>  
+                                            <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
+                                        @else
+                                            <button class="btn btn-danger mr-2">Not enough product</button>
+                                        @endif
+                                    @else
+                                        <button class="btn btn-danger mr-2">Not in stock</button>
+                                    @endif
                                     <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
-                                    <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
                                 </div>
                             </td>
                         </tr>
