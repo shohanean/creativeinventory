@@ -7,6 +7,7 @@ use App\Company, App\Supplier, App\Warehouse, App\User, App\Product;
 use App\Charts\TestChart;
 use App\Requisition;
 use App\Stock;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('checkRole');
+        // $this->middleware('checkRole');
     }
 
     /**
@@ -40,11 +41,11 @@ class HomeController extends Controller
 
 
         $requisitions = Requisition::all();
-        $stock = Stock::all();
+        $requisition_by_id= Requisition::where( 'user_id', Auth::user()->id)->get();
 
-        // print_r($requisitions);
-        
-        return view('home', compact('company_count', 'supplier_count', 'warehouse_count', 'user_count', 'product_count', 'TestChart', 'requisitions'));
+        // dd($requisition_by_id);
+
+        return view('home', compact('company_count', 'supplier_count', 'warehouse_count', 'user_count', 'product_count', 'TestChart', 'requisitions', 'requisition_by_id'));
     }
 
     public function approve($requisition){
@@ -55,8 +56,9 @@ class HomeController extends Controller
         Stock::where('product_id', $stock->product_id)->decrement('quantity', $stock->quantity);
 
         $stock->update([
-            'status' => 2
+            'status' => 1
         ]);
+        return back()->withStatus('Your have approved the request');
     }
 
     public function reject($requisition){
@@ -64,8 +66,9 @@ class HomeController extends Controller
         $stock = Requisition::find($requisition);
 
         $stock->update([
-            'status' => 1
+            'status' => 2
         ]);
+        return back()->withStatus('Your have rejected the request');
        
     }
 
@@ -76,5 +79,6 @@ class HomeController extends Controller
         $stock->update([
             'status' => 3
         ]);
+        return back()->withStatus('Your have forwarded the request to super admin');
     }
 }

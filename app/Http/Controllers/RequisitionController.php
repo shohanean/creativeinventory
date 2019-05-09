@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Requisition;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Stock;
 use Carbon\Carbon;
 use Auth;
 
@@ -34,7 +35,9 @@ class RequisitionController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view('requisition.create', compact('products'));
+        $stocks = Stock::all();
+
+        return view('requisition.create', compact('products', 'stocks'));
     }
 
     /**
@@ -49,11 +52,13 @@ class RequisitionController extends Controller
             $data = [
                 'product_id' => $product_id_value,
                 'quantity' => $request->quantity[$product_id_key],
+                'note' => $request->note[$product_id_key],
                 'created_at' => Carbon::now()
             ];
 
             Requisition::insert($data + ['user_id'=> Auth::id()]);
         }
+        return back();
     }
 
     /**

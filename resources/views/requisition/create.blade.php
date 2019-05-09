@@ -19,6 +19,7 @@
             <div class="card-head text-center bg-dark text-white">
                 <span><h4>Enter requisition details</h4></span>
             </div>
+{{----------------- ERROR MESSAGE ------------------}}
             <div class="card-body">
                     @if($errors->all())
                     <div class="alert alert-danger alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
@@ -39,6 +40,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
+                {{-- FORM START --}}
                 <form action="{{ route('requisition.store') }}" method="post">
                         @if($errors->all())
                         <div class="alert alert-danger alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
@@ -52,16 +54,19 @@
                     @endif
                     <div class="category_select_container">
                         <div class="row mb-3">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select name="product_id[]" class="form-control" id="product_name" required>
                                     <option value="">Select product name</option>
-                                    @foreach ($products as $product)
-                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                    @foreach ($stocks as $stock)
+                                        <option value="{{$stock->id}}">{{$stock->product->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
                                 <input class="form-control" type="number" name="quantity[]" placeholder="Quantity" value="{{old('quantity')}}" autocomplete="off" required>
+                            </div>
+                            <div class="col-md-2">
+                                <textarea name="note[]" id="note" class="form-control" placeholder="Add note (optional)" cols="2"></textarea>
                             </div>
                             <div class="col-md-1">
                                 <button class="btn form-control" id="add_more"><i class="fas fa-plus"></i></button>
@@ -71,10 +76,12 @@
                         <div class="wrapper_div col-md-12">
 
                         </div>
+                        {{-- wrapper end --}}
                     </div>
                     @csrf
                     <button type="submit" class="btn btn-success">Request Details</button>
                 </form>
+                {{-- FORM END --}}
             </div>
         </div>
     </div>
@@ -87,7 +94,7 @@
             var template = 
                     '<div class="category_select">'+
                         '<div class="row mb-4">'+
-                                '<div class="col-md-8">'+
+                                '<div class="col-md-6">'+
                                     '<select name="product_id[]"'+ 'class="form-control" id="product_name" required>'+
                                         '<option value="">Select product name</option>'+
                                         '@foreach ($products as $product)'+
@@ -97,6 +104,9 @@
                                 '</div>'+
                             '<div class="col-md-2">'+
                                 '<input class="form-control" type="number" name="quantity[]" placeholder="Quantity" value="{{old('quantity')}}" autocomplete="off" required>'+
+                            '</div>'+
+'                            <div class="col-md-2">'+
+                                '<textarea name="note[]" id="note" class="form-control" placeholder="Add note (optional)" cols="2"></textarea>'+
                             '</div>'+
                             '<div class="col-md-1">'+
                                 '<button class="btn btn-danger form-control" id="remove_btn"><i class="fas fa-minus"></i></button>'+

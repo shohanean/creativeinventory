@@ -10,6 +10,7 @@ use App\Category;
 
 class ProductController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +20,7 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkRole');
     }
 
     public function index()

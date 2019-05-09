@@ -17,6 +17,7 @@ class CreateRequisitionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('product_id');
             $table->integer('quantity');
+            $table->integer('note')->nullable();
             $table->integer('status')->default('0');
             $table->unsignedInteger('user_id');
             $table->timestamps();

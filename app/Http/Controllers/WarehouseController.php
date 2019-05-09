@@ -18,6 +18,7 @@ class WarehouseController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkRole');
     }
     
     public function index()

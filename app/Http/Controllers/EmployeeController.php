@@ -14,6 +14,11 @@ use App\Mail\AccountConfirmation;
 
 class EmployeeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkRole');
+    }
     /**
      * Display a listing of the resource.
      *

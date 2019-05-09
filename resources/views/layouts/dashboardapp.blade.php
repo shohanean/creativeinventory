@@ -253,32 +253,6 @@
     </li>
     @else
     {{------------------------ NAVBAR FOR ADMIN -------------------}}
-    <li class="brown with-sub">
-        <span class="">
-            <i class="font-icon fab fa-wpforms @yield('active-requisition')"></i>
-            &nbsp;<span class="lbl">Requisition</span>
-        </span>
-        <ul>
-            {{-- <li>
-                <a href="{{ route('requisition.create') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-plus-circle"></i>
-                    <span class="lbl">&nbsp;<small>Add requisition</small> </span>
-                </a>
-            </li> --}}
-            <li>
-                <a href="{{ route('employee.index') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
-                    <span class="lbl">&nbsp;<small>Requisition List</small> </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('employee.index') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
-                    <span class="lbl">&nbsp;<small>Trash List</small> </span>
-                </a>
-            </li>
-        </ul>
-    </li>
     <li class="purple with-sub">
         <span class="">
             <i class="font-icon font-icon-users @yield('active-product')"></i>

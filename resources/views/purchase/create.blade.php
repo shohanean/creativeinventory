@@ -39,6 +39,7 @@
                     </div>
                 @endif
                 <form action="{{ route('purchase.store') }}" method="post">
+{{-------------------- ERROR MESSAGE -----------------------}}
                         @if($errors->all())
                         <div class="alert alert-danger alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -82,10 +83,10 @@
                                 <input class="form-control" type="number" name="quantity[]" placeholder="Quantity" value="{{old('quantity')}}" autocomplete="off" required>
                             </div>
                             <div class="col-md-2">
-                                <input class="form-control" type="number" name="unit_price[]" placeholder="Unit Price" value="{{old('unit_price')}}" autocomplete="off" required>
+                                <input class="form-control" type="number" name="unit_price[]" placeholder="৳ Unit Price" value="{{old('unit_price')}}" autocomplete="off" required>
                             </div>
                             <div class="col-md-2">
-                                <input class="form-control" type="number" name="total_price[]" placeholder="Total Price" value="{{old('total_price')}}" autocomplete="off" required>
+                                <input class="form-control" type="number" name="total_price[]" placeholder="৳ Total Price" value="{{old('total_price')}}" autocomplete="off" required>
                             </div>
                             <div class="col-md-2">
                                 <input type="text" class="form-control exp_date" name="exp_date[]" id="" placeholder="Exp. date" autocomplete="off" value="{{old('exp_date')}}" required>
@@ -126,10 +127,10 @@
                                 '<input class="form-control" type="number" name="quantity[]" placeholder="Quantity" value="{{old('quantity')}}" autocomplete="off" required>'+
                             '</div>'+
                             '<div class="col-md-2">'+
-                                '<input class="form-control" type="number" name="unit_price[]" placeholder="Unit Price" value="{{old('unit_price')}}" autocomplete="off" required>'+
+                                '<input class="form-control" type="number" name="unit_price[]" placeholder="৳ Unit Price" value="{{old('unit_price')}}" autocomplete="off" required>'+
                             '</div>'+
                             '<div class="col-md-2">'+
-                                '<input class="form-control" type="number" name="total_price[]" placeholder="Total Price" value="{{old('total_price')}}" autocomplete="off" required>'+
+                                '<input class="form-control" type="number" name="total_price[]" placeholder="৳ Total Price" value="{{old('total_price')}}" autocomplete="off" required>'+
                             '</div>'+
                             '<div class="col-md-2">'+
                                 '<input class="form-control exp_date" type="text" name="exp_date[]" placeholder="Exp. date" id=""  value="{{old('exp_date')}}" autocomplete="off" required>'+

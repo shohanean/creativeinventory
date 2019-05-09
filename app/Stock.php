@@ -12,7 +12,12 @@ class Stock extends Model
     protected $dates = ['deleted_at'];
 
     // to call out the parent class
+
     public function product(){
        return $this->hasOne(Product::class, 'id', 'product_id');
     }
+    
+    // public function product(){
+    //    return $this->belongsTo(Product::class);
+    // }
 }
