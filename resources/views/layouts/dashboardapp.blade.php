@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -252,7 +254,33 @@
         </a>
     </li>
     @else
-    {{------------------------ NAVBAR FOR ADMIN -------------------}}
+    {{------------------------ NAVBAR FOR ADMIN AND SUPER-ADMIN-------------------}}
+    <li class="red with-sub">
+        <span class="">
+            <i class=" font-icon fab fa-wpforms @yield('active-requisition')"></i>
+            &nbsp;<span class="lbl">Requisition</span>
+        </span>
+        <ul>
+            {{-- <li>
+                <a href="{{ route('requisition.create') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-cart-plus"></i>
+                    <span class="lbl">&nbsp;<small>Add Product</small> </span>
+                </a>
+            </li> --}}
+            <li>
+                <a href="{{ route('requisition.index') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
+                    <span class="lbl">&nbsp;<small>Requisition History</small> </span>
+                </a>
+            </li>
+            {{-- <li>
+                <a href="{{ route('requisition.trashView') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
+                    <span class="lbl">&nbsp;<small>Trash List</small> </span>
+                </a>
+            </li> --}}
+        </ul>
+    </li>
     <li class="purple with-sub">
         <span class="">
             <i class="font-icon font-icon-users @yield('active-product')"></i>
@@ -418,6 +446,7 @@
     <!--.page-content-->
 
     <script src="{{ asset('dashboard_assets/js/lib/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script src="{{ asset('dashboard_assets/js/lib/popper/popper.min.js') }}"></script>
     <script src="{{ asset('dashboard_assets/js/lib/tether/tether.min.js') }}"></script>
     <script src="{{ asset('dashboard_assets/js/lib/bootstrap/bootstrap.min.js') }}"></script>

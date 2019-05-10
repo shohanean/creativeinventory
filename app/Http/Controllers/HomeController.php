@@ -48,17 +48,31 @@ class HomeController extends Controller
         return view('home', compact('company_count', 'supplier_count', 'warehouse_count', 'user_count', 'product_count', 'TestChart', 'requisitions', 'requisition_by_id'));
     }
 
-    public function approve($requisition){
+    public function approve($requisition_id){
 
-        $stock = Requisition::find($requisition);
+        // echo $requisition_id;
 
-        // $price = Stock::where('product_id', $stock->product_id)->sum('quantity');
-
-        // echo $price;
-
-        Stock::where('product_id', $stock->product_id)->decrement('quantity', $stock->quantity);
-
-        $stock->update([
+        $requisition = Requisition::find($requisition_id);
+        $stocks = Stock::where('product_id', $requisition->product_id)->get();
+        $requisition_quantity = $requisition->quantity;
+        
+        // LOOP TO ITERATE STOCK QUANTITY
+        foreach($stocks as $stock){
+            
+            if($stock->quantity >= $requisition_quantity){
+                $stock->decrement('quantity', $requisition_quantity);
+                $stock->save();
+                $requisition_quantity -= $requisition_quantity;
+            }
+            else{
+                $requisition_quantity -= $stock->quantity;
+                $stock->decrement('quantity', $stock->quantity);
+                $stock->save();
+            }
+            // echo $requisition_quantity;
+        }
+            
+        $requisition->update([
             'status' => 1
         ]);
         return back()->withStatus('Your have approved the request');

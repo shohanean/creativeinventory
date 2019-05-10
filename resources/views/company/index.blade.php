@@ -39,7 +39,7 @@
                   </div>
                 @endif
 {{------------- START COMPANY LIST TABLE ----------------}}
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="com_list">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -108,7 +108,7 @@
                       </div>
                     @endif
 {{----------START DELETED COMPANY LIST TABLE -------------}}
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="del_com_list">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -220,6 +220,7 @@
             }
         });
         });
+        $('#com_list, #del_com_list').DataTable();
     });
 </script>
 @endsection

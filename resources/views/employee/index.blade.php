@@ -39,8 +39,8 @@
                       {{ session('delete') }}
                   </div>
                 @endif
-{{------------- START COMPANY LIST TABLE ----------------}}
-                <table class="table table-bordered">
+{{------------- START EMPLOYEE LIST TABLE ----------------}}
+                <table class="table table-bordered" id="employee_list">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -109,7 +109,7 @@
                       </div>
                     @endif
 {{----------START DELETED COMPANY LIST TABLE -------------}}
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="del_employee_list">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -233,6 +233,7 @@
             }
         });
         });
+        $('#employee_list, #del_employee_list').DataTable();
     });
 </script>
 @endsection

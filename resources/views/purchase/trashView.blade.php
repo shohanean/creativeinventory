@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="row">
-    {{------------- START SUPPLIER LIST TABLE ---------------}}
+    {{------------- START PURCHASE LIST TABLE ---------------}}
     <div class="col-md-12">
             @if(session('restore'))
             <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
@@ -31,7 +31,7 @@
                 {{ session('forced') }}
             </div>
           @endif
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="pur_trash">
             <thead>
             <tr>
                 <th>#</th>
@@ -98,6 +98,7 @@
             }
         });
         });
+        $('#pur_trash').DataTable();
     });
 </script>
 @endsection

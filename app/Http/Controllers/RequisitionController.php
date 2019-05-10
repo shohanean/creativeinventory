@@ -24,7 +24,8 @@ class RequisitionController extends Controller
      */
     public function index()
     {
-
+        $requisitions = Requisition::all();
+        return view('requisition.index', compact('requisitions'));
     }
 
     /**

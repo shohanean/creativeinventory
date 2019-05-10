@@ -37,7 +37,7 @@
                     </div>
                   @endif
 {{------------- START WAREHOUSE LIST TABLE ----------------}}
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="war_list">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -106,7 +106,7 @@
                       </div>
                     @endif
 {{----------START DELETED SUPPLIER LIST TABLE -------------}}
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="del_war_list">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -217,7 +217,7 @@
             }
         });
         });
-
+        $('#war_list, #del_war_list').DataTable()
     });
 </script>
 @endsection

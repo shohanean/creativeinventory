@@ -15,7 +15,7 @@
 <div class="row">
     {{------------- START PURCHASE LIST TABLE ----------------}}
     <div class="col-md-12">
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="pur_table">
             <thead>
             <tr>
                 <th>#</th>
@@ -59,6 +59,13 @@
             </tbody>
         </table>
     </div>
-{{---------- END SUPPLIER LIST TABLE -------------}}
+{{---------- END PURCHASE LIST TABLE -------------}}
 </div>
+@endsection
+@section('footer_scripts')
+    <script>
+        $(document).ready(function(){
+            $('#pur_table').DataTable();
+        });
+    </script>
 @endsection

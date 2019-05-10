@@ -37,7 +37,7 @@
                     </div>
                   @endif
 {{------------- START CATEGORY LIST TABLE ----------------}}
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="cat_list">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -102,7 +102,7 @@
                       </div>
                     @endif
 {{----------START DELETED CATEGORY LIST TABLE -------------}}
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="del_cat_list">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -205,7 +205,7 @@
             }
         });
         });
-
+        $('#cat_list, #del_cat_list').DataTable();
     });
 </script>
 @endsection

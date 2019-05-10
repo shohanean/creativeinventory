@@ -22,7 +22,7 @@
     <div class="col-md-12 text-center bg-secondary p-2 text-white"> <strong>LIST OF ALL REQUISITION</strong></div>
     <div class="row pb-5">
         <div class="col-md-12">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="emp_table">
                 <thead class="">
                 <tr>
                     <th>#</th>
@@ -119,7 +119,7 @@
 
 {{------------------------ FOR ADMIN ------------------------}}
 @if (Auth::user()->role == 2)
-<div class="col-md-12 text-center bg-secondary p-2 text-white"> <strong>LIST OF ALL REQUISITION</strong></div>
+    <div class="col-md-12 text-center bg-secondary p-2 text-white"> <strong>LIST OF ALL REQUISITION</strong></div>
     @if(session('status'))
         <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -130,7 +130,7 @@
     @endif
     <div class="row pb-5">
         <div class="col-md-12">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="admin_table">
                 <thead class="">
                 <tr>
                     <th>#</th>
@@ -154,7 +154,7 @@
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     @if (App\Stock::where('product_id', $requisition->product_id)->exists())
-                                        @if (App\Stock::where('product_id', $requisition->product_id)->first()->quantity >= $requisition->quantity)
+                                        @if (App\Stock::where('product_id', $requisition->product_id)->sum('quantity') >= $requisition->quantity)
                                             <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>  
                                             <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
                                         @else
@@ -192,7 +192,7 @@
     <div class="col-md-12 text-center bg-secondary p-2 text-white"> <strong>LIST OF ALL REQUISITION</strong></div>
     <div class="row pb-5">
         <div class="col-md-12">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="sup_table">
                 <thead class="">
                 <tr>
                     <th>#</th>
@@ -253,5 +253,11 @@
     </div>
 @endif
 
-
+@endsection
+@section('footer_scripts')
+    <script>
+        $(document).ready(function(){
+            $('#emp_table, #admin_table, #sup_table').DataTable();
+        });
+    </script>
 @endsection

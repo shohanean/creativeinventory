@@ -22,7 +22,7 @@ class StockController extends Controller
 
     public function index()
     {
-        // echo $total= Stock::where('product_id', Product::find('id'))->sum('quantity');
+
 
         $stocks = Stock::all();
         return view('stock.index', compact('stocks'));

@@ -38,7 +38,7 @@
                     </div>
                   @endif
 {{------------- START SUPPLIER LIST TABLE ----------------}}
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="sup_table">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -109,7 +109,7 @@
                       </div>
                     @endif
 {{----------START DELETED SUPPLIER LIST TABLE -------------}}
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="del_sup_list">
                   <thead>
                     <tr>
                         <th>#</th>
@@ -234,7 +234,7 @@
             }
         });
         });
-
+        $('#sup_table, #del_sup_list').DataTable();
     });
 </script>
 @endsection
