@@ -1,78 +1,69 @@
 @extends('layouts.dashboardapp')
 
-@section('title', 'Employee')
-@section('active-employee', 'opened')
+@section('title', 'Department')
+@section('active-department', 'opened')
 
 @section('content')
 <div class="row">
     <div class="col-md-12">
         <nav class="breadcrumb bg-white">
             <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
-            <span class="breadcrumb-item active">employee</span>
+            <span class="breadcrumb-item active">Department</span>
         </nav>
     </div>
 </div>
-@noerror
 <div class="row">
     <div class="col-md-8">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <strong>List Employees</strong>
+                <strong>List of Departments</strong>
             </div>
             <div class="card-body">
-
-{{---------- SUCCESS MESSAGES FOR LIST employee --------------}}
-
-                @if(session('status'))
-                  <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">×</span>
-                      </button>
-                      {{ session('status') }}
-                  </div>
-                @endif
-                @if(session('delete'))
-                  <div class="alert alert-warning alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">×</span>
-                      </button>
-                      {{ session('delete') }}
-                  </div>
-                @endif
-{{------------- START EMPLOYEE LIST TABLE ----------------}}
-                <table class="table table-bordered" id="employee_list">
+{{---------- SUCCESS MESSAGES FOR DEPARTMENT LIST--------------}}
+                    @if(session('status'))
+                    <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        {{ session('status') }}
+                    </div>
+                    @endif
+                    @if(session('delete'))
+                    <div class="alert alert-warning alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        {{ session('delete') }}
+                    </div>
+                  @endif
+{{------------- START DEPARTMENT LIST TABLE ----------------}}
+                <table class="table table-bordered" id="cat_list">
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Employee Name</th>
-                      <th>Employee Department</th>
-                      <th>Employee phone number</th>
-                      <th>Created</th>
-                      <th>Created By</th>
+                      <th>Department Name</th>
+                      <th>Created At</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                  @forelse($employees as $employee)
+                  @forelse($departments as $department)
                     <tr>
                       <td>{{ $loop->index+1 }}</td>
-                      <td>{{ $employee->user->name }}</td>
-                      <td>{{ $employee->department->name }}</td>
-                      <td>{{ $employee->employee_no }}</td>
-                      <td>{{ $employee->created_at->diffForHumans() }}</td>
-                      <td>{{ $employee->added_by }}</td>
+                      <td>{{ $department->department_name }}</td>
+                      <td>{{ $department->created_at->diffForHumans() }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
                             {{-- BUTTON TO EDIT  --}}
-                            {{-- <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a> --}}
+                            <a href="{{ route('department.edit', $department->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a>
                             {{-- BUTTON TO DELETE  --}}
-                            <form class="d-none" id="employee-destroy-form" action="{{ route('employee.destroy', $employee->id) }}" method="POST">
+                            <form class="d-none" id="department-destroy-form" action="{{ route('department.destroy', $department->id) }}" method="POST">
                               @method('DELETE')
                               @csrf
                             </form>
-                            <a href="{{ route('employee.destroy', $employee->id) }}" class="btn btn-danger-outline"
+                            <a href="{{ route('department.destroy', $department->id) }}" class="btn btn-danger-outline"
                               onclick="event.preventDefault();
-                              document.getElementById('employee-destroy-form').submit();">
+                              document.getElementById('department-destroy-form').submit();">
                               <span><i class="fas fa-trash-alt"></i></span>
                             </a>
                         </div>
@@ -80,19 +71,19 @@
                     </tr>
                   @empty
                     <tr class="text-center text-danger">
-                      <td colspan="7">No Employee Found</td>
+                      <td colspan="4">No Departments Found</td>
                     </tr>
                   @endforelse
                   </tbody>
                 </table>
             </div>
         </div>
-{{---------- END employee LIST TABLE -------------}}
+{{---------- END department LIST TABLE -------------}}
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <strong>Deleted Employee List</strong>
+                <strong>Deleted department List</strong>
             </div>
-{{----------DELETED employee SUCCESS MESSAGES -------------}}
+{{----------DELETED department SUCCESS MESSAGES -------------}}
             <div class="card-body">
                     @if(session('restore'))
                       <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
@@ -110,16 +101,13 @@
                           {{ session('forced') }}
                       </div>
                     @endif
-{{----------START DELETED EMPLOYEE LIST TABLE -------------}}
-                <table class="table table-bordered" id="del_employee_list">
+{{----------START DELETED department LIST TABLE -------------}}
+                <table class="table table-bordered" id="del_cat_list">
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Employee Name</th>
-                      <th>Employee Department</th>
-                      <th>Employee phone number</th>
-                      <th>Deleted</th>
-                      <th>Created By</th>
+                      <th>department Name</th>
+                      <th>Deleted at</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -127,32 +115,30 @@
                   @forelse($trashed as $trash)
                     <tr>
                       <td>{{ $loop->index+1 }}</td>
-                      <td>{{ $trash->department->name }}</td>
-                      <td>{{ $trash->employee_no }}</td>
+                      <td>{{ $trash->department_name }}</td>
                       <td>{{ $trash->deleted_at->diffForHumans() }}</td>
-                      <td>{{ $trash->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                          <a href="{{route('employee.restore', $trash->id)}}" class="btn btn-success-outline"><span><i class="fas fa-trash-restore"></i></span></a>
-                          <a id="{{route('employee.forceDelete', $trash->id)}}" href="#" class="btn btn-danger-outline force-delete-btn"><span><i class="fas fa-eraser"></i></span></a>
+                          <a href="{{ route('department.restore', $trash->id) }}" class="btn btn-success-outline"><span><i class="fas fa-trash-restore"></i></span></a>
+                          <a id="{{ route('department.forceDelete', $trash->id) }}" href="#" class="btn btn-danger-outline force-delete-btn"><span><i class="fas fa-eraser"></i></span></a>
                         </div>
                       </td>
                     </tr>
                   @empty
                     <tr class="text-center text-danger">
-                      <td colspan="7">No Deleted employee Found</td>
+                      <td colspan="4">No Deleted Department Found</td>
                     </tr>
                   @endforelse
                   </tbody>
                 </table>
- {{----------END DELETED employee LIST TABLE -------------}}
+ {{----------END DELETED department LIST TABLE -------------}}
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <strong>Add Employee</strong>
+                <strong>Add Categories</strong>
             </div>
             <div class="card-body">
 {{----------- VALIDATION MESSAGES -------------}}
@@ -166,7 +152,7 @@
                         @endforeach
                     </div>
                 @endif
-{{-------------- SUCCESS MESSAGES -------------}}
+{{-------------- SUCCESS MESSAGES -------------}}              
                 @if(session('success'))
                     <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -176,30 +162,13 @@
                     </div>
                 @endif
 {{---------- FORM TO ADD INPUT ------------}}
-                <form action="{{ route('employee.store') }}" method="post">
+                <form action="{{ route('department.store') }}" method="post">
                 @csrf
                     <div class="form-group">
                       <label>Department Name</label>
-                      <select name="department_id" class="form-control" id="dept_select">
-                          <option value="">-Select One-</option>
-                          @foreach ($departments as $department)
-                            <option value="{{ $department->id }}">{{ $department->department_name }}</option>
-                          @endforeach
-                      </select>
+                      <input type="text" class="form-control" name="department_name" placeholder="Enter department Name" value="{{ old('name') }}">
                     </div>
-                    <div class="form-group">
-                      <label>Employee Name</label>
-                      <input type="text" class="form-control" name="employee_name" placeholder="Enter Employee Name" value="{{ old('employee_name') }}">
-                    </div>
-                    <div class="form-group">
-                      <label>Employee No</label>
-                      <input type="text" class="form-control" name="employee_no" placeholder="Enter Employee No" value="{{ old('employee_no') }}">
-                    </div>
-                    <div class="form-group">
-                      <label>Email Address</label>
-                      <input type="text" class="form-control" name="email_address" placeholder="Enter Email Address" value="{{ old('email_address') }}">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Employee</button>
+                    <button type="submit" class="btn btn-success">Add department</button>
                 </form>
             </div>
         </div>
@@ -236,7 +205,10 @@
             }
         });
         });
-        $('#dept_select').select2();
+        $('#cat_list, #del_cat_list').DataTable();
     });
 </script>
 @endsection
+
+
+

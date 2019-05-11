@@ -138,6 +138,7 @@
                     <th>Requested Product</th>
                     <th>Requested Quantity</th>
                     <th>User Name</th>
+                    <th>Note</th>
                     {{-- <th>User Designation</th> --}}
                     <th>Action</th>
                 </tr>
@@ -151,6 +152,7 @@
                             <td>{{ $requisition->product->name }}</td>
                             <td>{{ $requisition->quantity }}</td>
                             <td>{{ $requisition->user->name }}</td>
+                            <td><small>{{ $requisition->note }}</small></td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     @if (App\Stock::where('product_id', $requisition->product_id)->exists())

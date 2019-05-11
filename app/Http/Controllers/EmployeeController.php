@@ -26,7 +26,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $departments = Department::all();
+        $trashed = Department::onlyTrashed()->get();
+        return view('employee.index', compact('departments'));
     }
 
     /**
@@ -91,7 +93,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('employee.edit', compact('employee'));
     }
 
     /**
@@ -103,7 +105,15 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $data = $request->validate([
+            'department_id' => 'required',
+            'employee_name' => 'required',
+            'employee_no' => 'required|unique:employees,employee_no',
+            'email_address' => 'email|unique:users,email'
+        ]);
+
+        $employee->update($data);
+        return redirect('/employee')->withStatus($employee->employee_name . ' has been edited succesfully');
     }
 
     /**
@@ -114,10 +124,18 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return back()->withDelete($employee->company_name. ' has been sent to trash');
     }
 
-    public function requisition(){
-       return view('requisition.index');
+    public function restore($employee){
+        Employee::withTrashed()->find($employee)->restore();
+        return back()->withRestore('Item has been restored');
+
+    }
+
+    public function forceDelete($employee){
+       Employee::withTrashed()->find($employee)->forceDelete();
+       return back()->withForced('Item has been deleted permanently');
     }
 }

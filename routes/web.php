@@ -74,6 +74,14 @@ Route::get('category/force/delete/{category}', 'CategoryController@forceDelete')
 
 ////////////// EMPLOYEE ////////////////
 Route::resource('employee', 'EmployeeController');
+Route::get('employee/restore/{employee}', 'EmployeeController@restore')->name('employee.restore');
+Route::get('employee/force/delete/{employee}', 'EmployeeController@forceDelete')->name('employee.forceDelete');
+
+
+////////////// DEPARTMENT ////////////////
+Route::resource('department', 'DepartmentController');
+Route::get('department/restore/{department}', 'DepartmentController@restore')->name('department.restore');
+Route::get('department/force/delete/{department}', 'DepartmentController@forceDelete')->name('department.forceDelete');
 
 
 /////////////// STOCK ////////////////

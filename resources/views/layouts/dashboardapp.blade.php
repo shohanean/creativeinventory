@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.jqueryui.min.css">
 
 
 
@@ -58,7 +59,7 @@
             <div class="site-header-content">
                 <div class="site-header-content-in">
                     <div class="site-header-shown">
-                        <div class="dropdown dropdown-notification notif">
+                        {{-- <div class="dropdown dropdown-notification notif">
                             <a href="#" class="header-alarm dropdown-toggle active" id="dd-notification"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="font-icon-alarm"></i>
@@ -108,9 +109,9 @@
                                     <a href="#">See more</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="dropdown dropdown-notification messages">
+                        {{-- <div class="dropdown dropdown-notification messages">
                             <a href="#" class="header-alarm dropdown-toggle active" id="dd-messages"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="font-icon-mail"></i>
@@ -201,18 +202,18 @@
                                     <a href="#">See more</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="dropdown user-menu">
                             <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="img/avatar-2-64.png" alt="">
+                                {{-- <img src="img/avatar-2-64.png" alt=""> --}}{{Auth::user()->name}}
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
-                                <a class="dropdown-item" href="#"><span
+                                {{-- <a class="dropdown-item" href="#"><span
                                         class="font-icon glyphicon glyphicon-user"></span>Profile</a>
                                 <a class="dropdown-item" href="#"><span
-                                        class="font-icon glyphicon glyphicon-cog"></span>Settings</a>
+                                        class="font-icon glyphicon glyphicon-cog"></span>Settings</a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -261,51 +262,25 @@
             &nbsp;<span class="lbl">Requisition</span>
         </span>
         <ul>
-            {{-- <li>
-                <a href="{{ route('requisition.create') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-cart-plus"></i>
-                    <span class="lbl">&nbsp;<small>Add Product</small> </span>
-                </a>
-            </li> --}}
             <li>
                 <a href="{{ route('requisition.index') }}">
                     &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
                     <span class="lbl">&nbsp;<small>Requisition History</small> </span>
                 </a>
             </li>
-            {{-- <li>
-                <a href="{{ route('requisition.trashView') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
-                    <span class="lbl">&nbsp;<small>Trash List</small> </span>
-                </a>
-            </li> --}}
         </ul>
     </li>
-    <li class="purple with-sub">
-        <span class="">
-            <i class="font-icon font-icon-users @yield('active-product')"></i>
-            &nbsp;<span class="lbl">Employee</span>
-        </span>
-        <ul>
-            <li>
-                <a href="{{ route('employee.create') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-plus-circle"></i>
-                    <span class="lbl">&nbsp;<small>Add Employee</small> </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('employee.index') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
-                    <span class="lbl">&nbsp;<small>Employee List</small> </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('employee.index') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
-                    <span class="lbl">&nbsp;<small>Trash List</small> </span>
-                </a>
-            </li>
-        </ul>
+    <li class="green @yield('active-department')">
+        <a href="{{ route('department.index') }}">
+            <i class="font-icon fas fa-building"></i>
+            <span class="lbl">Department</span>
+        </a>
+    </li>
+    <li class="purple @yield('active-employee')">
+        <a href="{{ route('employee.index') }}">
+            <i class="font-icon fas fa-users"></i>
+            <span class="lbl">Employee</span>
+        </a>
     </li>
     <li class="red @yield('active-company')">
         <a href="{{ route('company.index') }}">
@@ -400,7 +375,7 @@
 
 
 
-    <section>
+    {{-- <section>
         <ul class="side-menu-list">
             <li>
                 <a href="#">
@@ -433,7 +408,7 @@
                 </a>
             </li>
         </ul>
-    </section>
+    </section> --}}
 </nav>
     <!--.side-menu-->
 
@@ -456,7 +431,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> --}}
+    {{-- <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> --}}
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.jqueryui.min.js"></script>
 
 </body>
 

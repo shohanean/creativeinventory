@@ -30,11 +30,11 @@
                             @if ($requisition->status == 0)
                                 <button class="btn btn-warning form-control">Pending</button>
                             @elseif ($requisition->status == 1)
-                                <button class="btn btn-success form-control">Approve</button>
+                                <button class="btn btn-success form-control">Approved</button>
                             @elseif ($requisition->status == 2)
-                                <button class="btn btn-danger form-control">Reject</button>
+                                <button class="btn btn-danger form-control">Rejected</button>
                             @elseif ($requisition->status == 3)
-                                <button class="btn btn-info form-control">Forward</button>
+                                <button class="btn btn-info form-control">Forwarded</button>
                             @endif
                         </td>
                     </tr>

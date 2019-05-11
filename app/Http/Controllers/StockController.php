@@ -23,9 +23,18 @@ class StockController extends Controller
     public function index()
     {
 
-
         $stocks = Stock::all();
-        return view('stock.index', compact('stocks'));
+        
+        $stocks->groupBy(function($item, $key){
+            return $item['quantity'];
+        });
+        // return $x;
+
+        // foreach ($stocks as $y => $quantity) {
+        //     return $y;
+        // }
+
+        // return view('stock.index', compact('stocks'));
     }
 
     /**

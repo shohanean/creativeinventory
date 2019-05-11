@@ -15,7 +15,7 @@
 <div class="row">
     {{------------- START PURCHASE LIST TABLE ----------------}}
     <div class="col-md-12">
-        <table class="table table-bordered" id="pur_table">
+        <table class="table table-bordered table-striped" id="pur_table">
             <thead>
             <tr>
                 <th>#</th>
@@ -36,18 +36,12 @@
                 <td>{{ $purchase->company->company_name }}</td>
                 {{-- <td>{{ $purchase->product->stock->quantity }}</td> --}}
                 <td>
-                <div class="btn-group btn-group-sm">
-                    {{-- <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a> --}}
-
-                    <form class="d-none" id="purchase-destroy-form" action="{{ route('purchase.destroy', $purchase->id) }}" method="POST">
+                <div class="">
+                    <form id="purchase-destroy-form" action="{{ route('purchase.destroy', $purchase->id) }}" method="POST">
                         @method('DELETE')
                         @csrf
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Delete</button>
                     </form>
-                    <a href="{{ route('purchase.destroy', $purchase->id) }}"      class="btn btn-danger-outline"
-                        onclick="event.preventDefault();
-                        document.getElementById('purchase-destroy-form').submit();">
-                        <span><i class="fas fa-trash-alt"></i></span>
-                    </a>
                 </div>
                 </td>
             </tr>
