@@ -2,39 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Stock;
-use App\Product;
+use App\Assign;
 use Illuminate\Http\Request;
+use App\Product;
+use App\User;
 
-class StockController extends Controller
+class AssignController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('checkRole');
-    }
-
     public function index()
     {
-
-        $stocks = Stock::all();
-        
-        // $stocks->groupBy(function($item, $key){
-        //     return $item['quantity'];
-        // });
-        // return $x;
-
-        // foreach ($stocks as $y => $quantity) {
-        //     return $y;
-        // }
-
-        return view('stock.index', compact('stocks'));
+        //
     }
 
     /**
@@ -44,7 +26,10 @@ class StockController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        $users = User::all();
+        
+        return view('assign.create', compact('products', 'users'));
     }
 
     /**
@@ -55,16 +40,22 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $data = request()->validate([
+            'product_id'=>'required',
+            'user_id'=>'required'
+        ]);
+
+        Assign::create($data);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Stock  $stock
+     * @param  \App\Assign  $assign
      * @return \Illuminate\Http\Response
      */
-    public function show(Stock $stock)
+    public function show(Assign $assign)
     {
         //
     }
@@ -72,10 +63,10 @@ class StockController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Stock  $stock
+     * @param  \App\Assign  $assign
      * @return \Illuminate\Http\Response
      */
-    public function edit(Stock $stock)
+    public function edit(Assign $assign)
     {
         //
     }
@@ -84,10 +75,10 @@ class StockController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Stock  $stock
+     * @param  \App\Assign  $assign
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stock $stock)
+    public function update(Request $request, Assign $assign)
     {
         //
     }
@@ -95,10 +86,10 @@ class StockController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Stock  $stock
+     * @param  \App\Assign  $assign
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stock $stock)
+    public function destroy(Assign $assign)
     {
         //
     }

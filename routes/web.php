@@ -87,6 +87,15 @@ Route::get('department/force/delete/{department}', 'DepartmentController@forceDe
 /////////////// STOCK ////////////////
 Route::resource('stock', 'StockController');
 
+
+/////////////// INVENTORY ////////////////
+Route::resource('inventory', 'InventoryController');
+
+
+/////////////// STOCK ////////////////
+Route::resource('assign', 'AssignController');
+
+
 ///////////////// REQUISITION FORM ////////////////
 Route::resource('requisition', 'RequisitionController');
 Route::get('requisition/approve/{requisition}', 'HomeController@approve')->name('approve.requisition');

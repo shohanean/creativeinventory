@@ -35,21 +35,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Warehouse Name</label>     
-                        <select name="warehouse_id" class="form-control" id="warehouse_name">
-                            <option value="">Select warehouse name</option>
-                            @foreach ($warehouses as $warehouse)
-                            <option value="{{$warehouse->id}}" name="warehouse_id">{{$warehouse->name}}</option>
-                            @endforeach
-                        </select>              
-                    </div>
-                    <div class="form-group">
                         <label>Category Name</label>     
-                        <select name="category_id" class="form-control" id="category_name">
-                            <option value="">Select category name</option>
-                            @foreach ($categories as $category)
-                            <option value="{{$category->id}}" name="category_id">{{$category->name}}</option>
-                            @endforeach
+                        <select name="category_status" class="form-control" id="category_name">
+                            <option value="">Select category</option>
+                            <option value="1"><strong>USABLE</strong></option>
+                            <option value="2"><strong>RE-USABLE</strong></option>
                         </select>              
                     </div>
                     @csrf

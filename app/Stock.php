@@ -14,7 +14,7 @@ class Stock extends Model
     // to call out the parent class
 
     public function product(){
-       return $this->hasOne(Product::class, 'id', 'product_id');
+       return $this->belongsTo(Product::class);
     }
     
     // public function product(){

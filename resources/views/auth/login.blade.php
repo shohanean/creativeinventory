@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -88,3 +90,4 @@
 <script src="{{ asset('dashboard_assets/js/app.js') }}"></script>
 </body>
 </html>
+@endsection

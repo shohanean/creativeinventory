@@ -41,14 +41,15 @@ class ProductController extends Controller
     public function create()
     {
         // $suppliers = Supplier::all();
-        $warehouses = Warehouse::all();
-        $categories = Category::all();
+        // $warehouses = Warehouse::all();
+        // $categories = Category::all();
+        $products = Product::all();
 
 
         // dd($categories);
         // dd($warehouses);
 
-        return view('product.create', compact('warehouses', 'categories'));
+        return view('product.create', compact('products'));
     }
 
     /**
@@ -61,13 +62,10 @@ class ProductController extends Controller
     {
         // dd($request->all());
         $data = request()->validate([
-            'name'=> 'required|unique:products,name'
+            'name'=> 'required|unique:products,name',
+            'category_status'=> 'required'
         ]);
-        Product::create($data + 
-        [
-            'warehouse_id' => $request->warehouse_id, 
-            'category_id' => $request->category_id
-        ]);
+        Product::create($data );
         return back()->withSuccess('Product added succesfully');
     }
 
@@ -90,12 +88,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        // dd($product);
-        // $warehouses = $product->warehouse;
-        $warehouses = Warehouse::all();
-        $categories = Category::all();
-
-        return view('product.edit', compact('product', 'warehouses', 'categories'));
+        return view('product.edit', compact('product'));
     }
 
     /**
@@ -108,9 +101,10 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $data = request()->validate([
-            'name'=> 'required|unique:products,name,' .$product->id
+            'name'=> 'required|unique:products,name,' .$product->id,
+            'category_status'=> 'required'
         ]);
-        $product->update($data + ['warehouse_id'=>$request->warehouse_id]);
+        $product->update($data);
 
         return redirect('/product');
     }

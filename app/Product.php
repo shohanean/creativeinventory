@@ -20,12 +20,20 @@ class Product extends Model
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
+
     // to inverse 
     public function purchase(){
        return $this->belongsTo(Purchase::class);
     }
 
     public function stock(){
-        return $this->belongsTo(Stock::class );
+        return $this->hasMany(Stock::class );
+    }
+
+    public function inventory(){
+        return $this->hasMany(Inventory::class );
+    }
+    public function assign(){
+        return $this->hasMany(Assign::class );
     }
 }

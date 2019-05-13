@@ -154,19 +154,23 @@
                             <td>{{ $requisition->user->name }}</td>
                             <td><small>{{ $requisition->note }}</small></td>
                             <td>
-                                <div class="btn-group btn-group-sm">
-                                    @if (App\Stock::where('product_id', $requisition->product_id)->exists())
-                                        @if (App\Stock::where('product_id', $requisition->product_id)->sum('quantity') >= $requisition->quantity)
-                                            <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>  
-                                            <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
+                                @if ($requisition->product->category_status == 1)                                   
+                                    <div class="btn-group btn-group-sm">
+                                        @if (App\Stock::where('product_id', $requisition->product_id)->exists())
+                                            @if (App\Stock::where('product_id', $requisition->product_id)->sum('quantity') >= $requisition->quantity)
+                                                <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>  
+                                                <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
+                                            @else
+                                                <button class="btn btn-danger mr-2">Not enough product</button>
+                                            @endif
                                         @else
-                                            <button class="btn btn-danger mr-2">Not enough product</button>
+                                            <button class="btn btn-danger mr-2">Not in stock</button>
                                         @endif
-                                    @else
-                                        <button class="btn btn-danger mr-2">Not in stock</button>
-                                    @endif
-                                    <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
-                                </div>
+                                        <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
+                                    </div>
+                                @else
+                                    <a href="{{route('assign.create',$requisition->id)}}" class="btn btn-secondary-outline form-control">Assign</a>
+                                @endif
                             </td>
                         </tr>
                         @endif

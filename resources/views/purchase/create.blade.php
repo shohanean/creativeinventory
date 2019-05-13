@@ -19,7 +19,7 @@
                 <span><h4>Enter purchase details</h4></span>
             </div>
             <div class="card-body">
-                    @if($errors->all())
+                @if($errors->all())
                     <div class="alert alert-danger alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
@@ -62,11 +62,19 @@
                     <div class="form-group">
                         <label for="supplier_id">Supplier Name</label>     
                         <select name="supplier_id" class="form-control" id="supplier_name" required>
-                            <option value="">Select supplier name</option>
+                            <option value="" >Select supplier name</option>
                             @foreach ($suppliers as $supplier)
                             <option value="{{$supplier->id}}">{{$supplier->name}}</option>
                             @endforeach
                         </select>              
+                    </div>
+                    <div >
+                        <label for="">Invoice Details</label>
+                        <textarea name="invoice_details" id="" class="form-control" placeholder="Put your invoice details"></textarea>
+                    </div>
+                    <div class="pt-3">
+                        <label for="">Note</label>
+                        <textarea name="note" id="" class="form-control" placeholder="Write note..."></textarea>
                     </div>
                     <hr>
                     <div class="category_select_container">

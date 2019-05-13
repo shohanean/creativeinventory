@@ -20,7 +20,7 @@
             <tr>
                 <th>#</th>
                 <th>Product Name</th>
-                <th>Warehouse Name</th>
+                {{-- <th>Warehouse Name</th> --}}
                 <th>Category Name</th>
                 <th>Created at</th>
                 <th>Action</th>
@@ -31,8 +31,8 @@
             <tr>
                 <td>{{ $loop->index+1 }}</td>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->warehouse->name }}</td>
-                <td>{{ $product->category->name }}</td>
+                {{-- <td>{{ $product->warehouse->name }}</td> --}}
+                <td>{{ $product->category_status }}</td>
                 <td>{{ $product->created_at->format('d-M-y') }}</td>
                 <td>
                 <div class="btn-group btn-group-sm">

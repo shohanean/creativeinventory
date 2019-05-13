@@ -76,6 +76,8 @@ class PurchaseController extends Controller
             $data1 = [
                 'company_id' => $request->company_id,
                 'supplier_id' => $request->supplier_id,
+                'note' => $request->note,
+                'invoice_details' => $request->invoice_details,
                 'product_id' => $product_id_value,
                 'created_at' => Carbon::now()
             ];

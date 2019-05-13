@@ -7,7 +7,7 @@
     <div class="col-md-12">
         <nav class="breadcrumb bg-white">
             <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
-            <span class="breadcrumb-item active">Add product</span>
+            <span class="breadcrumb-item active">Edit product</span>
         </nav>
     </div>
 </div>
@@ -27,24 +27,22 @@
                             {{$errors->first('name')}}
                         </div>
                     </div>
-                    <div class="form-group">     
+                    <div class="form-group">
+                            <label>Category Name</label>     
+                            <select name="category_status" class="form-control" id="category_name">
+                                <option value="">Select category</option>
+                                <option value="1"><strong>USABLE</strong></option>
+                                <option value="2"><strong>RE-USABLE</strong></option>
+                            </select>              
+                        </div>
+                    {{-- <div class="form-group">     
                         <select name="warehouse_id" class="form-control" id="warehouse_name">
                             <label>Warehouse Name</label>
-                            {{-- <option value="">Select warehouse name</option> --}}
                             @foreach ($warehouses as $warehouse)
                             <option value="{{$warehouse->id}}" name="warehouse_id" {{ ($warehouse->id == $product->warehouse_id) ? "selected":"" }}>{{$warehouse->name}}</option>
                             @endforeach
                         </select>  
-                    </div>
-                    <div class="form-group">     
-                        <select name="category_id" class="form-control" id="category_name">
-                            <label>Category Name</label>
-                            {{-- <option value="">Select category name</option> --}}
-                            @foreach ($categories as $category)
-                            <option value="{{$category->id}}" name="category_id" {{ ($category->id == $product->category_id) ? "selected":"" }}>{{$category->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    </div> --}}
                     @csrf
                     <button type="submit" class="btn btn-success">Edit product</button>
                 </form>
