@@ -25,6 +25,9 @@ class Product extends Model
     public function purchase(){
        return $this->belongsTo(Purchase::class);
     }
+    public function company(){
+       return $this->belongsTo(Company::class);
+    }
 
     public function stock(){
         return $this->hasMany(Stock::class );

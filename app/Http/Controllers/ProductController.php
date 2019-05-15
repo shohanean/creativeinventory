@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Warehouse;
 use App\Supplier;
 use App\Category;
+// use App\Validator;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+use App\Company;
 
 class ProductController extends Controller
 {
@@ -40,16 +44,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // $suppliers = Supplier::all();
-        // $warehouses = Warehouse::all();
-        // $categories = Category::all();
+        $companies = Company::all();
         $products = Product::all();
 
 
         // dd($categories);
         // dd($warehouses);
 
-        return view('product.create', compact('products'));
+        return view('product.create', compact('products', 'companies'));
     }
 
     /**
@@ -63,9 +65,29 @@ class ProductController extends Controller
         // dd($request->all());
         $data = request()->validate([
             'name'=> 'required|unique:products,name',
-            'category_status'=> 'required'
+            'company_id'=> 'required'
         ]);
-        Product::create($data );
+        Product::create($data + ['category_status' => 1, 'unique_id' => 000]);
+
+        return back()->withSuccess('Product added succesfully');
+    }
+
+    public function reusableStore(Request $request){
+
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required',
+        //     'unique_id' => 'required'
+        // ]);
+        foreach ($request->name as $request_key => $request_value) {
+
+            Product::insert([
+                'name'=> $request_value,
+                'unique_id' => $request->unique_id[$request_key],
+                'company_id' => $request->company_id[$request_key],
+                'category_status' => 2,
+                'created_at' => Carbon::now()
+            ]);
+        }
         return back()->withSuccess('Product added succesfully');
     }
 
@@ -115,10 +137,12 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Product $product)
     {
         $product->delete();
     }
+
 
     public function trashView(){
         
@@ -126,14 +150,18 @@ class ProductController extends Controller
        return view('product.trashView', compact('trashed'));
     }
 
+
     public function restore($product){
         Product::withTrashed()->find($product)->restore();
         return back()->withRestore('Item has been restored');
     }
+
 
     public function forceDelete($product){
         // $data = Warehouse::first('name');
        Product::withTrashed()->find($product)->forceDelete();
        return back()->withForced('Item has been deleted permanently');
     }
+
+
 }

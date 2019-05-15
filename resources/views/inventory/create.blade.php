@@ -42,10 +42,13 @@
                 @endif
                 <div class="form-group">
                     <label for="product_id">Product Name</label>
-                    <select name="product_id" class="form-control" id="product_name" required>
+                    <select name="stock_id" class="form-control" id="product_name" required>
                         <option value="">Select product name</option>
-                        @foreach ($products as $product)
-                        <option value="{{$product->id}}">{{$product->name}}</option>
+                        @foreach ($stocks as $stock)
+                            @if ($stock->product->category_status == 1)
+                                <option value="{{$stock->id}}"> {{$stock->product->name}} Qty: {{$stock->quantity}}</option>
+                                {{-- <option value="{{$stock->product_id}}" hidden></option> --}}
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -60,7 +63,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="unique_id">Unique ID</label>
-                    <input type="text" name="unique_id" placeholder="Ex. CITI/MONITOR-30" class="form-control">
+                    <input type="text" name="unique_id" placeholder="I.e. CITI/MONITOR-30" class="form-control">
                 </div>
                 @csrf
                 <button type="submit" class="btn btn-success">Allocate inventory</button>

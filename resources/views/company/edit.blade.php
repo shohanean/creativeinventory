@@ -57,6 +57,10 @@
                       <input type="text" class="form-control" name="company_name" value="{{ $company->company_name }}">
                     </div>
                     <div class="form-group">
+                      <label>Company Abbreviation</label>
+                      <input type="text" class="form-control" name="company_abbr" value="{{ $company->company_abbr }}">
+                    </div>
+                    <div class="form-group">
                       <label>Company Location</label>
                       <textarea class="form-control" name="company_location" value="{{ $company->company_location }}">{{ $company->company_location }}</textarea>
                     </div>

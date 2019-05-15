@@ -6,6 +6,7 @@ use App\Inventory;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Warehouse;
+use App\Stock;
 
 class InventoryController extends Controller
 {
@@ -26,10 +27,11 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        // $products = Product::all();
+        $stocks = Stock::all();
         $warehouses = Warehouse::all();
 
-        return view ('inventory.create', compact('products', 'warehouses'));
+        return view ('inventory.create', compact('stocks', 'warehouses'));
     }
 
     /**
@@ -41,15 +43,18 @@ class InventoryController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $data = request()->validate([
-            'product_id'=>'required',
-            'warehouse_id'=>'required',
-            'unique_id'=>'required|unique:inventories,unique_id'
-        ]);
 
-        Inventory::create($data);
+        return $request;
 
-        return back()->withStatus('Inventory assigned succesfully');
+        // $data = request()->validate([
+        //     'product_id'=>'required',
+        //     'warehouse_id'=>'required',
+        //     'unique_id'=>'required|unique:inventories,unique_id'
+        // ]);
+
+        // Inventory::create($data);
+
+        // return back()->withStatus('Inventory assigned succesfully');
     }
 
     /**

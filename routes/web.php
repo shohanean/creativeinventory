@@ -54,6 +54,7 @@ Route::get('/remove/role/{user_id}/{names}', 'RoleController@removeRole');//->na
 
 //////////////// PRODUCT /////////////////
 Route::resource('product', 'ProductController');
+Route::post('product/reusable/store', 'ProductController@reusableStore')->name('product.reusableStore');
 Route::get('product/trash/view','ProductController@trashView')->name('product.trashView');
 Route::get('product/restore/{product}', 'ProductController@restore')->name('product.restore');
 Route::get('product/force/delete/{product}', 'ProductController@forceDelete')->name('product.forceDelete');

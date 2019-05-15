@@ -43,6 +43,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Company Abbreviation</th>
                       <th>Company Name</th>
                       <th>Company Location</th>
                       <th>Created</th>
@@ -54,6 +55,7 @@
                   @forelse($companies as $company)
                     <tr>
                       <td>{{ $loop->index+1 }}</td>
+                      <td>{{ $company->company_abbr }}</td>
                       <td>{{ $company->company_name }}</td>
                       <td>{{ $company->company_location }}</td>
                       <td>{{ $company->created_at->diffForHumans() }}</td>
@@ -112,6 +114,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Company Abbreviation</th>
                       <th>Company Name</th>
                       <th>Company Location</th>
                       <th>Deleted</th>
@@ -123,6 +126,7 @@
                   @forelse($trashed as $trash)
                     <tr>
                       <td>{{ $loop->index+1 }}</td>
+                      <td>{{ $trash->company_abbr }}</td>
                       <td>{{ $trash->company_name }}</td>
                       <td>{{ $trash->company_location }}</td>
                       <td>{{ $trash->deleted_at->diffForHumans() }}</td>
@@ -178,6 +182,10 @@
                       <label>Company Name</label>
                       <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                       <input type="text" class="form-control" name="company_name" placeholder="Enter Company Name" value="{{old('company_name')}}">
+                    </div>
+                    <div class="form-group">
+                      <label>Company Abbreviation</label>
+                      <input type="text" class="form-control" name="company_abbr" placeholder="e.g. Creative IT (Abbreviation: CIT)" value="">
                     </div>
                     <div class="form-group">
                       <label>Company Location</label>

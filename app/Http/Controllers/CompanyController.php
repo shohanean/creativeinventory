@@ -47,6 +47,7 @@ class CompanyController extends Controller
         $request->validate([
             'company_name' => 'required|unique:companies,company_name',
             'company_location' => 'required',
+            'company_abbr' => 'required|unique:companies,company_abbr|max:3',
             'created_at' => Carbon::now()
         ]);
         Company::create($request->except('_token')); //STORE EXCEPT TOKEN
@@ -88,6 +89,7 @@ class CompanyController extends Controller
         $data = request()->validate([
             'company_name' => 'required|unique:companies,company_name,' .$company->id, //VALIDATE EXCEPT DESIRED ID
             'company_location' => 'required',
+            'company_abbr' => 'required|unique:companies,company_abbr|max:3'
         ]);
         $company->update($data);
         return redirect('/company')->withStatus($company->company_name . ' has been edited succesfully');

@@ -19,38 +19,42 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Product Name</th>
-                {{-- <th>Warehouse Name</th> --}}
-                <th>Category Name</th>
                 <th>Created at</th>
-                <th>Action</th>
+                <th>Company Name</th>
+                <th>Product Name</th>
+                <th>Unique ID</th>
+                <th>Category Name</th>
+                <th>Unique Name</th>
+                <th>Active Status</th>
             </tr>
             </thead>
             <tbody>
             @forelse($products as $product)
             <tr>
                 <td>{{ $loop->index+1 }}</td>
-                <td>{{ $product->name }}</td>
-                {{-- <td>{{ $product->warehouse->name }}</td> --}}
-                <td>{{ $product->category_status }}</td>
-                <td>{{ $product->created_at->format('d-M-y') }}</td>
-                <td>
-                <div class="btn-group btn-group-sm">
-                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a>
-
-                    <form class="d-none" id="product-destroy-form" action="{{ route('product.destroy', $product->id) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                    </form>
-                    <a href="{{ route('product.destroy', $product->id) }}" class="btn btn-danger-outline"
-                        onclick="event.preventDefault();
-                        document.getElementById('product-destroy-form').submit();">
-                        <span><i class="fas fa-trash-alt"></i></span>
-                    </a>
-                </div>
+                <td>{{$product->created_at}}</td>
+                <td>{{$product->company->company_abbr}}</td>
+                <td>{{$product->name}}</td>
+                <td>{{$product->unique_id}}</td>
+                <td> 
+                    @if ($product->category_status == 1)
+                        <div class="bg-primary form-control text-center text-white">
+                            <strong>USABLE</strong>
+                        </div>
+                    @elseif ($product->category_status == 2)
+                        <div class="bg-secondary form-control text-center text-white">
+                            <strong>RE-USABLE</strong>
+                        </div>
+                    @endif
                 </td>
-
-                {{-- {{print_r($product->category('name'))}} --}}
+                <td>{{strtoupper($product->company->company_abbr)}}/{{strtoupper($product->name)}}-{{$product->unique_id}}</td>
+                <td>
+                    @if ($product->active_status == 1)
+                    <button class="btn btn-primary form-control">FREE</button>
+                    @else
+                        
+                    @endif
+                </td>
             </tr>
             @empty
             <tr class="text-center text-danger">
