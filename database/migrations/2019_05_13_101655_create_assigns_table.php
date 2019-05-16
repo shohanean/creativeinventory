@@ -18,6 +18,7 @@ class CreateAssignsTable extends Migration
             // $table->unsignedInteger('quantity');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('assign_status')->default(1);
             $table->timestamps();
         });
     }

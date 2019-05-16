@@ -83,11 +83,18 @@
                                 <select name="product_id[]" class="form-control" id="product_name" required>
                                     <option value="">Select product name</option>
                                     @foreach ($products as $product)
-                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                        @if ($product->purchase_status == 1)
+                                            @if ($product->category_status == 1)
+                                                <option value="{{$product->id}}">{{strtoupper($product->name)}}</option>
+                                            @else
+                                            <option value="{{$product->id}}">{{strtoupper($product->company->company_abbr)}}/{{strtoupper($product->name)}}-{{$product->unique_id}}</option>
+                                            @endif    
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
+                                <input type="hidden" value="2" name="purchase_status">
                                 <input class="form-control" type="number" name="quantity[]" placeholder="Quantity" value="{{old('quantity')}}" autocomplete="off" required>
                             </div>
                             <div class="col-md-2">
@@ -127,11 +134,14 @@
                                     '<select name="product_id[]"'+ 'class="form-control" id="product_name" required>'+
                                         '<option value="">Select product name</option>'+
                                         '@foreach ($products as $product)'+
-                                        '<option value="{{$product->id}}">{{$product->name}}</option>'+
+                                            '@if ($product->purchase_status == 1)'+
+                                                '<option value="{{$product->id}}">{{strtoupper($product->company->company_abbr)}}/{{strtoupper($product->name)}}-{{$product->unique_id}}</option>'+
+                                            '@endif'+
                                         '@endforeach'+
                                     '</select>'+
                                 '</div>'+
                             '<div class="col-md-2">'+
+                                '<input type="hidden" value="2" name="purchase_status">'+
                                 '<input class="form-control" type="number" name="quantity[]" placeholder="Quantity" value="{{old('quantity')}}" autocomplete="off" required>'+
                             '</div>'+
                             '<div class="col-md-2">'+

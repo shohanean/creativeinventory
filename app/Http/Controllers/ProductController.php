@@ -64,10 +64,10 @@ class ProductController extends Controller
     {
         // dd($request->all());
         $data = request()->validate([
-            'name'=> 'required|unique:products,name',
-            'company_id'=> 'required'
+            'name'=> 'required|unique:products,name'
+            // 'company_id'=> 'required'
         ]);
-        Product::create($data + ['category_status' => 1, 'unique_id' => 000]);
+        Product::create($data + ['category_status' => 1, 'unique_id' => 000, 'company_id'=>1]);
 
         return back()->withSuccess('Product added succesfully');
     }

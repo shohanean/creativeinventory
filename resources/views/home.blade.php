@@ -149,7 +149,7 @@
                         <tr>
                             <td>{{ $loop->index+1 }}</td>
                             <td>{{ $requisition->created_at->format('d-M-y') }}</td>
-                            <td>{{ $requisition->product->name }}</td>
+                            <td>{{ strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}</td>
                             <td>{{ $requisition->quantity }}</td>
                             <td>{{ $requisition->user->name }}</td>
                             <td><small>{{ $requisition->note }}</small></td>
@@ -169,7 +169,7 @@
                                         <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
                                     </div>
                                 @else
-                                    <a href="{{route('assign.create',$requisition->id)}}" class="btn btn-secondary-outline form-control">Assign</a>
+                                    <a href="{{route('requisition.show',$requisition->id)}}" class="btn btn-secondary-outline form-control">Assign</a>
                                 @endif
                             </td>
                         </tr>

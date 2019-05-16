@@ -35,10 +35,14 @@ class RequisitionController extends Controller
      */
     public function create()
     {
+        $usable_products = Product::where('category_status', 1)->get();
+        $reusable_products = Product::where('category_status', 2)->get();
+
         $products = Product::all();
         $stocks = Stock::all();
 
-        return view('requisition.create', compact('products', 'stocks'));
+        // return $usable_products;
+        return view('requisition.create', compact('products', 'stocks' , 'usable_products', 'reusable_products'));
     }
 
     /**
@@ -61,6 +65,21 @@ class RequisitionController extends Controller
         }
         return back();
     }
+    public function storeReusable(Request $request)
+    {
+        foreach ($request->product_id as $product_id_key => $product_id_value){
+            $data = [
+                'product_id' => $product_id_value,
+                'quantity' => 1,
+                'note' => $request->note[$product_id_key],
+                'created_at' => Carbon::now()
+            ];
+
+            Requisition::insert($data + ['user_id'=> Auth::id()]);
+        }
+        return back();
+    }
+
 
     /**
      * Display the specified resource.

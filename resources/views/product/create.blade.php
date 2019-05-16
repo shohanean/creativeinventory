@@ -20,6 +20,7 @@
     </div>
 @endif
 
+{{---------------- ADD PRODUCT FOR USABLE --------------}}
 <div class="col-md-10 offset-1">
         @if($errors->all())
         <div class="alert alert-danger alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
@@ -33,22 +34,14 @@
         @endif
     <div class="card">
         <div class="card-head text-center bg-dark text-white">
-            <span><h4>Enter Product Details for Usable</h4></span>
+            <span><h4>Enter Product Details For Usable</h4></span>
         </div>
         <div class="card-body">
             <form action="{{ route('product.store') }}" method="post">
                 <div class="row">
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-10">
                         <label>Product Name</label>
                         <input type="text" class="form-control" name="name" placeholder="Enter Product Name" value="{{old('name')}}">
-                    </div>
-                    <div class="form-group col-md-2 mt-4">
-                        <select name="company_id" class="form-control category_abbr" id="">
-                            <option value="">Select company</option>
-                            @foreach ($companies as $company)
-                                <option value="{{$company->id}}">{{$company->company_abbr}}</option>
-                            @endforeach
-                        </select>
                     </div>
                     @csrf
                     <div class="form-group col-md-2">
@@ -60,10 +53,12 @@
         </div>
     </div>
 </div>
+
+{{---------------- ADD PRODUCT FOR REUSABLE ----------}}
 <div class="col-md-10 offset-1">
     <div class="card">
         <div class="card-head text-center bg-dark text-white">
-            <h4>Enter Product Details for Re-Usable</h4>
+            <h4>Enter Product Details For Re-Usable</h4>
         </div>
         <div class="card-body">
             <form action="{{ route('product.reusableStore') }}" method="post">
