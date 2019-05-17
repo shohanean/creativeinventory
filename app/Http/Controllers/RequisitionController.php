@@ -8,6 +8,7 @@ use App\Product;
 use App\Stock;
 use Carbon\Carbon;
 use Auth;
+use App\Assign;
 
 class RequisitionController extends Controller
 {
@@ -89,7 +90,10 @@ class RequisitionController extends Controller
      */
     public function show(Requisition $requisition)
     {
-        
+        // $assign = Assign::where('product_id', $requisition->product_id);
+        // dd($assign);
+
+        return view('requisition.show', compact('requisition'));
     }
 
     /**
