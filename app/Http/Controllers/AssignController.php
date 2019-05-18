@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Assign;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Requisition;
 use App\User;
 
 class AssignController extends Controller
@@ -50,8 +51,23 @@ class AssignController extends Controller
             'product_id'=>'required',
             'user_id'=>'required'
         ]);
-
+        
         Assign::create($data);
+
+        Requisition::where('product_id', $request->product_id)->update([
+            'status' => 1
+        ]);
+
+        Product::where('id', $request->product_id)->update([
+            'assign_status'=> 2
+        ]);
+
+        return redirect('home');
+    }
+
+    public function reStore(Request $request)
+    {
+
     }
 
     /**
@@ -85,7 +101,22 @@ class AssignController extends Controller
      */
     public function update(Request $request, Assign $assign)
     {
-        //
+        // $data = request()->validate();
+        
+        $assign->update([
+            'product_id'=> $request->product_id,
+            'user_id'=> $request->user_id
+        ]);
+
+        Requisition::where('product_id', $request->product_id)->update([
+            'status' => 1
+        ]);
+
+        Product::where('id', $request->product_id)->update([
+            'assign_status'=> 2
+        ]);
+
+        return redirect('home');
     }
 
     /**

@@ -333,6 +333,7 @@
             </li>
         </ul>
     </li>
+
     <li class="red with-sub">
         <span class="">
             <i class="font-icon fas fa-store-alt @yield('active-purchase')"></i>
@@ -359,36 +360,17 @@
             </li>
         </ul>
     </li>
-    <li class="green with-sub">
-        <span class="">
-            <i class="font-icon fas fa-boxes fa-lg @yield('active-inventory')"></i>
-            <span class="lbl">Purchase</span>
-        </span>
-        <ul>
-            <li>
-                <a href="{{ route('inventory.create') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-truck-loading"></i>
-                    <span class="lbl">&nbsp;<small>Allocate Inventory</small> </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('purchase.index') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-list"></i>
-                    <span class="lbl">&nbsp;<small>Purchase List</small> </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('purchase.trashView') }}">
-                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
-                    <span class="lbl">&nbsp;<small>Trash List</small> </span>
-                </a>
-            </li>
-        </ul>
+
+    <li class="grey @yield('active-inventory')">
+        <a href="{{ route('inventory.create') }}">
+            <i class="font-icon fas fa-truck-loading"></i>
+            <span class="lbl">Allocate Inventory</span>
+        </a>
     </li>
     <li class="green @yield('active-stock')">
         <a href="{{route('stock.index')}}">
             <i class="font-icon fas fa-boxes fa-lg"></i>
-            <span class="lbl">Inventory</span>
+            <span class="lbl">Stock</span>
         </a>
     </li>
     <li class="blue @yield('active-role')">

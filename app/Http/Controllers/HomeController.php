@@ -7,6 +7,7 @@ use App\Company, App\Supplier, App\Warehouse, App\User, App\Product;
 use App\Charts\TestChart;
 use App\Requisition;
 use App\Stock;
+use App\Assign;
 use Auth;
 
 class HomeController extends Controller
@@ -42,10 +43,12 @@ class HomeController extends Controller
 
         $requisitions = Requisition::all();
         $requisition_by_id= Requisition::where( 'user_id', Auth::user()->id)->get();
+        $assign = Assign::where('assign_status', 2)->get();
 
         // dd($requisition_by_id);
+        // return $assign;
 
-        return view('home', compact('company_count', 'supplier_count', 'warehouse_count', 'user_count', 'product_count', 'TestChart', 'requisitions', 'requisition_by_id'));
+        return view('home', compact('company_count', 'supplier_count', 'warehouse_count', 'user_count', 'product_count', 'TestChart', 'requisitions', 'requisition_by_id', 'assign'));
     }
 
     public function approve($requisition_id){

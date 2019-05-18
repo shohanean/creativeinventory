@@ -90,10 +90,10 @@ class RequisitionController extends Controller
      */
     public function show(Requisition $requisition)
     {
-        // $assign = Assign::where('product_id', $requisition->product_id);
+        $assigns = Assign::where('product_id', $requisition->product_id)->get();
         // dd($assign);
-
-        return view('requisition.show', compact('requisition'));
+        // return $assign;
+        return view('requisition.show', compact('requisition', 'assigns'));
     }
 
     /**

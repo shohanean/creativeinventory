@@ -57,24 +57,10 @@
                 <h2 class="text-center"> <strong>Product Details</strong> </h2>
                 <table class="table">
                     <thead>
-                        {{-- <tr>
-                            <th>
-                                <strong>Requested by</strong>
-                            </th>
-                            <th>
-                                <strong>Quantity</strong>
-                            </th>
-                            <th>
-                                <strong>Note</strong>
-                            </th>
-                            <th>
-                                <strong>Product Status</strong>
-                            </th>
-                        </tr> --}}
                     </thead>
                     <tbody>
                         @if ($requisition->product->assign_status == 1)
-                        <div class="card">
+                            <div class="card">
                                 <div class="card-body">
                                 {{-------------- SUCCESS MESSAGES -------------}}
                                     @if(session('success'))
@@ -111,24 +97,43 @@
                                             </select>              
                                         </div>
                                         @csrf
-                                        <button type="submit" class="btn btn-success">Assign to Employee</button>
+                                        <div class="mx-auto">
+                                            <button type="submit" class="btn btn-success">Assign to Employee</button>
+                                        </div>
                                     </div>
                                 </form>
                                 </div>
                             </div>
                         @else
-                            
+                            @foreach ($assigns as $assign)
+                            <h4>{{$assign->product->name}} belongs to {{$assign->user->name}}</h4>
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="{{ route('assign.update', $assign->id) }}" method="post">
+                                        @method('patch')
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="product_id">Product Name</label>     
+                                                <select name="product_id" class="form-control" id="product_name" >
+                                                    <option value="{{$requisition->product->id}}">{{strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}</option>
+                                                </select>              
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="warehouse_id">Employee Name</label>     
+                                                <select name="user_id" class="form-control" id="employee_name" >
+                                                        <option value="{{$requisition->user->id}}">{{$requisition->user->name}}</option>
+                                                </select>              
+                                            </div>
+                                            @csrf
+                                            <div class="mx-auto">
+                                                <button type="submit" class="btn btn-success">Re-Assign to Employee</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            @endforeach
                         @endif
-                        <tr>
-                            <td>{{$requisition->user->name}}</td>
-                            <td>{{$requisition->quantity}}</td>
-                            <td>{{$requisition->note}}</td>
-                            <td>
-                                @foreach ($requisition->product->StatusName() as $StatusNamekey => $statusNameValue)
-                                    {{$statusNameValue}}
-                                @endforeach
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -24,7 +24,7 @@
                         <td>{{$loop->index+1}}</td>
                         <td>{{$requisition->created_at}}</td>
                         <td>{{$requisition->user->name}}</td>
-                        <td>{{$requisition->product->name}}</td>
+                        <td>{{ strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}</td>
                         <td>{{$requisition->quantity}}</td>
                         <td>
                             @if ($requisition->status == 0)

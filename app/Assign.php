@@ -10,6 +10,10 @@ class Assign extends Model
     protected $guarded = [];
 
     public function product(){
-       return BelongsTo(Product::class);
+       return $this->belongsTo(Product::class);
+    }
+
+    public function user(){
+       return $this->belongsTo(User::class);
     }
 }

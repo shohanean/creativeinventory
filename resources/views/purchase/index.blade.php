@@ -32,7 +32,7 @@
                 <td>{{ $loop->index+1 }}</td>
                 <td>{{ $purchase->created_at->format('d-M-y') }}</td>
                 <td>{{ $purchase->supplier->name }}</td>
-                <td>{{ $purchase->product->name }}</td>
+                <td>{{strtoupper($purchase->product->company->company_abbr)}}/{{ strtoupper($purchase->product->name) }}-{{$purchase->product->unique_id}}</td>
                 <td>{{ $purchase->company->company_name }}</td>
                 {{-- <td>{{ $purchase->product->stock->quantity }}</td> --}}
                 <td>

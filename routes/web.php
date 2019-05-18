@@ -95,6 +95,7 @@ Route::resource('inventory', 'InventoryController');
 
 /////////////// STOCK ////////////////
 Route::resource('assign', 'AssignController');
+Route::post('assign/store/reassign', 'AssignController@reStore')->name('assign.reStore');
 
 
 ///////////////// REQUISITION FORM ////////////////
