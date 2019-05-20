@@ -14,7 +14,7 @@
 </div>
 <div class="card col-md-12">
     <div class="card-head p-2 bg-dark text-white text-center">
-        <h3>{{strtoupper($requisition->product->name)}}</h3>
+        <h3>{{strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}</h3>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -32,9 +32,6 @@
                             <th>
                                 <strong>Note</strong>
                             </th>
-                            <th>
-                                <strong>Product Status</strong>
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,14 +39,15 @@
                             <td>{{$requisition->user->name}}</td>
                             <td>{{$requisition->quantity}}</td>
                             <td>{{$requisition->note}}</td>
-                            <td>
-                                @foreach ($requisition->product->StatusName() as $StatusNamekey => $statusNameValue)
-                                    {{$statusNameValue}}
-                                @endforeach
-                            </td>
                         </tr>
                     </tbody>
                 </table>
+                <br>
+                @foreach ($assigns as $assign)
+                    <div class="bg-danger text-center text-white p-1">
+                        <h4><strong>{{strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($assign->product->name)}}-{{$requisition->product->unique_id}}</strong> is currently assigned to <strong>{{$assign->user->name}}</strong></h4>
+                    </div>
+                @endforeach
             </div>
         </div>
         <div class="col-md-6">
@@ -98,16 +96,18 @@
                                         </div>
                                         @csrf
                                         <div class="mx-auto">
-                                            <button type="submit" class="btn btn-success">Assign to Employee</button>
+                                            <button type="submit" class="btn btn-success">Assign</button>
                                         </div>
                                     </div>
                                 </form>
                                 </div>
                             </div>
                         @else
-                            @foreach ($assigns as $assign)
-                            <h4>{{$assign->product->name}} belongs to {{$assign->user->name}}</h4>
                             <div class="card">
+                                @foreach ($assigns as $assign)
+                                    
+                                <div class="card-head">
+                                </div>
                                 <div class="card-body">
                                     <form action="{{ route('assign.update', $assign->id) }}" method="post">
                                         @method('patch')
@@ -115,24 +115,35 @@
                                             <div class="form-group col-md-6">
                                                 <label for="product_id">Product Name</label>     
                                                 <select name="product_id" class="form-control" id="product_name" >
-                                                    <option value="{{$requisition->product->id}}">{{strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}</option>
+                                                    <option value="{{$requisition->product->id}}">{{strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}</option>
                                                 </select>              
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="warehouse_id">Employee Name</label>     
                                                 <select name="user_id" class="form-control" id="employee_name" >
-                                                        <option value="{{$requisition->user->id}}">{{$requisition->user->name}}</option>
+                                                    <option value="{{$requisition->user->id}}">{{$requisition->user->name}}</option>
                                                 </select>              
                                             </div>
                                             @csrf
-                                            <div class="mx-auto">
-                                                <button type="submit" class="btn btn-success">Re-Assign to Employee</button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <button type="submit" class="btn btn-success">Re-Assign</button>
                                             </div>
+                                            <div class="col-md-3">
+                                                <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
+                                            </div>
+                                            @if (Auth::user()->role == 2)
+                                                <div class="col-md-3">
+                                                    <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </form>
                                 </div>
+                                @endforeach
+
                             </div>
-                            @endforeach
                         @endif
                     </tbody>
                 </table>

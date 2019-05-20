@@ -300,12 +300,6 @@
             <span class="lbl">Supplier</span>
         </a>
     </li>
-    <li class="brown @yield('active-category')">
-        <a href="{{route('category.index')}}">
-            <i class="font-icon fas fa-tags fa-lg"></i>
-            <span class="lbl">Category</span>
-        </a>
-    </li>
 
     <li class="purple with-sub">
         <span class="">
@@ -361,17 +355,25 @@
         </ul>
     </li>
 
-    <li class="grey @yield('active-inventory')">
-        <a href="{{ route('inventory.create') }}">
-            <i class="font-icon fas fa-truck-loading"></i>
-            <span class="lbl">Allocate Inventory</span>
-        </a>
-    </li>
-    <li class="green @yield('active-stock')">
-        <a href="{{route('stock.index')}}">
-            <i class="font-icon fas fa-boxes fa-lg"></i>
-            <span class="lbl">Stock</span>
-        </a>
+    <li class="green with-sub">
+        <span class="">
+            <i class="font-icon fas fa-boxes @yield('active-inventory')"></i>
+            <span class="lbl">Inventory</span>
+        </span>
+        <ul>
+            <li>
+                <a href="{{ route('stock.index') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fas fa-list"></i>
+                    <span class="lbl">&nbsp;<small>View Inventory</small> </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('inventory.create') }}">
+                    &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-truck-loading"></i>
+                    <span class="lbl">&nbsp;<small>Allocate Inventory</small> </span>
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="blue @yield('active-role')">
         <a href="{{route('role.index')}}">

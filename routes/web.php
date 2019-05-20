@@ -67,12 +67,6 @@ Route::get('purchase/restore/{purchase}', 'PurchaseController@restore')->name('p
 Route::get('purchase/force/delete/{purchase}', 'PurchaseController@forceDelete')->name('purchase.forceDelete');
 
 
-////////////// CATEGORY ////////////////
-Route::resource('category', 'CategoryController');
-Route::get('category/trash/view','CategoryController@trashView')->name('category.trashView');
-Route::get('category/restore/{category}', 'CategoryController@restore')->name('category.restore');
-Route::get('category/force/delete/{category}', 'CategoryController@forceDelete')->name('category.forceDelete');
-
 ////////////// EMPLOYEE ////////////////
 Route::resource('employee', 'EmployeeController');
 Route::get('employee/restore/{employee}', 'EmployeeController@restore')->name('employee.restore');

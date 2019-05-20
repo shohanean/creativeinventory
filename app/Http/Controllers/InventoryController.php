@@ -31,6 +31,8 @@ class InventoryController extends Controller
         $stocks = Stock::all();
         $warehouses = Warehouse::all();
 
+        // return $stocks;
+
         return view ('inventory.create', compact('stocks', 'warehouses'));
     }
 
@@ -44,17 +46,16 @@ class InventoryController extends Controller
     {
         // dd($request);
 
-        return $request;
+        // return $request;
 
-        // $data = request()->validate([
-        //     'product_id'=>'required',
-        //     'warehouse_id'=>'required',
-        //     'unique_id'=>'required|unique:inventories,unique_id'
-        // ]);
+        $data = request()->validate([
+            'product_id'=>'required',
+            'warehouse_id'=>'required',
+        ]);
 
-        // Inventory::create($data);
+        Inventory::create($data);
 
-        // return back()->withStatus('Inventory assigned succesfully');
+        return back()->withStatus('Inventory assigned succesfully');
     }
 
     /**

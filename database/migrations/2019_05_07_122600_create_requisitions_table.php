@@ -19,7 +19,6 @@ class CreateRequisitionsTable extends Migration
             $table->integer('quantity');
             $table->longText('note')->nullable();
             $table->integer('status')->default('0');
-            // $table->integer('assign_status')->default('1');
             $table->unsignedInteger('user_id');
             $table->timestamps();
             $table->softDeletes();

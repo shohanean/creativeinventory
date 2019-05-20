@@ -217,15 +217,18 @@
                     {{-- {{print_r($requisition)}} --}}
                     <td>{{ $loop->index+1 }}</td>
                     <td>{{ $requisition->created_at->format('d-M-y') }}</td>
-                    <td>{{ $requisition->product->name }}</td>
+                    <td>{{ strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}</td>
                     <td>{{ $requisition->quantity }}</td>
                     <td>{{ $requisition->user->name }}</td>
                     <td>
-                        <div class="btn-group btn-group-sm">
-                            <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>
-                            <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
-                            {{-- <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a> --}}
-                        </div>
+                        @if ($requisition->product->category_status == 1)  
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>
+                                <a href="{{url('requisition/reject')}}/{{$requisition->id}}" class="btn btn-danger-outline">Reject</a>
+                            </div>
+                        @else
+                            <a href="{{route('requisition.show',$requisition->id)}}" class="btn btn-secondary-outline form-control">Assign</a>
+                        @endif
                     </td>
                     @endif
                 </tr>

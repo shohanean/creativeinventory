@@ -47,7 +47,29 @@ class Product extends Model
     // SCOPE
     public function scopeStatusName(){
        return[
-        1 => 'Available'
+        1 => 'Available',
+        2 => 'Unavailable'
+       ];
+    }
+    public function scopeCategoryStatus(){
+       return[
+        1 => 'Usable',
+        2 => 'Re-Usable'
+       ];
+    }
+    public function scopeActiveStatus(){
+       return[
+        1 => 'Okay',
+        2 => 'Occupied',
+        3 => 'Not in Service',
+        4 => 'Lost',
+        4 => 'Lost',
+       ];
+    }
+    public function scopePurchaseStatus(){
+       return[
+        1 => 'Available',
+        2 => 'Purchased'
        ];
     }
 }

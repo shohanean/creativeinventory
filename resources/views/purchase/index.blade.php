@@ -34,7 +34,6 @@
                 <td>{{ $purchase->supplier->name }}</td>
                 <td>{{strtoupper($purchase->product->company->company_abbr)}}/{{ strtoupper($purchase->product->name) }}-{{$purchase->product->unique_id}}</td>
                 <td>{{ $purchase->company->company_name }}</td>
-                {{-- <td>{{ $purchase->product->stock->quantity }}</td> --}}
                 <td>
                 <div class="">
                     <form id="purchase-destroy-form" action="{{ route('purchase.destroy', $purchase->id) }}" method="POST">

@@ -15,11 +15,8 @@ class CreateInventoriesTable extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            // $table->unsignedInteger('stock_id');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('warehouse_id');
-            // $table->unsignedInteger('user_id');
-            $table->string('unique_id');
             $table->timestamps();
         });
     }

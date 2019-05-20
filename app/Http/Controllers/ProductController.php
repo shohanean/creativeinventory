@@ -67,7 +67,11 @@ class ProductController extends Controller
             'name'=> 'required|unique:products,name'
             // 'company_id'=> 'required'
         ]);
-        Product::create($data + ['category_status' => 1, 'unique_id' => 000, 'company_id'=>1]);
+        Product::create($data + [
+            'category_status' => 1, 
+            'unique_id' => 000, 
+            'company_id'=>1
+            ]);
 
         return back()->withSuccess('Product added succesfully');
     }

@@ -20,6 +20,6 @@ class Purchase extends Model
        return $this->hasOne(Supplier::class, 'id', 'supplier_id');
     }
     public function product(){
-       return $this->hasOne(Product::class, 'id', 'product_id');
+       return $this->belongsTo(Product::class);
     }
 }

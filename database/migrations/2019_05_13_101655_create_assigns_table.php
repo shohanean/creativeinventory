@@ -15,7 +15,6 @@ class CreateAssignsTable extends Migration
     {
         Schema::create('assigns', function (Blueprint $table) {
             $table->bigIncrements('id');
-            // $table->unsignedInteger('quantity');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('assign_status')->default(1);
