@@ -167,5 +167,9 @@ class ProductController extends Controller
        return back()->withForced('Item has been deleted permanently');
     }
 
-
+    public function changeState(Request $request, Product $product){
+        $product->update([
+            'active_status' => $request->active_status
+        ]);
+    }
 }

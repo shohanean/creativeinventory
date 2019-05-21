@@ -106,7 +106,11 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        //
+        $stocks = Stock::where('product_id', $purchase->product_id)->get();
+
+    //    $stocks = $stock1->groupBy('product_id');
+
+        return view('purchase.show', compact('purchase', 'stocks'));
     }
 
     /**

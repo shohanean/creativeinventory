@@ -58,6 +58,8 @@ Route::post('product/reusable/store', 'ProductController@reusableStore')->name('
 Route::get('product/trash/view','ProductController@trashView')->name('product.trashView');
 Route::get('product/restore/{product}', 'ProductController@restore')->name('product.restore');
 Route::get('product/force/delete/{product}', 'ProductController@forceDelete')->name('product.forceDelete');
+Route::patch('product/{product}/update/state', 'ProductController@changeState')->name('product.changeState');
+
 
 
 ////////////// PURCHASE ////////////////

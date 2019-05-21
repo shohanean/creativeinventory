@@ -62,8 +62,8 @@ class Product extends Model
         1 => 'Okay',
         2 => 'Occupied',
         3 => 'Not in Service',
-        4 => 'Lost',
-        4 => 'Lost',
+        4 => 'Lost'
+      //   4 => 'Lost',
        ];
     }
     public function scopePurchaseStatus(){

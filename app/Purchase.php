@@ -14,10 +14,10 @@ class Purchase extends Model
 
     // to call out the parent class
     public function company(){
-       return $this->hasOne(Company::class, 'id', 'company_id');
+       return $this->belongsTo(Company::class);
     }
     public function supplier(){
-       return $this->hasOne(Supplier::class, 'id', 'supplier_id');
+       return $this->belongsTo(Supplier::class);
     }
     public function product(){
        return $this->belongsTo(Product::class);

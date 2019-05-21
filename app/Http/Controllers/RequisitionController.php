@@ -39,7 +39,7 @@ class RequisitionController extends Controller
         $usable_products = Product::where('category_status', 1)->get();
         $reusable_products = Product::where('category_status', 2)->get();
 
-        $products = Product::all();
+        $products = Product::where('active_status', 1);
         $stocks = Stock::all();
 
         // return $usable_products;
