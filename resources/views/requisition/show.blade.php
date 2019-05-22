@@ -20,28 +20,15 @@
         <div class="col-md-6">
             <div class="card-body mt-3">
                 <h2 class="text-center"> <strong>Requisition Details</strong> </h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                <strong>Requested by</strong>
-                            </th>
-                            <th>
-                                <strong>Quantity</strong>
-                            </th>
-                            <th>
-                                <strong>Note</strong>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{$requisition->user->name}}</td>
-                            <td>{{$requisition->quantity}}</td>
-                            <td>{{$requisition->note}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <strong>Requested by: </strong>
+                <span>{{$requisition->user->name}}</span>
+                {{-- <span>{{$requisition->user->company->company_name}}</span> --}}
+                <br><br>
+                <strong>Quantity: </strong>
+                <span>{{$requisition->quantity}}</span>
+                <br><br>
+                <strong>Note: </strong>
+                <p>{{$requisition->note}}</p>
                 <br>
                 @foreach ($assigns as $assign)
                     <div class="bg-danger text-center text-white p-1">

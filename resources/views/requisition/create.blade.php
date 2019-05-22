@@ -112,7 +112,7 @@
                                 <select name="product_id[]" class="form-control" id="product_name" required>
                                     <option value="">Select product name</option>
                                     @foreach ($reusable_products as $product)
-                                        @if ($product->purchase_status == 2 && $product->active_status == 1)
+                                        @if ($product->purchase_status == 2 && $product->active_status == 1 && $product->assign_status == 1)
                                             <option value="{{$product->id}}">{{strtoupper($product->company->company_abbr)}}/{{strtoupper($product->name)}}-{{$product->unique_id}}</option>
                                         @endif
                                     @endforeach

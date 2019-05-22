@@ -60,22 +60,7 @@
                     @endforeach
                     {{-- {{$stocks->quantity}} --}}
                 </div>
-                @if ($purchase->product->category_status == 2)
-                    <div class="col-md-12">
-                        <form action="{{route('product.changeState', $purchase->product->id)}}" method="post">
-                            @method('patch')
-                            <select name="active_status" id="" class="form-control">
-                                <option value="">Select State</option>
-                                <option value="1">Free</option>
-                                <option value="2">Not in Service</option>
-                                <option value="3">Lost</option>
-                                <option value="4">Repairing</option>
-                            </select>
-                            @csrf
-                            <button class="btn btn-secondary mt-3" type="submit">Change State</button>
-                        </form>
-                    </div>
-                @endif
+
             </div>
 
         </div>

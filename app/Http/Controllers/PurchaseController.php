@@ -86,8 +86,8 @@ class PurchaseController extends Controller
             ];
             
             Purchase::insert($data1);
-
-            Product::where('id', $product_id_value)->update([
+            $product = Product::where('category_status', 2);
+            $product->where('id', $product_id_value)->update([
                 'purchase_status' => 2
             ]);
 

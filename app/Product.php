@@ -40,7 +40,11 @@ class Product extends Model
     }
 
     public function assign(){
-        return $this->hasMany(Assign::class );
+        return $this->hasOne(Assign::class );
+    }
+
+    public function requisition(){
+      return $this->hasMany(Requisition::class );
     }
 
 
@@ -59,11 +63,10 @@ class Product extends Model
     }
     public function scopeActiveStatus(){
        return[
-        1 => 'Okay',
-        2 => 'Occupied',
-        3 => 'Not in Service',
-        4 => 'Lost'
-      //   4 => 'Lost',
+        1 => 'OKAY',
+        2 => 'NOT IN-SERVICE',
+        3 => 'LOST',
+        4 => 'REPAIRING'
        ];
     }
     public function scopePurchaseStatus(){

@@ -29,8 +29,11 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::all();
-        return view('product.index', compact('products'));
+        $reusableProducts = Product::where('category_status', 2)->get();
+        $usableProducts = Product::where('category_status', 1)->get();
+
+
+        return view('product.index', compact('reusableProducts', 'usableProducts'));
 
         // foreach ($products as $product) {
         //     dd($product->category(['id'])->name);
@@ -103,7 +106,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('product.show', compact('product'));
     }
 
     /**
@@ -133,6 +136,15 @@ class ProductController extends Controller
         $product->update($data);
 
         return redirect('/product');
+    }
+    public function changeAssignState(Request $request, Product $product){
+        $request->validate([
+            $request->assign_status => 'required'
+        ]);
+        $product->update([
+            'assign_status' => $request->assign_status
+        ]);
+        return back();
     }
 
     /**
@@ -168,8 +180,12 @@ class ProductController extends Controller
     }
 
     public function changeState(Request $request, Product $product){
+        $request->validate([
+            $request->active_status => 'required'
+        ]);
         $product->update([
             'active_status' => $request->active_status
         ]);
+        return back();
     }
 }

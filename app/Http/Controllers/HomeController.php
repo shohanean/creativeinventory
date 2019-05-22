@@ -8,6 +8,8 @@ use App\Charts\TestChart;
 use App\Requisition;
 use App\Stock;
 use App\Assign;
+use App\Purchase;
+// use App\Product;
 use Auth;
 
 class HomeController extends Controller
@@ -38,17 +40,27 @@ class HomeController extends Controller
         $warehouse_count = Warehouse::count();
         $user_count = User::count();
         $product_count = Product::count();
+        $purchase_count = Purchase::count();
+        $requisition_count = Requisition::count();
         
 
+        // $product = Product::all();
+
+        // $reusableProducts = Product::where('category_status', 2)->get();
+        // $usableProducts = Product::where('category_status', 1)->get();
+        // $requisition = Requisition::where('product_id', $product->id)
+
+        // $reusableRequisitions = Requisition::where('product_id', $product->id)->get();
+        // $usableRequisitions = Requisition::where('product_id', $usableProducts->id)->get();
 
         $requisitions = Requisition::all();
         $requisition_by_id= Requisition::where( 'user_id', Auth::user()->id)->get();
         $assign = Assign::where('assign_status', 2)->get();
 
-        // dd($requisition_by_id);
-        // return $assign;
 
-        return view('home', compact('company_count', 'supplier_count', 'warehouse_count', 'user_count', 'product_count', 'TestChart', 'requisitions', 'requisition_by_id', 'assign'));
+        // return $reusableRequisitions;
+
+        return view('home', compact('company_count', 'supplier_count', 'warehouse_count', 'user_count', 'product_count', 'TestChart', 'requisitions', 'requisition_by_id', 'assign', 'purchase_count', 'requisition_count'));
     }
 
     public function approve($requisition_id){

@@ -77,30 +77,30 @@
         <div class="col-sm-3">
             <section class="widget widget-simple-sm">
                 <div class="widget-simple-sm-icon">
-                    <i class="font-icon glyphicon glyphicon-home color-red"></i>
+                    <i class="font-icon fas fas fa-list color-green"></i>
                 </div>
                 <div class="widget-simple-sm-bottom">
-                    <a href="{{ route('company.index') }}">{{ $company_count }} {{ ($company_count <= 1) ? 'Company' : str_plural('Company') }}</a>
+                    <a href="{{ route('requisition.index') }}">{{ $requisition_count }} {{ ($requisition_count <= 1) ? 'Requisition' : str_plural('Requisition') }}</a>
                 </div>
             </section><!--.widget-simple-sm-->
         </div>
         <div class="col-sm-3">
             <section class="widget widget-simple-sm">
                 <div class="widget-simple-sm-icon">
-                    <i class="font-icon fas fa-warehouse color-green"></i>
+                    <i class="font-icon fas fa-store-alt color-red"></i>
                 </div>
                 <div class="widget-simple-sm-bottom">
-                    <a href="{{ route('warehouse.index') }}">{{ $warehouse_count }} {{ ($warehouse_count <= 1) ? 'Warehouse' : str_plural('Warehouse') }}</a>
+                    <a href="{{ route('purchase.index') }}">{{ $purchase_count }} {{ ($purchase_count <= 1) ? 'Purchase' : str_plural('Purchase') }}</a>
                 </div>
             </section><!--.widget-simple-sm-->
         </div>
         <div class="col-sm-3">
             <section class="widget widget-simple-sm">
                 <div class="widget-simple-sm-icon">
-                    <i class="font-icon fas fa-truck color-orange"></i>
+                    <i class="font-icon fas fa-shopping-cart color-purple"></i>
                 </div>
                 <div class="widget-simple-sm-bottom">
-                    <a href="{{ route('supplier.index') }}">{{ $supplier_count }} {{ ($supplier_count <= 1) ? 'Supplier' : str_plural('Supplier') }}</a>
+                    <a href="{{ route('product.index') }}">{{ $product_count }} {{ ($product_count <= 1) ? 'Product' : str_plural('Product') }}</a>
                 </div>
             </section><!--.widget-simple-sm-->
         </div>
@@ -149,7 +149,11 @@
                             <tr>
                                 <td>{{ $loop->index+1 }}</td>
                                 <td>{{ $requisition->created_at->format('d-M-y') }}</td>
-                                <td>{{ strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}</td>
+                                @if ($requisition->product->category_status == 1)
+                                    <td>{{strtoupper($requisition->product->name)}}</td>
+                                @else
+                                    <td>{{ strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}</td>
+                                @endif
                                 <td>{{ $requisition->quantity }}</td>
                                 <td>{{ $requisition->user->name }}</td>
                                 <td><small>{{ $requisition->note }}</small></td>
@@ -206,7 +210,6 @@
                     <th>Requested Product</th>
                     <th>Requested Quantity</th>
                     <th>User Name</th>
-                    {{-- <th>User Designation</th> --}}
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -266,7 +269,7 @@
 @section('footer_scripts')
     <script>
         $(document).ready(function(){
-            $('#emp_table, #admin_table, #sup_table').DataTable();
+            $('#emp_table, #admin_table, #sup_table, #admin_table1').DataTable();
         });
     </script>
 @endsection

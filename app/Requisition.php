@@ -12,7 +12,7 @@ class Requisition extends Model
     protected $dates = ['deleted_at'];
 
     public function product(){
-        return $this->hasOne(Product::class, 'id', 'product_id');
+        return $this->belongsTo(Product::class);
      }
 
     public function user(){

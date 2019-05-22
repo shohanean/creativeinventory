@@ -72,6 +72,7 @@ class EmployeeController extends Controller
 
         $email_address = $request->email_address;
         Mail::to($email_address)->send(new AccountConfirmation($email_address, $generated_password));
+        return back();
     }
 
     /**
