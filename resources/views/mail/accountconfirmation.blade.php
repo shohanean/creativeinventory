@@ -9,7 +9,7 @@ Email Address: {{ $email_address }}
 Password: {{ $generated_password }}
 @endcomponent
 
-@component('mail::button', ['url' => url('login'), 'color' => 'success'])
+@component('mail::button', ['url' => url('http://inventory.buscoms.com'), 'color' => 'success'])
 Click Here!
 @endcomponent
 

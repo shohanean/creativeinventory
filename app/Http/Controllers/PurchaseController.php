@@ -30,6 +30,8 @@ class PurchaseController extends Controller
         $purchases = Purchase::all();
         $stocks = Stock::all();
 
+        // $usablePurchase = Purchase::where($purchase1->product->category_status, 1)->get()
+
         return view('purchase.index', compact('stocks','purchases'));
     }
 
@@ -108,9 +110,13 @@ class PurchaseController extends Controller
     {
         $stocks = Stock::where('product_id', $purchase->product_id)->get();
 
-    //    $stocks = $stock1->groupBy('product_id');
+        $usableStockSumQty = $stocks->sum('quantity');
+        $usableStockSumTprc = $stocks->sum('total_price');
+        $usableStockSumUprc = $stocks->avg('unit_price');
+    //    $stock = $stocks->groupBy('product_id')->sum('quantity');
+    //    return $usableStockSum;
 
-        return view('purchase.show', compact('purchase', 'stocks'));
+        return view('purchase.show', compact('purchase', 'stocks', 'usableStockSumQty', 'usableStockSumTprc', 'usableStockSumUprc'));
     }
 
     /**

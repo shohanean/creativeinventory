@@ -12,8 +12,8 @@
         </nav>
     </div>
 </div>
+{{------------- START PURCHASE LIST TABLE ----------------}}
 <div class="row">
-    {{------------- START PURCHASE LIST TABLE ----------------}}
     <div class="col-md-12">
         <table class="table table-bordered table-striped" id="pur_table">
             <thead>
@@ -23,7 +23,7 @@
                     <th>Product Name</th>
                     <th>Supplier Name</th>
                     <th>Company Name</th>
-                    <th>Action</th>
+                    {{-- <th>Action</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -31,10 +31,17 @@
                 <tr>
                     <td>{{ $loop->index+1 }}</td>
                     <td>{{ $purchase->created_at->format('d-M-y') }}</td>
-                    <td><a href="{{route('purchase.show', $purchase->id)}}" class="" target="blank" style="text-decoration:none;" >{{strtoupper($purchase->product->company->company_abbr)}}/{{ strtoupper($purchase->product->name) }}-{{$purchase->product->unique_id}}</a></td>
+                    <td>
+                        @if ($purchase->product->category_status == 2)
+                            <a href="{{route('purchase.show', $purchase->id)}}" class="" target="blank" style="text-decoration:none;" >{{strtoupper($purchase->product->company->company_abbr)}}/{{ strtoupper($purchase->product->name) }}-{{$purchase->product->unique_id}}</a>
+                        @else
+                            <a href="{{route('purchase.show', $purchase->id)}}" class="" target="blank" style="text-decoration:none;" >{{strtoupper($purchase->product->name)}}</a>
+                        @endif
+
+                    </td>
                     <td>{{ $purchase->supplier->name }}</td>
                     <td>{{ $purchase->company->company_name }}</td>
-                    <td>
+                    {{-- <td>
                     <div class="">
                         <form id="purchase-destroy-form" action="{{ route('purchase.destroy', $purchase->id) }}" method="POST">
                             @method('DELETE')
@@ -42,7 +49,7 @@
                             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Delete</button>
                         </form>
                     </div>
-                    </td>
+                    </td> --}}
                 </tr>
             @empty
             <tr class="text-center text-danger">
@@ -52,8 +59,52 @@
             </tbody>
         </table>
     </div>
-{{---------- END PURCHASE LIST TABLE -------------}}
 </div>
+{{---------- END PURCHASE LIST TABLE -------------}}
+    {{-- <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped" id="pur_table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Purchased at</th>
+                        <th>Product Name</th>
+                        <th>Supplier Name</th>
+                        <th>Company Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @forelse($purchases as $purchase1)
+                    
+                    <tr>
+                        <td>{{ $loop->index+1 }}</td>
+                        <td>{{ $purchase->created_at->format('d-M-y') }}</td>
+                        <td>
+                            <a href="{{route('purchase.show', $purchase->id)}}" class="" target="blank" style="text-decoration:none;" >{{strtoupper($purchase->product->name)}}</a>
+    
+                        </td>
+                        <td>{{ $purchase->supplier->name }}</td>
+                        <td>{{ $purchase->company->company_name }}</td>
+                        <td>
+                        <div class="">
+                            <form id="purchase-destroy-form" action="{{ route('purchase.destroy', $purchase->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Delete</button>
+                            </form>
+                        </div>
+                        </td>
+                    </tr>
+                @empty
+                <tr class="text-center text-danger">
+                    <td colspan="7">No Product Found</td>
+                </tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div> --}}
 @endsection
 @section('footer_scripts')
     <script>

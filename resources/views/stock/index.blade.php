@@ -53,8 +53,8 @@
                             <td>{{$stock->created_at}}</td>
                             <td>{{$stock->product->name}}</td>
                             <td>{{$stock->quantity}}</td>
-                            <td>৳ {{$stock->unit_price}}</td>
-                            <td>৳ {{$stock->total_price}}</td>
+                            <td>৳ {{$stock->unit_price}}tk</td>
+                            <td>৳ {{$stock->total_price}}tk</td>
                             <td>{{$stock->exp_date}}</td>
                         </tr>
                     @endif

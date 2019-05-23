@@ -24,40 +24,54 @@
             <div class="row">
                 <div class="col-md-6">
                     <strong>Supplier Name: </strong>
-                    <span>{{$purchase->supplier->name}}</span>
+                        <span>{{$purchase->supplier->name}}</span>
                     <br>
                     <br>
                     <strong>Company Name: </strong>
-                    <span>{{$purchase->company->company_name}}</span>
+                        <span>{{$purchase->company->company_name}}</span>
                     <br>
                     <br>
                     <strong>Invoice Details: </strong>
-                    <span>{{$purchase->invoice_details}}</span>
+                        <span>{{$purchase->invoice_details}}</span>
                     <br>
                     <br>
                     <strong>Note: </strong>
-                    <span>{{$purchase->note}}</span>
+                        <p>{{$purchase->note}}</p>
                 </div>
                 
                 <div class="col-md-6">
-                    @foreach ($stocks as $stock)                        
+                    @if ($purchase->product->category_status == 1)
                         <strong>Product Quantity: </strong>
-                        <span>{{$stock->quantity}}</span>
+                            <span>{{$usableStockSumQty}}</span>
                         <br>
                         <br>
                         <strong>Per Unit Price: </strong>
-                        <span>{{$stock->unit_price}}</span>
+                            <span>৳ {{$usableStockSumUprc}}</span>
                         <br>
                         <br>
                         <strong>Total Price: </strong>
-                        <span>{{$stock->total_price}}</span>
-                        <br>
-                        <br>
-                        <strong>Exp. Date: </strong>
-                        <span>{{$stock->exp_date}}</span>
-                        <br>
-                        <br>
-                    @endforeach
+                            <span>৳ {{$usableStockSumTprc}}</span>
+                    @else
+                        
+                        @foreach ($stocks as $stock)                        
+                            <strong>Product Quaddntiy: </strong>
+                            <span>{{$stock->quantity}}</span>
+                            <br>
+                            <br>
+                            <strong>Per Unit Price: </strong>
+                            <span>৳ {{$stock->unit_price}}</span>
+                            <br>
+                            <br>
+                            <strong>Total Price: </strong>
+                            <span>৳ {{$stock->total_price}}</span>
+                            <br>
+                            <br>
+                            <strong>Exp. Date: </strong>
+                            <span>{{$stock->exp_date}}</span>
+                            <br>
+                            <br>
+                        @endforeach
+                    @endif
                     {{-- {{$stocks->quantity}} --}}
                 </div>
 
