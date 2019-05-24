@@ -30,6 +30,8 @@ class PurchaseController extends Controller
         $purchases = Purchase::all();
         $stocks = Stock::all();
 
+
+        // $purchase = Purchase::where('product_id')
         // $usablePurchase = Purchase::where($purchase1->product->category_status, 1)->get()
 
         return view('purchase.index', compact('stocks','purchases'));

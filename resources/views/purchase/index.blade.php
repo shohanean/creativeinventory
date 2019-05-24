@@ -61,7 +61,7 @@
     </div>
 </div>
 {{---------- END PURCHASE LIST TABLE -------------}}
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-md-12">
             <table class="table table-bordered table-striped" id="pur_table">
                 <thead>
@@ -76,13 +76,11 @@
                 </thead>
                 <tbody>
                 @forelse($purchases as $purchase1)
-                    
                     <tr>
                         <td>{{ $loop->index+1 }}</td>
                         <td>{{ $purchase->created_at->format('d-M-y') }}</td>
                         <td>
                             <a href="{{route('purchase.show', $purchase->id)}}" class="" target="blank" style="text-decoration:none;" >{{strtoupper($purchase->product->name)}}</a>
-    
                         </td>
                         <td>{{ $purchase->supplier->name }}</td>
                         <td>{{ $purchase->company->company_name }}</td>
@@ -104,7 +102,7 @@
                 </tbody>
             </table>
         </div>
-    </div> --}}
+    </div>
 @endsection
 @section('footer_scripts')
     <script>
