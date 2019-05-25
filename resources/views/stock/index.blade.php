@@ -51,7 +51,15 @@
                         <tr>
                             <td>{{$loop->index+1}}</td>
                             <td>{{$stock->created_at}}</td>
-                            <td>{{$stock->product->name}}</td>
+                            <td>                        
+                                @if ($stock->product->category_status == 2)
+                                    {{strtoupper($stock->product->company->company_abbr)}}/{{strtoupper($stock->product->name)}}-{{$stock->product->unique_id}}
+                                @else
+                                    {{$stock->product->name}}
+                                    
+                                @endif
+                                
+                            </td>
                             <td>{{$stock->quantity}}</td>
                             <td>৳ {{$stock->unit_price}}tk</td>
                             <td>৳ {{$stock->total_price}}tk</td>

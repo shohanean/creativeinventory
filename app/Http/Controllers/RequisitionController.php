@@ -64,7 +64,7 @@ class RequisitionController extends Controller
 
             Requisition::insert($data + ['user_id'=> Auth::id()]);
         }
-        return back();
+        return back()->withSuccess('Your request has been submitted succesfully');
     }
     public function storeReusable(Request $request)
     {
@@ -78,7 +78,7 @@ class RequisitionController extends Controller
 
             Requisition::insert($data + ['user_id'=> Auth::id()]);
         }
-        return back();
+        return back()->withSuccess('Your request has been submitted succesfully');
     }
 
 

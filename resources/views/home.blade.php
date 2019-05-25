@@ -41,7 +41,12 @@
                     {{-- {{print_r($requisition)}} --}}
                     <td>{{ $loop->index+1 }}</td>
                     <td>{{ $requisition->created_at->format('d-M-y') }}</td>
-                    <td>{{ $requisition->product->name }}</td>
+                    <td>
+                        @if ($requisition->product->category_status == 2)
+                            {{strtoupper($requisition->product->company->company_abbr)}}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}
+                        @else
+                            {{ $requisition->product->name }}</td>
+                        @endif
                     <td>{{ $requisition->quantity }}</td>
                     {{-- <td>{{ $requisition->user->name }}</td> --}}
                     <td>
@@ -121,7 +126,7 @@
 @if (Auth::user()->role == 2)
     <div class="col-md-12 text-center bg-secondary p-2 text-white"> <strong>LIST OF ALL REQUISITION</strong></div>
     @if(session('status'))
-        <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
+        <div class="alert alert-info alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">×</span>
             </button>
@@ -162,8 +167,11 @@
                                         <div class="btn-group btn-group-sm">
                                             @if (App\Stock::where('product_id', $requisition->product_id)->exists())
                                                 @if (App\Stock::where('product_id', $requisition->product_id)->sum('quantity') >= $requisition->quantity)
-                                                    <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>  
+                                                    <a href="{{url('requisition/approve')}}/{{$requisition->id}}" class="btn btn-primary-outline">Approve</a>
+                                                    @if ($requisition->status !== 3 )
                                                     <a href="{{url('requisition/forward')}}/{{$requisition->id}}" class="btn btn-info-outline">Forward</a>
+                                                        
+                                                    @endif  
                                                 @else
                                                     <button class="btn btn-danger mr-2">Not enough product</button>
                                                 @endif

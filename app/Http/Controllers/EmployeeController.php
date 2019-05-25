@@ -26,9 +26,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        $employees = Employee::all();
         $departments = Department::all();
-        $trashed = Department::onlyTrashed()->get();
-        return view('employee.index', compact('departments'));
+        $trashed = Employee::onlyTrashed()->get();
+        return view('employee.index', compact('departments', 'employees', 'trashed'));
     }
 
     /**
@@ -72,7 +73,7 @@ class EmployeeController extends Controller
 
         $email_address = $request->email_address;
         Mail::to($email_address)->send(new AccountConfirmation($email_address, $generated_password));
-        return back();
+        return back()->withStatus('Employee has been added succesfully');
     }
 
     /**
@@ -107,14 +108,18 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         $data = $request->validate([
-            'department_id' => 'required',
-            'employee_name' => 'required',
-            'employee_no' => 'required|unique:employees,employee_no',
-            'email_address' => 'email|unique:users,email'
+            'employee_no' => 'required|unique:employees,employee_no,' .$employee->id,
+            
+        ]);
+        $data1 = $request->validate([
+            'name' => 'required',
+            'email' => 'email|unique:users,email,' .$employee->user->id
         ]);
 
+        $user = User::where('id',$employee->user_id);
+        $user->update($data1);
         $employee->update($data);
-        return redirect('/employee')->withStatus($employee->employee_name . ' has been edited succesfully');
+        return redirect('/employee')->withStatus($employee->user->name . ' has been edited succesfully');
     }
 
     /**
@@ -126,7 +131,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return back()->withDelete($employee->company_name. ' has been sent to trash');
+        return back()->withDelete($employee->user->name. ' has been sent to trash');
     }
 
     public function restore($employee){

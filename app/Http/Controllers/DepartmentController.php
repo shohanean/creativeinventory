@@ -83,8 +83,10 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
+
+        // return $request->all();
         $data = request()->validate([
-            'name' => 'required|unique:categories,name,' . $department->id, //VALIDATE EXCEPT DESIRED ID
+            'department_name' => 'required|unique:departments,department_name,' .$department->id, //VALIDATE EXCEPT DESIRED ID
         ]);
         $department->update($data);
         return redirect('/department')->withStatus($department->department_name . ' has been edited succesfully');

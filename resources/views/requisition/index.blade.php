@@ -4,7 +4,7 @@
 @section('active-requisition', 'opened')
 
 @section('content')
-<div class="col-md-12 text-center bg-secondary p-2 text-white"> <strong>All Requisition History</strong></div>
+<div class="col-md-12 text-center bg-secondary p-2 text-white"> <strong>ALL REQUISITION HISTORY</strong></div>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-bordered" id="req_table">
@@ -24,7 +24,14 @@
                         <td>{{$loop->index+1}}</td>
                         <td>{{$requisition->created_at}}</td>
                         <td>{{$requisition->user->name}}</td>
-                        <td>{{ strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}</td>
+                        <td>
+                            @if ($requisition->product->category_status == 2)
+                                {{ strtoupper($requisition->product->company->company_abbr) }}/{{strtoupper($requisition->product->name)}}-{{$requisition->product->unique_id}}
+                            @else
+                                {{strtoupper($requisition->product->name)}}
+                            @endif
+                            
+                        </td>
                         <td>{{$requisition->quantity}}</td>
                         <td>
                             @if ($requisition->status == 0)

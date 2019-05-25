@@ -90,7 +90,7 @@ class HomeController extends Controller
         $requisition->update([
             'status' => 1
         ]);
-        return back()->withStatus('Your have approved the request');
+        return back()->withStatus('You have approved the request');
     }
 
     public function reject($requisition){
@@ -100,7 +100,7 @@ class HomeController extends Controller
         $stock->update([
             'status' => 2
         ]);
-        return back()->withStatus('Your have rejected the request');
+        return back()->withStatus('You have rejected the request');
        
     }
 
@@ -111,6 +111,6 @@ class HomeController extends Controller
         $stock->update([
             'status' => 3
         ]);
-        return back()->withStatus('Your have forwarded the request to super admin');
+        return back()->withStatus('You have forwarded the request to super admin');
     }
 }

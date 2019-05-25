@@ -7,8 +7,8 @@
 <div class="row">
     <div class="col-md-12">
         <nav class="breadcrumb bg-white">
-            <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
-            <span class="breadcrumb-item active">Assign to employee</span>
+            <a class="breadcrumb-item" href="{{ route('home') }}">{{strtoupper('Dashboard')}}</a>
+            <span class="breadcrumb-item active">{{strtoupper('Assign to employee')}}</span>
         </nav>
     </div>
 </div>

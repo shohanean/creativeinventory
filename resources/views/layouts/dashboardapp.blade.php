@@ -251,7 +251,7 @@
     <li class="red @yield('active-requisition')">
         <a href="{{ route('requisition.create') }}">
             <i class="font-icon fab fa-wpforms"></i>
-            <span class="lbl">Requisition</span>
+            <span class="lbl">Make Requisition</span>
         </a>
     </li>
     @else
@@ -288,12 +288,12 @@
             <span class="lbl">Company</span>
         </a>
     </li>
-    <li class="green @yield('active-warehouse')">
+    {{-- <li class="green @yield('active-warehouse')">
         <a href="{{ route('warehouse.index') }}">
             <i class="font-icon fas fa-warehouse"></i>
             &nbsp;<span class="lbl">Warehouse</span>
         </a>
-    </li>
+    </li> --}}
     <li class="gold @yield('active-supplier')">
         <a href="{{route('supplier.index')}}">
             <i class="font-icon fas fa-truck"></i>
@@ -319,12 +319,12 @@
                     <span class="lbl">&nbsp;<small>Product List</small> </span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('product.trashView') }}">
                     &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
                     <span class="lbl">&nbsp;<small>Trash List</small> </span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </li>
 
@@ -346,12 +346,12 @@
                     <span class="lbl">&nbsp;<small>Purchase List</small> </span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('purchase.trashView') }}">
                     &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-trash"></i>
                     <span class="lbl">&nbsp;<small>Trash List</small> </span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </li>
 
@@ -367,20 +367,20 @@
                     <span class="lbl">&nbsp;<small>View Inventory</small> </span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('inventory.create') }}">
                     &nbsp;&nbsp;&nbsp; &nbsp;<i class="lbl fas fa-truck-loading"></i>
                     <span class="lbl">&nbsp;<small>Allocate Inventory</small> </span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </li>
-    <li class="blue @yield('active-role')">
+    {{-- <li class="blue @yield('active-role')">
         <a href="{{route('role.index')}}">
             <i class="font-icon fas fa-user-plus fa-lg"></i>
             <span class="lbl">Roles & permission</span>
         </a>
-    </li>
+    </li> --}}
 @endif
 
 

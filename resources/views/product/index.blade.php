@@ -7,8 +7,8 @@
 <div class="row">
     <div class="col-md-12">
         <nav class="breadcrumb bg-white">
-            <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
-            <span class="breadcrumb-item active">Product List</span>
+            <a class="breadcrumb-item" href="{{ route('home') }}">{{strtoupper('Dashboard')}}</a>
+            <span class="breadcrumb-item active">{{strtoupper('Product List')}}</span>
         </nav>
     </div>
 </div>
@@ -62,9 +62,9 @@
                     </td>
                     <td>
                         @if ($product->assign_status == 1)
-                            <button class="btn btn-success form-control">AVAILABLE</button>
+                            <a href="{{route('product.show', $product->id)}}" class="btn btn-success form-control">AVAILABLE</a>
                         @elseif ($product->assign_status == 2)
-                            <button class="btn btn-danger form-control">OCCUPIED</button>
+                            <a href="{{route('product.show', $product->id)}}" class="btn btn-danger form-control">OCCUPIED</a>
                         @endif
                     </td>
                     <td>{{strtoupper($product->company->company_abbr)}}/{{strtoupper($product->name)}}-{{$product->unique_id}}</td>
@@ -90,7 +90,7 @@
             <tr>
                 <th>#</th>
                 <th>Created at</th>
-                <th>Company Name</th>
+                {{-- <th>Company Name</th> --}}
                 <th>Product Name</th>
                 <th>Purchase Status</th>
             </tr>
@@ -100,7 +100,7 @@
             <tr>
                 <td>{{ $loop->index+1 }}</td>
                 <td>{{$product->created_at}}</td>
-                <td>{{$product->company->company_abbr}}</td>
+                {{-- <td>{{$product->company->company_abbr}}</td> --}}
                 <td>{{$product->name}}</td>
                 <td>
                     @if ($product->purchase_status == 1)

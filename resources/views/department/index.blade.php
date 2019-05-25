@@ -7,8 +7,8 @@
 <div class="row">
     <div class="col-md-12">
         <nav class="breadcrumb bg-white">
-            <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
-            <span class="breadcrumb-item active">Department</span>
+            <a class="breadcrumb-item" href="{{ route('home') }}">DASHBOARD</a>
+            <span class="breadcrumb-item active">DEPARTMENT</span>
         </nav>
     </div>
 </div>
@@ -16,7 +16,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <strong>List of Departments</strong>
+                <strong>LIST OF DEPARTMENTS</strong>
             </div>
             <div class="card-body">
 {{---------- SUCCESS MESSAGES FOR DEPARTMENT LIST--------------}}
@@ -81,7 +81,7 @@
 {{---------- END department LIST TABLE -------------}}
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <strong>Deleted department List</strong>
+                <strong>DELETED DEPARTMENT LIST</strong>
             </div>
 {{----------DELETED department SUCCESS MESSAGES -------------}}
             <div class="card-body">
@@ -138,7 +138,7 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <strong>Add Categories</strong>
+                <strong>ADD DEPARTMENT</strong>
             </div>
             <div class="card-body">
 {{----------- VALIDATION MESSAGES -------------}}

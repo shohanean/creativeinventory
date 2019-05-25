@@ -8,8 +8,8 @@
 <div class="row">
     <div class="col-md-12">
         <nav class="breadcrumb bg-white">
-            <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
-            <span class="breadcrumb-item active">Requisition Form</span>
+            <a class="breadcrumb-item" href="{{ route('home') }}">{{strtoupper('Dashboard')}}</a>
+            <span class="breadcrumb-item active">{{strtoupper('Requisition Form')}}</span>
         </nav>
     </div>
 </div>
@@ -17,7 +17,7 @@
     <div class="col-md-10 offset-1">
         <div class="card">
             <div class="card-head text-center bg-dark text-white">
-                <h4>Enter Requisition Details for Usable</h4>
+                <h4>{{strtoupper('Enter Requisition Details for Usable')}}</h4>
             </div>
 {{----------------- ERROR MESSAGE ------------------}}
             <div class="card-body">
@@ -54,15 +54,15 @@
                     @endif
                     <div class="category_select_container">
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <select name="product_id[]" class="form-control" id="product_name" required>
+                            <div class="col-md-6 py-4">
+                                <select name="product_id[]" class="form-control product_name" id="product_name" required>
                                     <option value="">Select product name</option>
                                     @foreach ($usable_products as $product)
                                             <option value="{{$product->id}}">{{$product->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 py-4">
                                 <input class="form-control" type="number" name="quantity[]" placeholder="Quantity" value="{{old('quantity')}}" autocomplete="off" required>
                             </div>
                             <div class="col-md-2">
@@ -73,9 +73,9 @@
                             </div>
                         </div>
                         {{-- wrapper to put the 'add more' div --}}
-                        <div class="wrapper_div col-md-12">
-
-                        </div>
+                            <div class="wrapper_div col-md-12">
+                                
+                            </div>
                         {{-- wrapper end --}}
                     </div>
                     @csrf
@@ -92,7 +92,7 @@
     <div class="col-md-10 offset-1">
         <div class="card">
             <div class="card-head text-center bg-dark text-white">
-                <h4>Enter Requisition Details For Re-Usable</h4>
+                <h4>{{strtoupper('Enter Requisition Details For Re-Usable')}}</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('store.requisition.reusable') }}" method="post">
@@ -108,8 +108,8 @@
                     @endif
                     <div class="category_select_container">
                         <div class="row mb-3">
-                            <div class="col-md-7">
-                                <select name="product_id[]" class="form-control" id="product_name" required>
+                            <div class="col-md-7 py-4">
+                                <select name="product_id[]" class="form-control product_name" id="product_name1" required>
                                     <option value="">Select product name</option>
                                     @foreach ($reusable_products as $product)
                                         @if ($product->purchase_status == 2 && $product->active_status == 1 && $product->assign_status == 1)
@@ -146,7 +146,7 @@
             var template = 
                     '<div class="category_select">'+
                         '<div class="row mb-4">'+
-                                '<div class="col-md-6">'+
+                                '<div class="col-md-6 py-4">'+
                                     '<select name="product_id[]"'+ 'class="form-control" id="product_name" required>'+
                                         '<option value="">Select product name</option>'+
                                         '@foreach ($usable_products as $product)'+
@@ -154,7 +154,7 @@
                                         '@endforeach'+
                                     '</select>'+
                                 '</div>'+
-                            '<div class="col-md-2">'+
+                            '<div class="col-md-2 py-4">'+
                                 '<input class="form-control" type="number" name="quantity[]" placeholder="Quantity" value="{{old('quantity')}}" autocomplete="off" required>'+
                             '</div>'+
 '                            <div class="col-md-2">'+
@@ -180,7 +180,7 @@
             var template1 = 
                     '<div class="category_select">'+
                         '<div class="row mb-4">'+
-                                '<div class="col-md-7">'+
+                                '<div class="col-md-7 py-4">'+
                                     '<select name="product_id[]"'+ 'class="form-control" id="product_name" required>'+
                                         '<option value="">Select product name</option>'+
                                         '@foreach ($reusable_products as $product)'+
@@ -209,7 +209,7 @@
                 $(this).parents('.category_select').remove();
             });
             //select2
-            $("#product_name").select2();
+            $("#product_name, #product_name1").select2();
         });
     </script>
 @endsection

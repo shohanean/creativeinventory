@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="form-group col-md-10">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter Product Name" value="{{old('name')}}">
+                        <input type="text" class="form-control" name="name" placeholder="Enter Product Name" value="{{old('name')}}" required>
                     </div>
                     @csrf
                     <div class="form-group col-md-2">
@@ -64,7 +64,7 @@
             <form action="{{ route('product.reusableStore') }}" method="post">
                 <div class="row">
                     <div class="form-group col-md-2 mt-3">
-                        <select name="company_id[]" class="form-control category_abbr" >
+                        <select name="company_id[]" class="form-control category_abbr" required>
                             <option value="">Select company</option>
                             @foreach ($companies as $company)
                                 <option value="{{$company->id}}">{{$company->company_abbr}}</option>
@@ -76,14 +76,14 @@
                     </div>
                     <div class="form-group col-md-5">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" name="name[]" placeholder="Enter Product Name" value="">
+                        <input type="text" class="form-control" name="name[]" placeholder="Enter Product Name" value="" required>
                     </div>
                     <div class="col-md-1 mt-3 text-center">
                         <h1>-</h1>
                     </div>
                     <div class="form-group col-md-2">
                         <label>Unique ID:</label>
-                        <input type="number" class="form-control" name="unique_id[]" value="" autocomplete="off">
+                        <input type="number" class="form-control" name="unique_id[]" value="" autocomplete="off" required>
                     </div>
                     <div class="form-group mt-4 col-md-1">
                         <button class="btn form-control" id="add_more"><i class="fas fa-plus"></i></button>
@@ -111,7 +111,7 @@
                     '<div class="category_select">'+
                         '<div class="row mb-2">'+
                                 '<div class="form-group col-md-2 mt-3">'+
-                                    '<select name="company_id[]" class="form-control" id="category_abbr">'+
+                                    '<select name="company_id[]" class="form-control" id="category_abbr" required>'+
                                         '<option value="">Select company</option>'+
                                         '@foreach ($companies as $company)'+
                                             '<option value="{{$company->id}}">{{$company->company_abbr}}</option>'+
@@ -123,14 +123,14 @@
                             '</div>'+
                             '<div class="form-group col-md-5">'+
                                 '<label>Product Name</label>'+
-                                '<input type="text" class="form-control"'+ 'name="name[]" placeholder="Enter Product Name" value="">'+
+                                '<input type="text" class="form-control"'+ 'name="name[]" placeholder="Enter Product Name" value="" required>'+
                             '</div>'+
                             '<div class="col-md-1 mt-4 text-center">'+
                                 '<h1>-</h1>'+
                             '</div>'+
                             '<div class="form-group col-md-2">'+
                                 '<label>Unique ID:</label>'+
-                                '<input type="number" class="form-control" name="unique_id[]" value="">'+
+                                '<input type="number" class="form-control" name="unique_id[]" value="" required>'+
                             '</div>'+
                             '<div class="col-md-1 mt-4">'+
                                 '<button class="btn btn-danger form-control" id="remove_btn"><i class="fas fa-minus"></i></button>'+

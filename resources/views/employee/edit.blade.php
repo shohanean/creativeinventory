@@ -9,7 +9,7 @@
         <nav class="breadcrumb bg-white">
             <a class="breadcrumb-item" href="{{ route('home') }}">Dashboard</a>
             <a class="breadcrumb-item" href="{{ route('employee.index') }}">Employee</a>
-            <span class="breadcrumb-item active">{{$company->employee_name}}</span>
+            <span class="breadcrumb-item active">{{$employee->user->name}}</span>
         </nav>
     </div>
 </div>
@@ -47,16 +47,33 @@
                 <form action="{{ route('employee.update', $employee->id) }}" method="POST">
                 @method('PATCH')
                 @csrf
+                {{-- <div class="form-group">
+                    <label>Department Name</label>
+                    <select name="department_id" class="form-control" id="dept_select">
+                        <option value="">-Select One-</option>
+                        @foreach ($departments as $department)
+                          <option value="{{ $department->id }}">{{ $department->department_name }}</option>
+                        @endforeach
+                    </select>
+                  </div> --}}
                     <div class="form-group">
                       <label>Employee Name</label>
-                      <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                      <input type="text" class="form-control" name="company_name" value="{{ $company->company_name }}">
+                      {{-- <input type="hidden" name="user_id" value="{{ Auth::id() }}"> --}}
+                      <input type="text" class="form-control" name="name" value="{{ $employee->user->name }}">
                     </div>
                     <div class="form-group">
+                        <label>Employee No</label>
+                        <input type="text" class="form-control" name="employee_no" placeholder="Enter Employee No" value="{{ $employee->employee_no }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="text" class="form-control" name="email" placeholder="Enter Email Address" value="{{ $employee->user->email }}">
+                    </div>
+                    {{-- <div class="form-group">
                       <label>Company Location</label>
                       <textarea class="form-control" name="company_location" value="{{ $company->company_location }}">{{ $company->company_location }}</textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Company</button>
+                    </div> --}}
+                    <button type="submit" class="btn btn-primary">Edit Employee</button>
                 </form>
  {{-------------- FORM END ---------------}}
             </div>

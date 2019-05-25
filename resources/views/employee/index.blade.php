@@ -19,10 +19,8 @@
             <div class="card-header bg-dark text-white">
                 <strong>List Employees</strong>
             </div>
+            {{---------- SUCCESS MESSAGES FOR LIST employee --------------}}
             <div class="card-body">
-
-{{---------- SUCCESS MESSAGES FOR LIST employee --------------}}
-
                 @if(session('status'))
                   <div class="alert alert-success alert-fill alert-border-left alert-close alert-dismissible fade show" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -46,8 +44,9 @@
                       <th>#</th>
                       <th>Employee Name</th>
                       <th>Employee Department</th>
-                      <th>Employee phone number</th>
-                      <th>Created</th>
+                      <th>Employee number</th>
+                      <th>Employee Email</th>
+                      {{-- <th>Created</th> --}}
                       <th>Created By</th>
                       <th>Action</th>
                     </tr>
@@ -57,14 +56,15 @@
                     <tr>
                       <td>{{ $loop->index+1 }}</td>
                       <td>{{ $employee->user->name }}</td>
-                      <td>{{ $employee->department->name }}</td>
+                      <td>{{ $employee->department->department_name }}</td>
                       <td>{{ $employee->employee_no }}</td>
-                      <td>{{ $employee->created_at->diffForHumans() }}</td>
+                      <td>{{ $employee->user->email }}</td>
+                      {{-- <td>{{ $employee->created_at->diffForHumans() }}</td> --}}
                       <td>{{ $employee->added_by }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
                             {{-- BUTTON TO EDIT  --}}
-                            {{-- <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a> --}}
+                            <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-primary-outline"><span><i class="fas fa-pencil-ruler"></i></span></a>
                             {{-- BUTTON TO DELETE  --}}
                             <form class="d-none" id="employee-destroy-form" action="{{ route('employee.destroy', $employee->id) }}" method="POST">
                               @method('DELETE')
@@ -117,9 +117,8 @@
                       <th>#</th>
                       <th>Employee Name</th>
                       <th>Employee Department</th>
-                      <th>Employee phone number</th>
-                      <th>Deleted</th>
-                      <th>Created By</th>
+                      <th>Employee number</th>
+                      <th>Employee Email</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -129,7 +128,7 @@
                       <td>{{ $loop->index+1 }}</td>
                       <td>{{ $trash->department->name }}</td>
                       <td>{{ $trash->employee_no }}</td>
-                      <td>{{ $trash->deleted_at->diffForHumans() }}</td>
+                      <td>{{ $trash->user->email }}</td>
                       <td>{{ $trash->user->name }}</td>
                       <td>
                         <div class="btn-group btn-group-sm">
